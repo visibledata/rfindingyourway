@@ -24,15 +24,21 @@ paginate = 10
 #    weight = 1
 
 [[menu.main]]
-    name = "R Timelines"
-    url  = "/r-timelines/"
+    name = "R Workflows"
+    identifier = "r-workflows"
     weight = 1
-
+  
 [[menu.main]]
-    name = "Training"
-    identifier = "training"
-    url  = "/training/"
-    weight = 2
+    parent = "r-workflows"
+    name = "Code"
+    url  = "/code"
+    weight = 3
+
+
+#[[menu.main]]
+#    name = "Training"
+#    identifier = "training"
+#    weight = 2
 
 #[[menu.main]]
 #    name = "Projects"
@@ -41,34 +47,34 @@ paginate = 10
 #    weight = 3
     
 [[menu.main]]
-    parent = "training"
+#    parent = "training"
     name = "Online Training"
     url  = "/online-training/"
-    weight = 3
+    weight = 2
 
 [[menu.main]]
-    parent = "training"
+#    parent = "training"
     name = "In-Person Training"
     url  = "/in-person-training/"
     weight = 3
     
-[[menu.main]]
-    name = "Consultancy"
-    identifier = "consultancy"
-    url  = "/consultancy/"
-    weight = 4
+#[[menu.main]]
+#    name = "Consultancy"
+#    identifier = "consultancy"
+#    url  = "/consultancy/"
+#    weight = 4
     
-[[menu.main]]
-    name = "Blog"
-    identifier = "blog"
-    url  = "/blog/"
-    weight = 5
+#[[menu.main]]
+#    name = "Blog"
+#    identifier = "blog"
+#    url  = "/blog/"
+#`    weight = 5
 
 [[menu.main]]
     name = "About"
     identifier = "about"
     url  = "/about/"
-    weight = 6
+    weight = 4
 
 # Top bar social links menu
 
