@@ -1,0 +1,59 @@
+---
+title: "R Timelines"
+description: "R Timelines"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+I think one of the most complicated parts of learning a programming language is knowing "what tool should I be using NOW".
+
+Often, there's more than one answer. Sometimes, there will be options that still technically work... but they're actually officially retired.
+
+```{r}
+library("tidyverse")
+library("lubridate")
+library("timevis")
+
+data_wrangle_approaches <- tribble(
+  ~approach, ~approach.descrip,
+  "Melt and cast", "<h1>Melt and cast</h1><p>Created by Hadley Wickham</p>",
+  "data.table", "<h2>data.table</h2><p>A fundamental revision of how data.frames work.<br> Well respected as a more efficient solution for mid to large datasets (>2Gb)</p>",
+  "Split, apply and combine", "Split, apply and combine",
+  "Tidy data", "Tidy data"
+) %>%
+  mutate(content = approach,
+         id = row_number())
+
+
+data_wrangle_pkgs <- tibble::tribble(
+      ~package,                  ~approach,   ~defining.functions, ~actively.supported,       ~start,         ~end,
+     "reshape",            "Melt and cast", "melt; cast; recast",               FALSE, "05/08/2005", "10/09/2010",
+    "reshape2",            "Melt and cast", "melt; cast; recast",               FALSE, "10/09/2010", "10/12/2017",
+        "plyr", "Split, apply and combine", "ddply; aaply; mdply",               FALSE, "30/09/2008", "05/12/2018",
+  "data.table",               "data.table",     "data[, .]; melt",                TRUE, "14/04/2006",           NA,
+       "tidyr",                "Tidy data",      "gather; spread",                TRUE, "16/01/2014",           NA
+  ) %>%
+  mutate(start = dmy(start),
+         end = dmy(end)) %>%
+  mutate(end = if_else(is.na(end), today(), end)) %>%
+  left_join(data_wrangle_approaches) %>%
+  select(-content) %>%
+  rename(group = id) %>%
+  mutate(id = row_number()) %>%
+  arrange(group, start) %>%
+  group_by(group) %>%
+  mutate(subgroup = paste0(group, ".", row_number())) %>%
+  mutate(content = package)
+
+timevis(data_wrangle_pkgs, groups = data_wrangle_approaches,
+        options = list(stack = FALSE,
+                       showCurrentTime = FALSE))
+
+```
+
+
+

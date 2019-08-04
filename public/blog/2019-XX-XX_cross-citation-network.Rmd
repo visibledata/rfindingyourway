@@ -1,0 +1,421 @@
+---
+title: Cross-citation
+author: Martin John Hadley
+date: '2019-XX-XX'
+slug: extracting-doi-from-text
+categories: []
+draft: true
+tidyr: styler
+tags: []
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+
+This builds on my previous post where I extracted and inferred cross-references.
+
+Let's load our packages
+
+```{r message=FALSE, warning=FALSE}
+library("tidyverse")
+library("rcrossref")
+library("here")
+library("rvest")
+library("glue")
+library("future")
+```
+
+# Import references
+
+```{r}
+original_citations <- read_csv(here("static", "data", "cross_referenced_citations.csv")) %>%
+  rename(plain_text_citation = citations)
+```
+
+# API for "Cited By"
+
+I can't find any good solution. I'm going to have to go rogue.
+
+# Google Scholar scraping
+
+Google Scholar assigns unique IDs (gscholar_id) to all research outputs (and researchers themselves), however I can't find a mapping between these and DOI. To make matters worse, Google Scholar links to publisher resources don't always include DOI. Here are four example g_scholar_ids and their corresponding publisher links:
+
+```{r}
+tibble(
+  gscholar_id = c(8858239560885465253, 6410617706885858129, 1654846964750830633, 1648013076175547772),
+  publisher_url = c("https://cdn.elifesciences.org/articles/40981/elife-40981-v1.pdf", 
+"https://link.springer.com/article/10.1134/S1068162017060048", 
+"http://www.jbc.org/content/early/2018/03/26/jbc.RA118.002161.short", 
+"https://proteom-msu.org/files/papers/2017_Karlova_Bioorg_Himiya.pdf"
+)
+)
+```
+
+So we need to go through a bunch of steps.
+
+## gscholar_id from DOI
+
+If we search Google Scholar for the DOI and nothing else, the top result is highly likely to be the actual object the DOI represents. With a bit of `rvest` scraping we can extract the `gscholar_id` with `get_gscholar_id()`. For example purposes we have a few different doi:
+
+- doi_with_citations: DOI:10.7554/elife.25478.007 which has (at the time of writing) 26 citations.
+- doi_without_citations: DOI:10.9737/hist.2018.644 which has (at the time of writing) 0 citations.
+- doi_google_cant_find: 
+
+```{r}
+doi_with_citations <- "10.7554/elife.25478.007"
+doi_without_citations <- "10.9737/hist.2018.644"
+doi_google_cant_find <- "10.4095/120159"
+
+
+get_gscholar_id <- function(doi, first_or_all = c("first", "all")){
+  
+  read_html(glue("https://scholar.google.com/scholar?hl=en&as_sdt=0%2C44&q=", URLencode(doi, reserved = TRUE))) %>%
+  html_node(".gs_rt") %>%
+  html_node("a") %>%
+  html_attr("data-clk") %>%
+  str_extract("d=\\d{19}") %>%
+  str_extract("\\d{19}")
+} 
+get_gscholar_id(doi_with_citations)
+```
+
+```{r}
+doi_with_errors %>%
+  get_gscholar_id()
+```
+
+
+This was very simple!
+
+## Cited by results pages
+
+Google Scholar's "cited by" page is accessible via this URL, https://scholar.google.com/scholar?cites=gscholar_id. By default, results are paginated to 10 results per page. We can increase this to 20 by appending `&num=20` to our URL. In order to extract all citing articles, we need to extract the total number of citing articles from this page:
+
+```{r}
+example_gscholar_id <- get_gscholar_id(doi_with_citations)
+cited_by_page <- read_html("https://scholar.google.com/scholar?cites=6583012258370270741")
+cited_by_page %>%
+  html_node("#gs_ab_md") %>%
+  html_text() %>%
+  str_extract("About \\d+ ") %>%
+  str_extract("\\d+")
+```
+
+But we need to handle articles that don't have any citations, for example DOI: 10.9737/hist.2018.644. Our `rvest` code returns `NA` in this instance.
+
+```{r}
+doi_without_citations %>%
+  get_gscholar_id() %>%
+  glue("https://scholar.google.com/scholar?cites=", .) %>%
+  read_html() %>%
+  html_node("#gs_ab_md") %>%
+  html_text() %>%
+  str_extract("About \\d+ ") %>%
+  str_extract("\\d+")
+```
+
+Let's combine this knowledge into a function:
+
+```{r}
+get_gscholar_nrsults_estimate <- function(gscholar_url){
+  results_estimate <- read_html(gscholar_url) %>%
+  html_node("#gs_ab_md") %>%
+  html_text() %>%
+  str_extract("About \\d+ ") %>%
+  str_extract("\\d+") %>%
+  as.integer()
+  
+  if(is.na(results_estimate)){
+    0
+  } else 
+    results_estimate
+  
+}
+```
+
+Now we need to iterate through the results pages, which have the following URL scheme:
+
+```{r, eval = FALSE}
+glue("https://scholar.google.com/scholar?cites=6583012258370270741&start={multiple_of_10}")
+```
+
+Let's create a utility function that generates sufficient results pages for a given `gscholar_id`:
+
+```{r}
+cited_by_result_urls <- function(doi){
+  
+  gscholar_id <- get_gscholar_id(doi)
+  
+  estimated_results <- get_gscholar_nrsults_estimate(glue("https://scholar.google.com/scholar?cites={gscholar_id}"))
+  
+  if(estimated_results == 0){
+    NA
+  } else 
+    paste0("https://scholar.google.com/scholar?cites=6583012258370270741&start=", seq(0, estimated_results, 10))
+  
+}
+```
+
+And test this function for both of our example DOI:
+
+```{r}
+doi_with_citations %>%
+  cited_by_result_urls()
+```
+
+```{r}
+doi_without_citations %>%
+  cited_by_result_urls()
+```
+
+
+## Extract citations with `rcrossref`
+
+In some cases we're lucky and links to publisher resources include DOI. But in many cases, we're not lucky at all. Let's build up a function that converts results to DOI via the `rcrossref` package.
+
+We'll use the first page of results for the same `example_doi` we've been using. Each result is contained in the following tag:
+
+```{html}
+<div class="gs_rt"></div>
+```
+
+There's lots of data in these entries, which we can extract as follows:
+
+```{r}
+example_results_page <- "https://scholar.google.com/scholar?cites=6583012258370270741"
+
+results_page <- read_html(example_results_page)
+
+citing_articles <- results_page %>%
+  html_nodes(".gs_ri")
+```
+
+We can extract the publisher links with the `rvest` code below. Notice that **only one** of these results has a DOI in it. That's great where it works, but when it doesn't we need to use the `rcrossref` package to infer the DOI. 
+
+```{r}
+results_urls <- citing_articles %>%
+  html_nodes("h3.gs_rt") %>%
+  html_node("a") %>%
+  html_attr("href")
+results_urls
+```
+
+The Google Scholar results contain nicely formatted titles, but the author list and publisher name are usually truncated. We can tidy these up as follows: 
+
+```{r}
+results_titles <- citing_articles %>%
+  html_nodes("h3.gs_rt") %>%
+  html_text() %>%
+  str_replace_all("\\[PDF\\]|\\[HTML\\]", "") %>%
+  str_trim()
+
+results_author_publisher <- citing_articles %>%
+  html_nodes(".gs_a") %>%
+  html_text() %>%
+  str_replace_all("…", "")
+tibble(
+  titles = results_titles,
+  authors_publisher = results_author_publisher
+)
+```
+
+Let's combine the data we currently have, and extract the DOI with regex: 
+
+```{r}
+results_tib <- tibble(
+  publisher_url = results_urls,
+  title = results_titles,
+  author_publisher = results_author_publisher
+) %>%
+  mutate(doi = str_extract(publisher_url, "10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")) %>%
+  select(doi, everything())
+```
+
+We can use the CrossRef metadata API with `cr_works()`, but let's take special attention of the first result:
+
+```{r}
+results_crossref <- results_tib %>%
+  mutate(query = paste(title, author_publisher)) %>%
+  slice(1) %>%
+  select(query) %>%
+  cr_works(query = .)
+results_crossref$data %>%
+  slice(1:3) %>%
+  select(doi, type, publisher)
+```
+
+What's going on? We **know** that the publication is in PNAS, so why is the top result different? It's because the authors are awesome humans and used the biorxiv pre-print server, indicated by the type column. Anything with the type "posted-content" are considered to be [not formally published](https://support.crossref.org/hc/en-us/articles/213126346-Posted-content-includes-preprints), so we can discount them.
+
+Now we can combine all of this together into two functions:
+
+```{r}
+gscholar_cr_work <- function(title, author_publisher) {
+  cr_works(query = paste(title, author_publisher), limit = 3)$data %>%
+    filter(!type == "posted-content") %>%
+    slice(1) %>%
+    select(doi) %>%
+    .[[1]]
+}
+
+
+gscholar_results_page_data <- function(results_page) {
+  results_page <- read_html(results_page)
+
+  citing_articles <- results_page %>%
+    html_nodes(".gs_ri")
+
+  results_urls <- citing_articles %>%
+    html_nodes("h3.gs_rt") %>%
+    html_node("a") %>%
+    html_attr("href")
+
+  results_titles <- citing_articles %>%
+    html_nodes("h3.gs_rt") %>%
+    html_text() %>%
+    str_replace_all("\\[PDF\\]|\\[HTML\\]", "") %>%
+    str_trim()
+
+  results_author_publisher <- citing_articles %>%
+    html_nodes(".gs_a") %>%
+    html_text() %>%
+    str_replace_all("…", "")
+
+  results_tib <- tibble(
+    publisher_url = results_urls,
+    title = results_titles,
+    author_publisher = results_author_publisher
+  ) %>%
+    mutate(doi = str_extract(publisher_url, "10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")) %>%
+    mutate(doi.source = if_else(!is.na(doi), "regex", "crossref")) %>%
+    select(doi, doi.source, everything())
+
+  results_tib %>%
+    rowwise() %>%
+    mutate(doi = if_else(!is.na(doi),
+      doi,
+      gscholar_cr_work(title, author_publisher)
+    )) %>%
+    ungroup()
+}
+```
+
+Let's test the function with our example results page:
+
+```{r}
+example_results_page %>%
+  gscholar_results_page_data()
+```
+
+```{r}
+doi_with_citations %>%
+  cited_by_result_urls()
+```
+
+```{r}
+doi_without_citations %>%
+  cited_by_result_urls()
+```
+
+```{r}
+tibble(from = 'a', to = 'b') %>%
+  slice(0)
+```
+
+
+# Building the citation network
+
+Now that we can generate cited by results pages from Google Scholar and scrape out the DOIs with a combination of `rvest` functions and `cr_works()` it's time to build our citation network. The `citing_dois()` function below generates a set of edges of the format:
+
+| from | to |
+| :- | :- |
+| Citing DOI | Cited DOI (from the original data set) |
+
+```{r}
+citing_dois <- function(target_doi) {
+  results_pages <- target_doi %>%
+    cited_by_result_urls()
+  
+  if(is.na(results_pages)){
+    return(suppressWarnings(tibble(from = 'a', to = 'b') %>%
+  slice(0)))
+  }
+  
+  results_pages %>%
+    map(gscholar_results_page_data) %>%
+    bind_rows() %>%
+    select(doi) %>%
+    filter(!is.na(doi)) %>%
+    rename(from = doi) %>%
+    mutate(to = target_doi)
+}
+```
+
+Let's test this with our two DOI to make sure we get acceptable results:
+
+```{r}
+doi_with_citations %>%
+  citing_dois()
+```
+
+```{r}
+doi_without_citations %>%
+  citing_dois()
+```
+
+The `original_citations` dataset contains DOI from multiple sources. Let's create a unified collection of our `best_guess_doi` from which we'll generate our citation network.
+
+```{r}
+best_guess_citations <- original_citations %>%
+  mutate(best_guess_doi = case_when(!is.na(doi) ~ doi,
+                                    !is.na(doi_from_pmid) ~ doi_from_pmid,
+                                    TRUE ~ doi_cr_works)) %>%
+  select(plain_text_citation, best_guess_doi)
+```
+
+```{r}
+best_guess_citations %>%
+  slice(3) %>%
+  mutate(citations = map(best_guess_doi, function(x)citing_dois(x)))
+```
+
+
+
+The `citing_dois` function is going to be slow to run. Some DOI are potentially going to be cited by hundreds of other papers, which means iterating over tens of pages of results and attempting to extract DOI. Thankfully, it's very simple to parallelise our code with the `future` package. Here's a small example:
+
+```{r}
+plan(multiprocess)
+
+start_scrape <- Sys.time()
+scraped_citation_network <- best_guess_citations %>%
+  slice(1:3) %>%
+  mutate(citations = map(best_guess_doi, ~future(citing_dois(.x))))
+end_scrape <- Sys.time()
+```
+
+```{r}
+scraped_citation_network %>%
+  mutate(citations = map(citations, ~value(.x)))
+```
+
+
+This is a fairly process, and I could probably have made some efficiencies that I haven't thought of. But. We can rapidly speed up the gathering of citing DOIs by parallelising our mapping with the `future` package.
+
+
+
+```{r}
+"10.7554/elife.25478.007" %>%
+  citing_dois()
+```
+
+```{r}
+original_citations %>% 
+  select(infered.doi) %>% 
+  slice(1:3) %>%
+  rename(doi = infered.doi) %>%
+  mutate(citations = map(doi, citing_dois))
+```
+

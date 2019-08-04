@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shiny on Visible Data</title>
+    <link>/categories/shiny/</link>
+    <description>Recent content in shiny on Visible Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/shiny/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shiny modules to reduce duplication in apps</title>
+      <link>/blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/</guid>
+      <description>Shiny apps are awesome, with a bit of training you can build fairly impressive interactive web apps. But at some point, the subject of “shiny modules” will rear its head.
+When I started learning modules, I found most of the existing articles focus on the technical-side of things and don’t focus on the benefits of using modules - they can significantly simplify and improve your apps.
+I’m going to put together a few different tutorials on real-world Shiny apps and how modules can be used to improve them.</description>
+    </item>
+    
+    <item>
+      <title>Shiny Modules for useful controls</title>
+      <link>/blog/2019/03/25/2019-03-25-shiny-modules-for-useful-controls/</link>
+      <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/25/2019-03-25-shiny-modules-for-useful-controls/</guid>
+      <description>Shiny Modules are an “advanced” feature of Shiny apps that developers can use to reduce code duplication, simplify complex inter-relating controls, allow UI elements to be compartmentalised into R packages… and generally be a Shiny magician.
+Much of the stuff written about modules gets lost in the weeds. We’re not going to do that here. We’re going to make the Shiny app I’ve embedded below (as an iframe), both with and without modules.</description>
+    </item>
+    
+  </channel>
+</rss>

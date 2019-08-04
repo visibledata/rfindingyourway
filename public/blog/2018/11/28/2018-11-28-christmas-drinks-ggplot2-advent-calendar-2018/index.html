@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+
+
+    <script src="https://kit.fontawesome.com/f69ee05783.js"></script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Christmas Drinks ggplot2 Advent Calendar 2018</title>
+    <meta name="author" content="" />
+
+    
+    <meta name="keywords" content="devows, hugo, go">
+    
+
+    
+    <meta name="description" content="There are just about 24 Christmassy hot drinks available in the big UK cafes. I&#39;ve made an advent calendae of them in ggplot2, read this post to find out how to do the same.">
+    
+
+    <meta name="generator" content="Hugo 0.56.0" />
+
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    
+    <link href="../../../../../css/animate.css" rel="stylesheet">
+
+    
+    
+    <link href="../../../../../css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    
+
+
+    
+    <link href="../../../../../css/custom.css" rel="stylesheet">
+
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+    
+    <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+    
+
+    <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+    <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+    <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Visible Data">
+
+    
+    <meta property="og:title" content="Christmas Drinks ggplot2 Advent Calendar 2018" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/blog/2018/11/28/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018//" />
+    <meta property="og:image" content="img/logo.png" />
+
+    
+    <script src="../../../../../js/backported-popover.js"></script>
+
+</head>
+
+  
+  <meta name="twitter:site" content="@martinjhnhadley">
+<meta name="twitter:creator" content="@martinjhnhadley">
+
+<meta name="twitter:description" content="Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data doi:10.6084/m9.figshare.7376228     Citable Code .Rmd on GitHub    
+This Christmas it suddently hit me. There are probably enough festive coffees at Starbucks etc that you could use them to populate a very tasty advent calendar.
+In the interests of helping everyone explore the range of Christmassy drinks on offer, I’ll be updating my deposit 24 days of Christmass drinks on Figshare every year from now on." />
+<meta name="twitter:title" content="Christmas Drinks ggplot2 Advent Calendar 2018" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.visibledata.co.uk/img/blog-images/header-images/2018-11-28_gg-christmass-advent-doors.png" /> 
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Christmas Drinks ggplot2 Advent Calendar 2018 logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Christmas Drinks ggplot2 Advent Calendar 2018 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Christmas Drinks ggplot2 Advent Calendar 2018 - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../r-timelines/">R Timelines</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Training <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../in-person-training/">In-Person Training</a></li>
+                      
+                        <li><a href="../../../../../online-training/">Online Training</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../consultancy/">Consultancy</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../about/">About</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Christmas Drinks ggplot2 Advent Calendar 2018</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">By <a href="#">Martin John Hadley</a> | November 28, 2018</p>
+
+                        <div id="post-content">
+                          
+<script src="../../../../../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="../../../../../rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="../../../../../rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+
+
+
+<hr style="margin-top: -10px;margin-bottom: 5px;">
+<div class="row">
+    <div class="col-sm-4">
+        <center> <span class="fa fa-gift fa-2x text-center" style="color:#007853"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Author<i class="fa fa-question-circle "></i></a>
+                <br>
+                Martin John Hadley
+                <br>
+                (<a href="https://orcid.org/0000-0002-3039-6849" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/orcid_16x16.png" style="width:1em;margin-right:.2em;" alt="ORCID iD icon">orcid.org/0000-0002-3039-6849</a>)
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-gift fa-2x text-center" style="color:#007853"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Data<i class="fa fa-question-circle "></i></a>
+            <br>
+                <a href="http://doi.org/10.6084/m9.figshare.7376228" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="../../../../../img/doi_16x16.png" style="width:1em;margin-right:.2em;" alt="DOI icon">doi:10.6084/m9.figshare.7376228</a>
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-box fa-2x text-center" style="color:grey"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Code<i class="fa fa-question-circle "></i></a>
+                <br>
+                <a href="https://github.com/visibledata/visibledata.github.io/blob/master/content/blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018.Rmd" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/GitHub-Mark-32px.png" style="width:1em;margin-right:.5em;" alt="GitHub icon">.Rmd on GitHub</a>
+        </center>
+    </div>
+</div>
+
+<hr style="margin-top: 5px;margin-bottom: 5px;">
+
+
+<p><br>
+This Christmas it suddently hit me. There are probably enough festive coffees at Starbucks etc that you could use them to populate a very tasty advent calendar.</p>
+<p>In the interests of helping everyone explore the range of Christmassy drinks on offer, I’ll be updating my deposit <a href="https://doi.org/10.6084/m9.figshare.7376228">24 days of Christmass drinks</a> on Figshare every year from now on. This blogpost takes you through how you can create the advent calendar below using <code>ggplot2</code>, I’m planning on creating an extension to make this easier in future <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<!-- <img src='../../../../../img/blog-images/2018_advent-calendar/gg_christmass_advent_doors.png' onmouseover="this.src='../../../../../img/blog-images/2018_advent-calendar/gg_logoed_and_cardboarded_treats.png';" onmouseout="this.src='../../../../../img/blog-images/2018_advent-calendar/gg_christmass_advent_doors.png';" /> -->
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_animated_door_openings_small.gif' width='600px'/></p>
+<div id="christmassy-drinks-of-2018" class="section level2">
+<h2>Christmassy drinks of 2018</h2>
+<p>Before we can collate our advent of Christmassy drinks, we need to make some decisions:</p>
+<ul>
+<li>What counts as a Christmassy drink?
+<ul>
+<li>Any drink that I can buy all the way through 1st December through to 24th December (so no Pumpkin Spice lattes, sadly).</li>
+</ul></li>
+<li>Which cafes should be included?
+<ul>
+<li>It’s my first year doing this. I’m going to choose places that are easy for me to get to!</li>
+</ul></li>
+<li>Do hot chocolates count?
+<ul>
+<li>I really wish they didn’t. But I could only find 15 festive coffee-based drinks within easy reach of me.</li>
+</ul></li>
+</ul>
+<p>After searching through a few menus, here are my selections for the Christmassy drinks of 2018:</p>
+<div id="htmlwidget-1" style="width:100%;height:100%;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"url":"/blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018_files/figure-html//widgets/widget_internal-show-drinks.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="make-your-own-ggplot2-advent" class="section level2">
+<h2>Make your own <code>ggplot2</code> advent</h2>
+<p>If you want to follow along, please follow these steps first:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a new RStudio project</p></li>
+<li><p>Create a data directory by running <code>dir.create(&quot;data&quot;)</code></p></li>
+<li><p>Create a new script <code>christmassy-drinks-advent.R</code>, at the top of the script load all the packages we’ll need:</p></li>
+</ol>
+<pre class="r"><code>library(&quot;tidyverse&quot;) # data manipulation
+library(&quot;grid&quot;) # rasterise images for ggplot2
+library(&quot;ggpubr&quot;) # set background image for ggplot2 panel
+library(&quot;magick&quot;) # manipulate images and export a .gif
+library(&quot;here&quot;) # see https://github.com/jennybc/here_here#readme</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Download version 3 of the Figshare deposit <a href="https://doi.org/10.6084/m9.figshare.7376228.v3">DOI:10.6084/m9.figshare.7376228.v3</a> by adding this code to your script:</li>
+</ol>
+<pre class="r"><code>dir.create(&quot;data&quot;)
+download.file(&quot;https://ndownloader.figshare.com/articles/7376228/versions/3&quot;,
+              &quot;data/christmassy-drinks-2018.zip&quot;)
+unzip(&quot;data/christmassy-drinks-2018.zip&quot;,
+      exdir = &quot;data&quot;)
+unlink(&quot;data/christmassy-drinks-2018.zip&quot;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Can we tidy up things a bit? There are images in the data folder, which isn’t very good practice.</li>
+</ol>
+<pre class="r"><code>dir.create(&quot;images&quot;)
+retailer_logos &lt;- list.files(&quot;data&quot;, &quot;*.png|.jpg&quot;, full.names = TRUE)
+file.copy(retailer_logos, &quot;images&quot;)
+file.remove(retailer_logos)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>If you follow along exactly with this blogpost, you’ll have 200+ lines of code in one script file! Make your life easier by splitting your script in sections as follows (<a href="https://support.rstudio.com/hc/en-us/articles/200484568-Code-Folding-and-Sections">read more here</a>). Please note there’s lots of duplication when following along, it doesn’t really take 200+ lines of code to make this!</li>
+</ol>
+<pre class="r"><code># ---- download data ----
+download.file(&quot;...&quot;) 
+# ---- advent doors ----
+ggplot(&quot;...&quot;)
+# ---- advent treats ---- 
+ggplot(&quot;...&quot;)</code></pre>
+</div>
+<div id="ggplot2-advent-calendar-doors" class="section level2">
+<h2>ggplot2 advent calendar doors</h2>
+<p>In my opinion, there are only really two true advent calendar layouts:</p>
+<p><img src="../../../../../blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018_files/figure-html/blog-landscape-or-portrait-1.png" width="480" /></p>
+<p>We can easily compute the centers of all the doors in these advent calendar layouts with <code>tibble()</code> and <code>seq()</code>:</p>
+<pre class="r"><code>portrait_door_centers &lt;- tibble(
+  x = rep(seq(1, 10, 3), 6),
+  y = rep(seq(1, 16, 3), times = 1, each = 4))
+
+landscape_door_centers &lt;- tibble(
+  y = rep(seq(1, 10, 3), 6),
+  x = rep(seq(1, 16, 3), times = 1, each = 4))</code></pre>
+<p>This blogpost will be slightly shorter if we continue with a landscape advent calendar, so let’s do that.</p>
+<p>Which <code>geom_*()</code> is most suitable for our advent calendar? Well, <code>geom_tile()</code> requires only the centre of our doors. The theme <code>theme_void()</code> throws away the unnecessary axes labels etc, leaving us with our idealised advent calendar:</p>
+<pre class="r"><code>gg_advent_landscape &lt;- landscape_door_centers %&gt;%
+  ggplot(aes(x, y)) +
+  geom_tile(color = &quot;black&quot;,
+            size = 0.6,
+            linetype = &quot;dotted&quot;,
+            alpha=0) +
+  theme_void() +
+  coord_fixed()
+gg_advent_landscape</code></pre>
+<p><img src="../../../../../blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018_files/figure-html/blog-advent-template-1.png" width="480" /></p>
+<p>How about the door labels? Let’s augment the data with door numbers via <code>mutate()</code> and then add <code>geom_label()</code> to display the door number:</p>
+<pre class="r"><code>set.seed(1)
+landscape_door_centers &lt;- landscape_door_centers %&gt;%
+  mutate(door_number = sample(1:24))
+gg_advent_landscape &lt;- landscape_door_centers %&gt;%
+  ggplot(aes(x, y)) +
+  geom_tile(color = &quot;black&quot;,
+            size = 0.6,
+            linetype = &quot;dotted&quot;,
+            alpha = 0) +
+  geom_label(aes(label = door_number)) +
+  theme_void() +
+  coord_fixed()
+gg_advent_landscape</code></pre>
+<p><img src="../../../../../blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018_files/figure-html/blog-randomise-door-numbers-1.png" width="480" /></p>
+</div>
+<div id="ggplot2-advent-calendar-treats" class="section level2">
+<h2>ggplot2 advent calendar treats</h2>
+<p>Now we’ve created the doors we need to create the Christmassy drink treats! Let’s import the drinks data and re-order them via the <code>door_number</code> column:</p>
+<pre class="r"><code>set.seed(1)
+christmassy_drinks_2018 &lt;- read_csv(&quot;data/24-days-of-christmassy-drinks.csv&quot;) %&gt;%
+  filter(year == 2018) %&gt;%
+  slice(landscape_door_centers$door_number) %&gt;%
+  mutate(door_number = 1:24)
+
+landscape_door_treats &lt;- christmassy_drinks_2018 %&gt;%
+  left_join(landscape_door_centers)</code></pre>
+<p>The festive drinks have very long names (e.g. “Salted caramel brownie hot chocolate”), so let’s insert line breaks every 10 characters to prettify our labels:</p>
+<pre class="r"><code>landscape_door_treats &lt;- landscape_door_treats %&gt;%
+  mutate(drink.name = gsub(&quot;(.{10,}?)\\s&quot;, &quot;\\1\n&quot;, drink.name))
+
+gg_landscape_door_treats &lt;- landscape_door_treats %&gt;%
+  ggplot(aes(x, y)) +
+  geom_tile(color = &quot;black&quot;,
+            size = 0.6,
+            linetype = &quot;dotted&quot;,
+            alpha = 0) +
+  geom_label(aes(label = drink.name),
+             nudge_y = 0.5, # give room for logo
+             size = 4) +
+  theme_void() +
+  coord_fixed()</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_landscape_door_treat_labels.png' style='width:600px'/></p>
+<p>It would look great if we could add the retailers’ logos to the squares. Let’s first import these images from the <code>data</code> folder:</p>
+<pre class="r"><code>starbucks_logo &lt;- image_read(here(&quot;images&quot;, &quot;starbucks_logo_2018.png&quot;)) %&gt;%
+  rasterGrob(interpolate = T)
+
+costa_logo &lt;- image_read(here(&quot;images&quot;, &quot;costa_logo_2018.png&quot;)) %&gt;%
+  rasterGrob(interpolate = T)
+
+cafe_nero_logo &lt;- image_read(here(&quot;images&quot;, &quot;cafe-nero_logo_2018.jpg&quot;)) %&gt;%
+  rasterGrob(interpolate = T)
+
+greggs_logo &lt;- image_read(here(&quot;images&quot;, &quot;greggs_logo_2018.png&quot;)) %&gt;%
+  rasterGrob(interpolate = T)
+
+pret_logo &lt;- image_read(here(&quot;images&quot;, &quot;pret_logo_2018.jpg&quot;)) %&gt;%
+  rasterGrob(interpolate = T)
+
+mc_cafe_logo &lt;- image_read(here(&quot;images&quot;, &quot;mc-café_logo_2018.png&quot;)) %&gt;%
+  rasterGrob(interpolate = T)</code></pre>
+<p>Inserting images into <code>ggplot2</code> charts is most easily achieved using <code>annotation_custom</code>. After a lot of jiggery pokery, these are fairly good options for nudging the logo into an appropriate position in the door:</p>
+<pre class="r"><code>door_center &lt;- list(x = 1, y = 1)
+
+nudge_logo_ymin &lt;- -1.25
+nudge_logo_ymax &lt;- -0.25
+nudge_logo_xmin &lt;- -0.5
+nudge_logo_xmax &lt;- 0.5
+
+gg_one_logo &lt;- gg_landscape_door_treats +
+  annotation_custom(starbucks_logo, 
+                    ymin = door_center$y + nudge_logo_ymax, 
+                    ymax = door_center$y + nudge_logo_ymin, 
+                    xmin = door_center$x + nudge_logo_xmin, 
+                    xmax = door_center$x + nudge_logo_xmax)</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_one_logo.png' style='width:600px'/></p>
+<p>Because <code>annotation_custom</code> only allows us to add one image at a time we need to iteratively add logos for each and every door. I’m a <code>purrr</code> advocate for this kind of task, but if you don’t like this functional approach to things you could use a <code>for</code> loop instead.</p>
+<p><code>pwalk</code> allows us to iterate a function over every row of <code>landscape_door_treats</code>, which in this case adds a <code>annotation_custom</code> layer to <code>gg_logoed_treats</code>. We use the <code>&lt;&lt;-</code> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> assignment operator so that the global version of <code>gg_logoed_treatsis</code> is updated. <code>pwalk</code> is the same as <code>pmap</code> but doesn’t generate output; side-effects are the only repurcussions of <code>pwalk</code>.</p>
+<pre class="r"><code>gg_logoed_treats &lt;- gg_landscape_door_treats
+
+landscape_door_treats %&gt;%
+  pwalk(function(x, y, retailer, ...){
+    
+    logo &lt;- switch (retailer,
+      &quot;Starbucks&quot; = starbucks_logo,
+      &quot;Costa&quot; = costa_logo,
+      &quot;Café Nero&quot; = cafe_nero_logo,
+      &quot;Greggs&quot; = greggs_logo,
+      &quot;McCafé&quot; = mc_cafe_logo,
+      &quot;Pret&quot; = pret_logo
+    )
+    gg_logoed_treats &lt;&lt;- gg_logoed_treats +
+      annotation_custom(logo, ymin = y - 1.25, ymax = y - 0.25, xmin = x - 0.5, xmax = x + 0.5)
+    
+  })</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_logoed_treats.png' style='width:600px'/></p>
+</div>
+<div id="background-images" class="section level2">
+<h2>Background images</h2>
+<p>We should really add background images to the two parts of our advent calendar; a Christmassy image for the doors and a cardboard background for the insides of the doors.</p>
+<p>If we want a background image applied to the <code>panel()</code> component of a <code>ggplot2</code> chart we need the <code>ggpubr</code> package. The <code>background_image()</code> must be called immediately after <code>ggplot(aes(x, y))</code> so as to avoid our geoms being hidden behind the background. I found <a href="https://pixabay.com/en/santa-christmas-coffee-mugs-3016939/"><em>beautiful</em> license-free image from pixelbay</a> which I think looks great for our advent calendar. Let’s add this file to the images directory and then create our now more festive advent calendar doors:</p>
+<pre class="r"><code>download.file(&quot;https://cdn.pixabay.com/photo/2017/12/13/14/48/santa-3016939_640.jpg&quot;,
+              here(&quot;images&quot;, &quot;santa-3016939_640.jpg&quot;))
+
+christmassy_background &lt;- image_read(here(&quot;images&quot;, &quot;santa-3016939_640.jpg&quot;))
+
+gg_advent_landscape &lt;- landscape_door_centers %&gt;%
+  ggplot(aes(x, y)) +
+  background_image(christmassy_background) +
+  geom_tile(color = &quot;black&quot;,
+            size = 0.6,
+            linetype = &quot;dotted&quot;,
+            alpha = 0) +
+  geom_label(aes(label = door_number)) +
+  theme_void() +
+  coord_fixed()
+gg_advent_landscape</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_christmass_advent_doors.png' width='600px'/></p>
+<p>I think it’s a lot of fun to add a cardboard effect to the treats, so I found this <a href="https://www.flickr.com/photos/27668445@N03/3191148261">license-free image from flickr</a> which I really enjoy. Let’s add it to our images folder and then add it to our advent calendar treats chart:</p>
+<pre class="r"><code>download.file(&quot;https://farm4.staticflickr.com/3134/3191148261_e3c1f3887b_o_d.jpg&quot;,
+              here(&quot;images&quot;, &quot;cardboard-effect.jpg&quot;))
+
+cardboard_background &lt;- image_read(here(&quot;images&quot;, &quot;cardboard-effect.jpg&quot;))
+
+gg_landscape_door_treats &lt;- landscape_door_treats %&gt;%
+  ggplot(aes(x, y)) +
+  background_image(cardboard_background) +
+  geom_tile(color = &quot;black&quot;,
+            size = 0.6,
+            linetype = &quot;dotted&quot;,
+            alpha = 0) +
+  geom_label(aes(label = drink.name),
+             nudge_y = 0.5, # give room for logo
+             size = 4) +
+  theme_void() +
+  coord_fixed()
+gg_landscape_door_treats</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_logoed_and_cardboarded_treats.png' width='600px'/></p>
+</div>
+<div id="iteratively-opening-the-advent-calendar" class="section level2">
+<h2>Iteratively opening the advent calendar</h2>
+<p>The two images we’ve created so far are only really that useful if we’re going to print them out and stick together. And even then, it’s a waste of ink printing out a cardboard effect!</p>
+<p>Let’s create a function for opening the advent doors:</p>
+<pre class="r"><code>open_advent_doors &lt;- function(gg_advent,
+                              advent_treats,
+                              open_doors) {
+  gg_local &lt;- gg_advent
+
+  advent_treats %&gt;%
+    filter(door_number %in% open_doors) %&gt;%
+    pwalk(function(x, y, retailer, drink.name, ...) {
+      logo &lt;- switch(retailer,
+        &quot;Starbucks&quot; = starbucks_logo,
+        &quot;Costa&quot; = costa_logo,
+        &quot;Café Nero&quot; = cafe_nero_logo,
+        &quot;Greggs&quot; = greggs_logo,
+        &quot;McCafé&quot; = mc_cafe_logo,
+        &quot;Pret&quot; = pret_logo
+      )
+      gg_local &lt;&lt;- gg_local +
+        annotation_custom(
+          cardboard_background %&gt;%
+            image_crop(&quot;-200x400&quot;) %&gt;%
+            rasterGrob(interpolate = T),
+          ymin = y - 1.5,
+          ymax = y + 1.5,
+          xmin = x - 2,
+          xmax = x + 2
+        ) +
+        annotation_custom(
+          logo,
+          ymin = y - 1.25,
+          ymax = y - 0.25,
+          xmin = x - 0.5,
+          xmax = x + 0.5
+        ) +
+        geom_label(
+          data = tibble(x, y, drink.name),
+          aes(
+            label = drink.name,
+            x = x,
+            y = y
+          ),
+          nudge_y = 0.5,
+          # give room for logo
+          size = 5
+        )
+    })
+
+  gg_local
+}</code></pre>
+<p>Here’s how our calendar looks after opening 10 doors:</p>
+<pre class="r"><code>open_advent_doors(gg_advent_landscape,
+                    landscape_door_treats,
+                    1:10)</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_opened_10_doors.png' width='600px'/></p>
+<p>Unfortunately, I don’t know how to use the <strong>incredible</strong> <a href="https://github.com/thomasp85/gganimate">gganimate package</a> to animate between door openings. Until I learn how, I’m going to create a .gif by exporting each step of the advent being opened and stitch them together with the <code>magick</code> package.</p>
+<pre class="r"><code>tibble(remaining_days = 1:24) %&gt;%
+  rowwise() %&gt;%
+  mutate(doors = list(1:remaining_days)) %&gt;%
+  pwalk(function(doors, ...) {
+    opened_door &lt;- open_advent_doors(
+      gg_advent_landscape,
+      landscape_door_treats,
+      doors
+    )
+
+    img_path &lt;- here(
+        &quot;data&quot;,
+        paste0(
+          &quot;gg_iterative_opened_door_&quot;,
+          formatC(
+            length(doors),
+            width = 2,
+            format = &quot;d&quot;,
+            flag = &quot;0&quot;
+          ),
+          &quot;.png&quot;
+        )
+      )
+    
+    ggsave(
+      img_path,
+      opened_door
+    )
+    
+    image_read(img_path) %&gt;%
+      image_trim() %&gt;%
+      image_resize(&quot;1400x&quot;) %&gt;%
+      image_write(img_path)
+    
+  })
+
+door_open_images &lt;- list.files(&quot;images&quot;, &quot;gg_iterative_opened_door&quot;, full.names = TRUE)
+
+
+door_open_images %&gt;%
+  tibble(img = .) %&gt;%
+  map(function(img){image_read(img)}) %&gt;%
+  image_join() %&gt;%
+  image_animate(fps = 0.5) %&gt;%
+  image_write(here(
+        &quot;images&quot;, &quot;gg_animated_door_openings.gif&quot;))</code></pre>
+<p><img src='../../../../../img/blog-images/2018_advent-calendar/gg_animated_door_openings_small.gif' width='600px'/></p>
+
+<br>
+<br>
+<hr style="margin-top: -10px;margin-bottom: 5px;">
+<div class="row">
+    <div class="col-sm-4">
+        <center> <span class="fa fa-gift fa-2x text-center" style="color:#007853"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Author<i class="fa fa-question-circle "></i></a>
+                <br>
+                Martin John Hadley
+                <br>
+                (<a href="https://orcid.org/0000-0002-3039-6849" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/orcid_16x16.png" style="width:1em;margin-right:.2em;" alt="ORCID iD icon">orcid.org/0000-0002-3039-6849</a>)
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-gift fa-2x text-center" style="color:#007853"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Data<i class="fa fa-question-circle "></i></a>
+            <br>
+                <a href="http://doi.org/10.6084/m9.figshare.7376228" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="../../../../../img/doi_16x16.png" style="width:1em;margin-right:.2em;" alt="DOI icon">doi:10.6084/m9.figshare.7376228</a>
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-box fa-2x text-center" style="color:grey"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Code<i class="fa fa-question-circle "></i></a>
+                <br>
+                <a href="https://github.com/visibledata/visibledata.github.io/blob/master/content/blog/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018.Rmd" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/GitHub-Mark-32px.png" style="width:1em;margin-right:.5em;" alt="GitHub icon">.Rmd on GitHub</a>
+        </center>
+    </div>
+</div>
+
+<hr style="margin-top: 5px;margin-bottom: 5px;">
+
+
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Please get in touch (<a href="mailto:martin@visibledata.co.uk">martin@visibledata.co.uk</a>) if you fancy working on this together, it’s very new territory for me.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>See Hadley Wickham’s <a href="https://stackoverflow.com/a/2630222/1659890">StackOverflow answer for more details</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "visibledata-co-uk" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/data-scraping">data-scraping (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/dataviz">dataviz (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/gis">gis (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/meta">meta (6)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/r">r (8)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/reproducibility">reproducibility (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/shiny">shiny (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/workflow">workflow (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/dataviz"><i class="fa fa-tags"></i> dataviz</a>
+            </li>
+            
+            <li><a href="../../../../../tags/fun"><i class="fa fa-tags"></i> fun</a>
+            </li>
+            
+            <li><a href="../../../../../tags/gis"><i class="fa fa-tags"></i> gis</a>
+            </li>
+            
+            <li><a href="../../../../../tags/htmlwidgets"><i class="fa fa-tags"></i> htmlwidgets</a>
+            </li>
+            
+            <li><a href="../../../../../tags/list-columns"><i class="fa fa-tags"></i> list-columns</a>
+            </li>
+            
+            <li><a href="../../../../../tags/meta"><i class="fa fa-tags"></i> meta</a>
+            </li>
+            
+            <li><a href="../../../../../tags/parallel-programming"><i class="fa fa-tags"></i> parallel-programming</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/regular-expressions"><i class="fa fa-tags"></i> regular-expressions</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rmdnews"><i class="fa fa-tags"></i> rmdnews</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny"><i class="fa fa-tags"></i> shiny</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny-modules"><i class="fa fa-tags"></i> shiny-modules</a>
+            </li>
+            
+            <li><a href="../../../../../tags/stringr"><i class="fa fa-tags"></i> stringr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/teaching"><i class="fa fa-tags"></i> teaching</a>
+            </li>
+            
+            <li><a href="../../../../../tags/web-scraping"><i class="fa fa-tags"></i> web-scraping</a>
+            </li>
+            
+            <li><a href="../../../../../tags/workflow"><i class="fa fa-tags"></i> workflow</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1006724,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<footer id="footer">
+    <div class="container">
+      
+      
+  <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://visibledata-co-uk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            Visible Data is a consultancy and technical training company focusing on data science, data visualisation and reproducibility based in Oxford, UK.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Blogs">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/">Blogs</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="XXX Advent Calendar (BOOKDOWN)">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">XXX Advent Calendar (BOOKDOWN)</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Shiny modules to reduce duplication in apps">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">Shiny modules to reduce duplication in apps</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved.</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-129199947-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

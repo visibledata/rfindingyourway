@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Visible Data</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Visible Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved.</copyright>
+    <lastBuildDate>Wed, 06 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>#rmdnews updates 2019-03-06</title>
+      <link>/post/rmdnews-updates-2019-03-06/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rmdnews-updates-2019-03-06/</guid>
+      <description>It’s hard keeping up to date with the awesome new things that we can do with #rstats. There are new packages and interesting new use cases of existing 📦 coming out all of the time. Mara Averick ([@dataandme](https://twitter.com/dataandme)) is an incredible source of overviews and introductions to awesome stuff, if you don’t already follow her then do so immediately.
+But how about 📦 updates? We often upgrade a package in a rush when we’re told the 📦 we want to install requires a new version of X.</description>
+    </item>
+    
+  </channel>
+</rss>

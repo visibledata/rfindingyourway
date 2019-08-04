@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Visible Data</title>
+    <link>/blog/</link>
+    <description>Recent content in Blogs on Visible Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XXX Advent Calendar (BOOKDOWN)</title>
+      <link>/blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/</guid>
+      <description>Chapters automatically get headings,  # Deciding between $ and []
+Will automatically be converted to: deciding-between–and—–</description>
+    </item>
+    
+    <item>
+      <title>Shiny modules to reduce duplication in apps</title>
+      <link>/blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/</guid>
+      <description>Shiny apps are awesome, with a bit of training you can build fairly impressive interactive web apps. But at some point, the subject of “shiny modules” will rear its head.
+When I started learning modules, I found most of the existing articles focus on the technical-side of things and don’t focus on the benefits of using modules - they can significantly simplify and improve your apps.
+I’m going to put together a few different tutorials on real-world Shiny apps and how modules can be used to improve them.</description>
+    </item>
+    
+    <item>
+      <title>Shiny Modules for useful controls</title>
+      <link>/blog/2019/03/25/2019-03-25-shiny-modules-for-useful-controls/</link>
+      <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/25/2019-03-25-shiny-modules-for-useful-controls/</guid>
+      <description>Shiny Modules are an “advanced” feature of Shiny apps that developers can use to reduce code duplication, simplify complex inter-relating controls, allow UI elements to be compartmentalised into R packages… and generally be a Shiny magician.
+Much of the stuff written about modules gets lost in the weeds. We’re not going to do that here. We’re going to make the Shiny app I’ve embedded below (as an iframe), both with and without modules.</description>
+    </item>
+    
+    <item>
+      <title>One weird regex matches 97% of DOI...</title>
+      <link>/blog/2019/03/13/2019-03-13_extracting-doi-from-text/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/13/2019-03-13_extracting-doi-from-text/</guid>
+      <description>At least once a month I’m tasked with something that involves working with DOI, but I’ve never bothered to write a function for extracting these from texts. Time to end that by putting together a tidyversesque add_doi() function!
+… wait, why?
+The R for Data Science book has lots of excellent advice, including this snippet about reducing duplicated code by writing functions:
+So, what are DOI? DOI (Digital Object Identifiers) are the gold standard for citations.</description>
+    </item>
+    
+    <item>
+      <title>#rmdnews updates 2019-03-06</title>
+      <link>/blog/2019/03/06/2019-03-06-rmdnews-updates-2019-03-06/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/06/2019-03-06-rmdnews-updates-2019-03-06/</guid>
+      <description>It’s hard keeping up to date with the awesome new things that we can do with #rstats. There are new packages and interesting new use cases of existing 📦 coming out all of the time. Mara Averick (@dataandme) is an incredible source of overviews and introductions to awesome stuff, if you don’t already follow her then do so immediately.
+But how about 📦 updates? We often upgrade a package in a rush when we’re told the 📦 we want to install requires a new version of X.</description>
+    </item>
+    
+    <item>
+      <title>Where is the centre of University of Oxford?</title>
+      <link>/blog/2019/02/18/2019-02-18_oxford-centres/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/02/18/2019-02-18_oxford-centres/</guid>
+      <description>.panel-heading .accordion-toggle:after { /* symbol for &#34;opening&#34; panels */ font-family: &#39;Glyphicons Halflings&#39;; /* essential for enabling glyphicon */ content: &#34;\e114&#34;; /* adjust as needed, taken from bootstrap.css */ float: right; /* adjust as needed */ color: grey; /* adjust as needed */ } .panel-heading .accordion-toggle.collapsed:after { /* symbol for &#34;collapsed&#34; panels */ content: &#34;\e080&#34;; /* adjust as needed, taken from bootstrap.</description>
+    </item>
+    
+    <item>
+      <title>Keeping secrets in blogdown</title>
+      <link>/blog/2019/01/02/2019-01-02_keeping-secrets-in-blogdown/</link>
+      <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/01/02/2019-01-02_keeping-secrets-in-blogdown/</guid>
+      <description>Sometimes we need to keep secrets. For instance, if you want to use ggmap after July 2018 you need an API key and to provide billing details to Google. You definitely don’t want to accidentally include your personal API key in a blog post.
+This blog is generated using the awesome blogdown package, which means all this wonderful stuff is generated from RMarkdown documents that are available in the Github repository visibledata/visibledata.</description>
+    </item>
+    
+    <item>
+      <title>Notes in class</title>
+      <link>/blog/2018/12/19/2019-xx-xx_draft_notes-in-class/</link>
+      <pubDate>Wed, 19 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12/19/2019-xx-xx_draft_notes-in-class/</guid>
+      <description>Something I feel simulataneously confident &amp;amp; unconfident is whether I should give students handouts for my training courses before the event.
+It’s difficult to get a good handle on what other folks do. I ran an extremely pitiful Twitter poll with 7 responses (43% give handsouts during the course, 29% give handouts before).
+So I’ve decided to create a survey of both students and trainers that I will try to spread as wide and broadly as possible.</description>
+    </item>
+    
+    <item>
+      <title>Using ggmap after July 2018</title>
+      <link>/blog/2018/12/05/2018-12-05-using-ggmap-after-july-2018/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12/05/2018-12-05-using-ggmap-after-july-2018/</guid>
+      <description>ggmap is an awesome package for creating maps with ggplot2. If you’ve seen a nice looking map built with ggplot2 I can almost guarantee you that it uses ggmap to look that good. The ggmap package is used to obtain base maps from the APIs of a number of online mapping tools, the one we care about here is the base maps from Google Maps (because they’re very good).</description>
+    </item>
+    
+    <item>
+      <title>Christmas Drinks ggplot2 Advent Calendar 2018</title>
+      <link>/blog/2018/11/28/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018/</link>
+      <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/28/2018-11-28-christmas-drinks-ggplot2-advent-calendar-2018/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data doi:10.6084/m9.figshare.7376228     Citable Code .Rmd on GitHub    
+This Christmas it suddently hit me. There are probably enough festive coffees at Starbucks etc that you could use them to populate a very tasty advent calendar.
+In the interests of helping everyone explore the range of Christmassy drinks on offer, I’ll be updating my deposit 24 days of Christmass drinks on Figshare every year from now on.</description>
+    </item>
+    
+    <item>
+      <title>Advent review 2018</title>
+      <link>/blog/2018/11/27/2018-11-27-advent-review-2018/</link>
+      <pubDate>Tue, 27 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/27/2018-11-27-advent-review-2018/</guid>
+      <description>Blog items:
+Use Projects and here all the time (promotional)
+ Use namer
+ Pipes are syntactic suger
+ Use + NULL in ggplot2
+ DOI! Or else. DOI to BIBTEX.
+  6 Promotional leaflet, highcharter etc are htmlwidges
+Use tidyverse rather than dplyr
+ forcats makes life so much easier for reordering ggplot features
+ Use stylr and lintr
+ Process free-text gender responses with https://github.com/ropenscilabs/gendercoder
+ If you’re doing GIS and you haven’t started using the sf package, switch now!</description>
+    </item>
+    
+    <item>
+      <title>Crawling DOI from a SAGE</title>
+      <link>/blog/2018/11/12/2018-11-12-crawling-doi-from-a-sage/</link>
+      <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/12/2018-11-12-crawling-doi-from-a-sage/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data Scrapes a delicate URL scheme from SAGE Publishing     Citable Code .Rmd on GitHub    Recently a friend told me they were doing a systematic review of the Hand Therap Journal published by SAGE. They wanted a way to scrape the journal for all publications, without going mad in the process.</description>
+    </item>
+    
+    <item>
+      <title>Organising meetings and email signatures</title>
+      <link>/blog/2018/05/29/2018-05-29-email-signatures/</link>
+      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/05/29/2018-05-29-email-signatures/</guid>
+      <description>Content Warning: This is a navel gazing branding/workflow post.  Recently, Visible Data started using a fairly profesh looking signature in our emails. Each signature includes a link to the consultant’s availability via the excellent FreeBusy service.
+   Why document an email signature? Well, there are some interesting features of a signature:
+ Share Google Calendar free/busy availability via FreeBusy [Read more…]
+ Provide tools for booking meetings across multiple time zones [Read more…]</description>
+    </item>
+    
+    <item>
+      <title>At Visible Data *we* do...</title>
+      <link>/blog/2018/03/29/2018-03-29-at-visible-data-we-do/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/03/29/2018-03-29-at-visible-data-we-do/</guid>
+      <description>There are so many awesome folks in the #rstats community that I respect and have learned from over the last 3 years, I owe a lot of my development and growth to the great community behind #rstats. It’s been particularly rewarding and uplifting to read personal stories, conflicts with imposters syndrome and struggles with mental health episodes. There are some particularly inspiring or interesting posts or ideas that I’ve found particularly useful, and will maintain a collection of humans and their stories at the bottom of this post.</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Workflow Charter</title>
+      <link>/blog/2018/03/15/2018-03-15-reproducible-workflow-charter/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/03/15/2018-03-15-reproducible-workflow-charter/</guid>
+      <description>Visible Data is all
+It’s extremely important to me to keep things reproducible and woke, here are some promises I commit to:
+ Only using public datasets for which a DOI is available. Proprietary munging behind a paywall is acceptable
+ Never use gender as a binary variable example (https://twitter.com/polesasunder/status/971622753261572096).
+ Spell check
+ styler
+ lintr
+ Refuse to work outside of a file synchronisation system
+  Appearance  Responsive iframes!</description>
+    </item>
+    
+    <item>
+      <title>Great circles with sf and leaflet</title>
+      <link>/blog/2018/02/28/2018-02-28_great-circles-with-sf-and-leaflet/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/28/2018-02-28_great-circles-with-sf-and-leaflet/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data No real data used.     Citable Code .Rmd on GitHub    Surprisingly often I’m asked to help folks build maps which visualise the journeys between geographic locations, in the bad old days of early 2017 I would have used the geospheres package and sp.</description>
+    </item>
+    
+    <item>
+      <title>Crawling with tidygraph</title>
+      <link>/blog/2018/02/27/2018-02-27-crawling-with-tidygraph/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/27/2018-02-27-crawling-with-tidygraph/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data R packages: WDI     Citable Code .Rmd on GitHub    During a meeting yesterday morning I offered to scrape a website that my colleagues are looking at redesigning. I didn’t really have any idea how to do it in R, but I was confident it wouldn’t be too tricky and there should be some good packages available for doing this kind of thing.</description>
+    </item>
+    
+    <item>
+      <title>Recipes for learning</title>
+      <link>/blog/2018/02/18/2018-02-18-recipes-for-learning/</link>
+      <pubDate>Sun, 18 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/18/2018-02-18-recipes-for-learning/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data doi:10.1038/srep00196     Citable Code .Rmd on GitHub    I can accurately identify the day I started learning R properly as the 30th of April 2015. That’s the day I was invited for an interview on the 26th of May at University of Oxford which had an interview exercise that required me to create a dummy 10 minute introduction to dataviz with a tool of my choice, using an interesting dataset.</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Blogposts</title>
+      <link>/blog/2018/02/14/2018-02-14_reproducible-blogposts/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/14/2018-02-14_reproducible-blogposts/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data R packages: WDI     Citable Code .Rmd on GitHub    Writing blogposts that meet all four of these requirements is hard:
+ The post is interesting and has something unique to it The post is easy to understand and both analyses and data visualisations follow sensible best practices The code is fully reproducible with all datasets available programmatically to folks replicating the code The author doesn’t give up writing because one of these can’t easily be met  In an ideal world, datasets are provided with DOI and/or else easily accessible via an API.</description>
+    </item>
+    
+    <item>
+      <title>Where’s the love for htmlwidgets?</title>
+      <link>/blog/2018/02/07/2018-02-07_where-s-the-love-for-htmlwidgets/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/07/2018-02-07_where-s-the-love-for-htmlwidgets/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data R packages: cranlogs and versions     Citable Code .Rmd on GitHub    If you’ve never heard of them, htmlwidgets are an amazing part of the work that RStudio (plus Ramnath Vaidyanathan and Kent Russell)1 have undertaken to make R a beautiful tool for doing data science and communicating things about your data.</description>
+    </item>
+    
+    <item>
+      <title>Visible Setup</title>
+      <link>/blog/2018/01/30/2018-01-30_visible-setup/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/01/30/2018-01-30_visible-setup/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data No data used.     Citable Code .Rmd on GitHub    After a long time coming, I’ve finally got round to picking a workable solution for creating my data blog “Visible Data”. This is a short overview of how I picked my tools and my intentions for the website.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/blog/1/01/01/widget_unnamed-chunk-8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/1/01/01/widget_unnamed-chunk-8/</guid>
+      <description>datatables   HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){ setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100); });  {&#34;x&#34;:{&#34;filter&#34;:&#34;none&#34;,&#34;data&#34;:[[&#34;oxpoints:23232335&#34;,&#34;oxpoints:23232339&#34;,&#34;oxpoints:23232348&#34;,&#34;oxpoints:23232352&#34;,&#34;oxpoints:23232355&#34;,&#34;oxpoints:23232357&#34;,&#34;oxpoints:23232366&#34;,&#34;oxpoints:23232395&#34;,&#34;oxpoints:23232368&#34;,&#34;oxpoints:23232371&#34;,&#34;oxpoints:23232373&#34;,&#34;oxpoints:23232379&#34;,&#34;oxpoints:23232383&#34;,&#34;oxpoints:23232385&#34;,&#34;oxpoints:23232387&#34;,&#34;oxpoints:23232392&#34;,&#34;oxpoints:23232398&#34;,&#34;oxpoints:23232400&#34;,&#34;oxpoints:23232405&#34;,&#34;oxpoints:23232410&#34;,&#34;oxpoints:23232412&#34;,&#34;oxpoints:23232414&#34;,&#34;oxpoints:23232466&#34;,&#34;oxpoints:23232425&#34;,&#34;oxpoints:23232427&#34;,&#34;oxpoints:23232437&#34;,&#34;oxpoints:23232441&#34;,&#34;oxpoints:23232449&#34;,&#34;oxpoints:23232454&#34;,&#34;oxpoints:23232456&#34;,&#34;oxpoints:23232464&#34;,&#34;oxpoints:23232468&#34;,&#34;oxpoints:23232416&#34;,&#34;oxpoints:23232474&#34;,&#34;oxpoints:23232476&#34;,&#34;oxpoints:23232479&#34;,&#34;oxpoints:23232483&#34;,&#34;oxpoints:23232485&#34;],[&#34;All Souls College&#34;,&#34;Balliol College&#34;,&#34;Brasenose College&#34;,&#34;Christ Church&#34;,&#34;Corpus Christi College&#34;,&#34;Exeter College&#34;,&#34;Green Templeton College&#34;,&#34;Harris Manchester College&#34;,&#34;Hertford College&#34;,&#34;Jesus College&#34;,&#34;Keble College&#34;,&#34;Kellogg College&#34;,&#34;Lady Margaret Hall&#34;,&#34;Linacre College&#34;,&#34;Lincoln College&#34;,&#34;Magdalen College&#34;,&#34;Mansfield College&#34;,&#34;Merton College&#34;,&#34;New College&#34;,&#34;Nuffield College&#34;,&#34;Oriel College&#34;,&#34;Pembroke College&#34;,&#34;Somerville College&#34;,&#34;St Anne&#39;s College&#34;,&#34;St Antony&#39;s College&#34;,&#34;St Catherine&#39;s College&#34;,&#34;St Cross College&#34;,&#34;St Edmund Hall&#34;,&#34;St Hilda&#39;s College&#34;,&#34;St Hugh&#39;s College&#34;,&#34;St John&#39;s College&#34;,&#34;St Peter&#39;s College&#34;,&#34;The Queen&#39;s College&#34;,&#34;Trinity College&#34;,&#34;University College&#34;,&#34;Wadham College&#34;,&#34;Wolfson College&#34;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/blog/1/01/01/rstudio_install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/1/01/01/rstudio_install/</guid>
+      <description>Location  from: github.com/schloerke/leaflet-providers@urlProtocol
+ Inspiration taken from https://github.com/leaflet-extras/leaflet-providers/commit/dea786a3219f9cc824b8e96903a17f46ca9a5afc to use the &amp;lsquo;old&amp;rsquo; relative url protocols and to &amp;lsquo;upgrade&amp;rsquo; them at js runtime.
+  Notes&amp;hellip;  Copy/paste provider information into providers.json
+var providers = L.TileLayer.Provider.providers; JSON.stringify(providers, null, &amp;quot; &amp;quot;);   ./data-raw/providerNames.R was re-ran to update to the latest providers  Some providers had their protocols turned into &amp;lsquo;//&amp;rsquo;.
+ This allows browsers to pick the protocol To stop files from the protocols staying as files, a ducktape patch was applied to L.</description>
+    </item>
+    
+  </channel>
+</rss>

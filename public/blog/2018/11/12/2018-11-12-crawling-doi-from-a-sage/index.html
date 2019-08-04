@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+
+
+    <script src="https://kit.fontawesome.com/f69ee05783.js"></script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crawling DOI from a SAGE</title>
+    <meta name="author" content="" />
+
+    
+    <meta name="keywords" content="devows, hugo, go">
+    
+
+    
+    <meta name="description" content="Site template made by devcows using hugo">
+    
+
+    <meta name="generator" content="Hugo 0.56.0" />
+
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    
+    <link href="../../../../../css/animate.css" rel="stylesheet">
+
+    
+    
+    <link href="../../../../../css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    
+
+
+    
+    <link href="../../../../../css/custom.css" rel="stylesheet">
+
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+    
+    <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+    
+
+    <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+    <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+    <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Visible Data">
+
+    
+    <meta property="og:title" content="Crawling DOI from a SAGE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/blog/2018/11/12/2018-11-12-crawling-doi-from-a-sage//" />
+    <meta property="og:image" content="img/logo.png" />
+
+    
+    <script src="../../../../../js/backported-popover.js"></script>
+
+</head>
+
+  
+  <meta name="twitter:site" content="@martinjhnhadley">
+<meta name="twitter:creator" content="@martinjhnhadley">
+
+<meta name="twitter:description" content="Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data Scrapes a delicate URL scheme from SAGE Publishing     Citable Code .Rmd on GitHub    Recently a friend told me they were doing a systematic review of the Hand Therap Journal published by SAGE. They wanted a way to scrape the journal for all publications, without going mad in the process." />
+<meta name="twitter:title" content="Crawling DOI from a SAGE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.visibledata.co.uk/img/blog-images/2018-11-12_futured-dois.png" /> 
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Crawling DOI from a SAGE logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Crawling DOI from a SAGE logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Crawling DOI from a SAGE - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../r-timelines/">R Timelines</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Training <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../in-person-training/">In-Person Training</a></li>
+                      
+                        <li><a href="../../../../../online-training/">Online Training</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../consultancy/">Consultancy</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../about/">About</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Crawling DOI from a SAGE</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">By <a href="#">Martin John Hadley</a> | November 12, 2018</p>
+
+                        <div id="post-content">
+                          
+
+
+
+<hr style="margin-top: -10px;margin-bottom: 5px;">
+<div class="row">
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Author<i class="fa fa-question-circle "></i></a>
+                <br>
+                Martin John Hadley
+                <br>
+                (<a href="https://orcid.org/0000-0002-3039-6849" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/orcid_16x16.png" style="width:1em;margin-right:.2em;" alt="ORCID iD icon">orcid.org/0000-0002-3039-6849</a>)
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star-half fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Data<i class="fa fa-question-circle "></i></a>
+                <br>
+                Scrapes a delicate URL scheme from SAGE Publishing
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star-half fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Code<i class="fa fa-question-circle "></i></a>
+                <br>
+                <a href="https://github.com/visibledata/visibledata.github.io/blob/master/content/blog/2018-11-12_crawling-doi-from-a-sage.Rmd" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/GitHub-Mark-32px.png" style="width:1em;margin-right:.5em;" alt="GitHub icon">.Rmd on GitHub</a>
+        </center>
+    </div>
+</div>
+
+<hr style="margin-top: 5px;margin-bottom: 5px;">
+
+
+<p>Recently a friend told me they were doing a systematic review of the Hand Therap Journal published by SAGE. They wanted a way to scrape the journal for all publications, without going mad in the process. Seemed like a good excuse to get them motivated to learn R and for me to practice web scraping with the <code>rvest</code> package.</p>
+<p>We’ll go through the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Generate URLs for all issues of the journal</li>
+<li>Inspect the source code for the page for the DOI</li>
+<li>Scrape all the pages</li>
+<li>Scrape all the pages using parallel processing via the <code>future</code> package</li>
+</ol>
+<p>Let’s load all the packaes we’re going to use up front:</p>
+<pre class="r"><code>library(&quot;tidyverse&quot;)
+library(&quot;rvest&quot;)
+library(&quot;glue&quot;)
+library(&quot;httr&quot;)
+library(&quot;future&quot;)</code></pre>
+<div id="urls-for-each-journal-issue" class="section level3">
+<h3>URLs for each journal issue</h3>
+<p>Let’s simplify things and only consider issues of the journal up to the date this blogpost was written (2018-11-12). I can’t guarantee that the journal won’t completely change their URL scheme tomorrow, but until they do change things all issues have the following URL structure:</p>
+<pre><code>https://journals.sagepub.com/toc/hthb/{volume}/{issue}</code></pre>
+<p>There have always been 4 issues a year, and the most recent volume is 23. Let’s setup a <code>tibble()</code> with this data:</p>
+<pre class="r"><code>issue_urls &lt;- tibble(volume = 1:23, issue_1 = 1, issue_2 = 2, issue_3 = 3, issue_4 = 4)</code></pre>
+<p>I’ll now use <code>gather()</code> to convert this into a long and tidy dataset that iterates through all issues:</p>
+<pre class="r"><code>issue_urls &lt;- issue_urls %&gt;%
+  gather(issue.colname, issue, issue_1:issue_4) %&gt;%
+  select(-issue.colname) %&gt;%
+  arrange(volume)</code></pre>
+<p>Now we can construct our URLs using <code>glue()</code></p>
+<pre class="r"><code>issue_urls &lt;- issue_urls %&gt;%
+  mutate(issue_url = glue(&quot;https://journals.sagepub.com/toc/hthb/{volume}/{issue}&quot;))
+head(issue_urls)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   volume issue issue_url                                
+##    &lt;int&gt; &lt;dbl&gt; &lt;S3: glue&gt;                               
+## 1      1     1 https://journals.sagepub.com/toc/hthb/1/1
+## 2      1     2 https://journals.sagepub.com/toc/hthb/1/2
+## 3      1     3 https://journals.sagepub.com/toc/hthb/1/3
+## 4      1     4 https://journals.sagepub.com/toc/hthb/1/4
+## 5      2     1 https://journals.sagepub.com/toc/hthb/2/1
+## 6      2     2 https://journals.sagepub.com/toc/hthb/2/2</code></pre>
+</div>
+<div id="inspect-the-source-code-for-the-doi" class="section level3">
+<h3>Inspect the source code for the DOI</h3>
+<p>Inspecting the source code reveals that the title of each article in the issue has the attribute <code>data-item-name</code>, with the value <code>click-article-title</code>.</p>
+<p><img src='../../../../../img/blog-images/2018-11-12_click-article-title.png' style='width:100%;'/></p>
+<p>Let’s use the most recent issue as a toy example:</p>
+<pre class="r"><code>&quot;https://journals.sagepub.com/toc/hthb/23/4&quot; %&gt;%
+  read_html() %&gt;%
+  html_nodes(&quot;[data-item-name=click-article-title]&quot;) %&gt;%
+  html_attrs() %&gt;%
+  .[[1]]</code></pre>
+<pre><code>##                       data-item-name                                class 
+##                &quot;click-article-title&quot;                         &quot;ref nowrap&quot; 
+##                                 href 
+## &quot;/doi/full/10.1177/1758998318784316&quot;</code></pre>
+<p>The DOI for the article is <em>almost</em> the <code>href</code> value, there’s some fluff we’ll get rid of later. But we know enough we can create a function for extracting the <code>href</code> value</p>
+<pre class="r"><code>get_article_dois_from_issue &lt;- function(issue_url) {
+  
+  issue_page &lt;- tryCatch(issue_url %&gt;%
+    read_html(),
+  error = function(c) NA
+  )
+
+  if (is.na(issue_page)) {
+    return(NA)
+  }
+
+  issue_url %&gt;%
+    read_html() %&gt;%
+    html_nodes(&quot;[data-item-name=click-article-title]&quot;) %&gt;%
+    html_attr(&quot;href&quot;)
+}</code></pre>
+<pre class="r"><code>&quot;https://journals.sagepub.com/toc/hthb/23/4&quot; %&gt;%
+  get_article_dois_from_issue()</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;/doi/full/10.1177/1758998318784316&quot;
+## 
+## [[2]]
+## [1] &quot;/doi/full/10.1177/1758998318796010&quot;
+## 
+## [[3]]
+## [1] &quot;/doi/full/10.1177/1758998318798668&quot;
+## 
+## [[4]]
+## [1] &quot;/doi/full/10.1177/1758998318809574&quot;</code></pre>
+</div>
+<div id="scrape-all-the-pages" class="section level3">
+<h3>Scrape all the pages</h3>
+<p>The wonderful <code>purrr</code> package allows us to insert these (almost) DOIs into the rows of our <code>tibble()</code> as follows:</p>
+<pre class="r"><code>example_dois &lt;- issue_urls %&gt;%
+  slice(52:54) %&gt;%
+  mutate(doi = map(issue_url, function(x)get_article_dois_from_issue(x)))</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##   volume issue issue_url                                  data            
+##    &lt;int&gt; &lt;dbl&gt; &lt;S3: glue&gt;                                 &lt;list&gt;          
+## 1     13     4 https://journals.sagepub.com/toc/hthb/13/4 &lt;tibble [3 × 1]&gt;
+## 2     14     1 https://journals.sagepub.com/toc/hthb/14/1 &lt;tibble [5 × 1]&gt;
+## 3     14     2 https://journals.sagepub.com/toc/hthb/14/2 &lt;tibble [6 × 1]&gt;</code></pre>
+<p>The <code>unnest()</code> function from <code>tidyr</code> allows us to unpack these list columns</p>
+<pre class="r"><code>example_dois %&gt;%
+  unnest(doi)</code></pre>
+<pre><code>## # A tibble: 14 x 4
+##    volume issue issue_url                         doi                      
+##     &lt;int&gt; &lt;dbl&gt; &lt;S3: glue&gt;                        &lt;chr&gt;                    
+##  1     13     4 https://journals.sagepub.com/toc… /doi/pdf/10.1177/1758998…
+##  2     13     4 https://journals.sagepub.com/toc… /doi/pdf/10.1177/1758998…
+##  3     13     4 https://journals.sagepub.com/toc… /doi/pdf/10.1177/1758998…
+##  4     14     1 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+##  5     14     1 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+##  6     14     1 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+##  7     14     1 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+##  8     14     1 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+##  9     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+## 10     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+## 11     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+## 12     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+## 13     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…
+## 14     14     2 https://journals.sagepub.com/toc… /doi/full/10.1258/ht.200…</code></pre>
+<p>All DOI begin with <code>10.</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> which we can use to tidy up these <em>almost</em> DOI into real DOI:</p>
+<pre class="r"><code>example_dois %&gt;%
+  unnest(doi) %&gt;%
+  mutate(doi = str_replace(doi, &quot;.*/10.&quot;, &quot;http://doi.org/10.&quot;))</code></pre>
+<pre><code>## # A tibble: 14 x 4
+##    volume issue issue_url                       doi                        
+##     &lt;int&gt; &lt;dbl&gt; &lt;S3: glue&gt;                      &lt;chr&gt;                      
+##  1     13     4 https://journals.sagepub.com/t… http://doi.org/10.1177/175…
+##  2     13     4 https://journals.sagepub.com/t… http://doi.org/10.1177/175…
+##  3     13     4 https://journals.sagepub.com/t… http://doi.org/10.1177/175…
+##  4     14     1 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+##  5     14     1 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+##  6     14     1 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+##  7     14     1 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+##  8     14     1 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+##  9     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+## 10     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+## 11     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+## 12     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+## 13     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…
+## 14     14     2 https://journals.sagepub.com/t… http://doi.org/10.1258/ht.…</code></pre>
+<p>It’s painfully slow going through all 92 issues in this fashion, thankfully it’s fairly easy to run this in parallel with the <code>future</code> package.</p>
+</div>
+<div id="scrape-all-the-pages-with-future" class="section level3">
+<h3>Scrape all the pages with future</h3>
+<p>To begin our work with the <code>future</code> package we must tell it our plan to use multicore evaluation as follows:</p>
+<pre class="r"><code>plan(multiprocess)</code></pre>
+<p>We use <code>future()</code> to tell the <code>future</code> package to run according to the plan we just set:</p>
+<pre class="r"><code>start_scrape &lt;- Sys.time()
+scraped_dois &lt;- issue_urls %&gt;%
+  mutate(dois = map(issue_url, ~future(get_article_dois_from_issue(.x))))
+end_scrape &lt;- Sys.time()</code></pre>
+<p>This whole process hasn’t taken much time (at the time of writing):</p>
+<pre class="r"><code>end_scrape - start_scrape</code></pre>
+<pre><code>## Time difference of 1.755138 mins</code></pre>
+<p>But our dataset isn’t ready to work with yet, our list column is full of <code>MulticoreFuture</code> things:</p>
+<pre class="r"><code>scraped_dois</code></pre>
+<p><img src='../../../../../img/blog-images/2018-11-12_futured-dois.png'/></p>
+<p>We use the <code>value()</code> function to extract the value of our future calculations and <code>unnest()</code> as previously:</p>
+<pre class="r"><code>scraped_dois %&gt;%
+  mutate(dois = map(dois, ~value(.x))) %&gt;%
+  unnest(dois) %&gt;%
+  filter(!is.na(dois)) %&gt;%
+  rename(doi = dois) %&gt;%
+  mutate(doi = str_replace(doi, &quot;.*/10.&quot;, &quot;http://doi.org/10.&quot;)) %&gt;%
+  select(-issue_url)</code></pre>
+<pre><code>## # A tibble: 459 x 3
+##    volume issue doi                                      
+##     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;                                    
+##  1      1     1 http://doi.org/10.1177/175899839600100401
+##  2      1     1 http://doi.org/10.1177/175899839600100402
+##  3      1     1 http://doi.org/10.1177/175899839600100403
+##  4      1     1 http://doi.org/10.1177/175899839600100404
+##  5      1     1 http://doi.org/10.1177/175899839600100405
+##  6      1     1 http://doi.org/10.1177/175899839600100406
+##  7      1     1 http://doi.org/10.1177/175899839600100407
+##  8      1     1 http://doi.org/10.1177/175899839600100408
+##  9      1     1 http://doi.org/10.1177/175899839600100409
+## 10      1     1 http://doi.org/10.1177/175899839600100410
+## # … with 449 more rows</code></pre>
+<p>This was the final output my friend needed, all 459 DOI-issued articles from the journal. It was really easy to put all of this together and finally get a chance to use the <code>future</code> package properly. If I was asked how to make this more rigorous I’d recommend the following:</p>
+<ul>
+<li>Programmatically discover the most recent volume and issue</li>
+<li>Don’t assume a max of 4 issues per volume, allow the code to iterate through a volume.</li>
+</ul>
+
+<hr style="margin-top: -10px;margin-bottom: 5px;">
+<div class="row">
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Author<i class="fa fa-question-circle "></i></a>
+                <br>
+                Martin John Hadley
+                <br>
+                (<a href="https://orcid.org/0000-0002-3039-6849" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/orcid_16x16.png" style="width:1em;margin-right:.2em;" alt="ORCID iD icon">orcid.org/0000-0002-3039-6849</a>)
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star-half fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Data<i class="fa fa-question-circle "></i></a>
+                <br>
+                Scrapes a delicate URL scheme from SAGE Publishing
+        </center>
+    </div>
+    <div class="col-sm-4">
+        <center> <span class="fa fa-star-half fa-2x text-center" style="color:Tomato"></span>
+            <p><a href='../../../../../reproducibility-ratings' data-toggle="tooltip" data-placement="right" title="" data-original-title="Click for info" style='font-weight:bold;color:black;text-decoration:underline;' target='_blank'>Citable Code<i class="fa fa-question-circle "></i></a>
+                <br>
+                <a href="https://github.com/visibledata/visibledata.github.io/blob/master/content/blog/2018-11-12_crawling-doi-from-a-sage.Rmd" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"  target='_blank'><img src="../../../../../img/GitHub-Mark-32px.png" style="width:1em;margin-right:.5em;" alt="GitHub icon">.Rmd on GitHub</a>
+        </center>
+    </div>
+</div>
+
+<hr style="margin-top: 5px;margin-bottom: 5px;">
+
+
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>See the DOI Handbook <a href="http://doi.org/10.1000/182">DOI: 10.1000/182</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "visibledata-co-uk" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/data-scraping">data-scraping (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/dataviz">dataviz (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/gis">gis (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/meta">meta (6)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/r">r (8)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/reproducibility">reproducibility (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/shiny">shiny (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/workflow">workflow (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/dataviz"><i class="fa fa-tags"></i> dataviz</a>
+            </li>
+            
+            <li><a href="../../../../../tags/fun"><i class="fa fa-tags"></i> fun</a>
+            </li>
+            
+            <li><a href="../../../../../tags/gis"><i class="fa fa-tags"></i> gis</a>
+            </li>
+            
+            <li><a href="../../../../../tags/htmlwidgets"><i class="fa fa-tags"></i> htmlwidgets</a>
+            </li>
+            
+            <li><a href="../../../../../tags/list-columns"><i class="fa fa-tags"></i> list-columns</a>
+            </li>
+            
+            <li><a href="../../../../../tags/meta"><i class="fa fa-tags"></i> meta</a>
+            </li>
+            
+            <li><a href="../../../../../tags/parallel-programming"><i class="fa fa-tags"></i> parallel-programming</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/regular-expressions"><i class="fa fa-tags"></i> regular-expressions</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rmdnews"><i class="fa fa-tags"></i> rmdnews</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny"><i class="fa fa-tags"></i> shiny</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny-modules"><i class="fa fa-tags"></i> shiny-modules</a>
+            </li>
+            
+            <li><a href="../../../../../tags/stringr"><i class="fa fa-tags"></i> stringr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/teaching"><i class="fa fa-tags"></i> teaching</a>
+            </li>
+            
+            <li><a href="../../../../../tags/web-scraping"><i class="fa fa-tags"></i> web-scraping</a>
+            </li>
+            
+            <li><a href="../../../../../tags/workflow"><i class="fa fa-tags"></i> workflow</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1006724,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<footer id="footer">
+    <div class="container">
+      
+      
+  <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://visibledata-co-uk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            Visible Data is a consultancy and technical training company focusing on data science, data visualisation and reproducibility based in Oxford, UK.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Blogs">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/">Blogs</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="XXX Advent Calendar (BOOKDOWN)">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">XXX Advent Calendar (BOOKDOWN)</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Shiny modules to reduce duplication in apps">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">Shiny modules to reduce duplication in apps</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved.</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-129199947-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

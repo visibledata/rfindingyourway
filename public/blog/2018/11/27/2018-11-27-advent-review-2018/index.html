@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+
+
+    <script src="https://kit.fontawesome.com/f69ee05783.js"></script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Advent review 2018</title>
+    <meta name="author" content="" />
+
+    
+    <meta name="keywords" content="devows, hugo, go">
+    
+
+    
+    <meta name="description" content="Site template made by devcows using hugo">
+    
+
+    <meta name="generator" content="Hugo 0.56.0" />
+
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    
+    <link href="../../../../../css/animate.css" rel="stylesheet">
+
+    
+    
+    <link href="../../../../../css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    
+
+
+    
+    <link href="../../../../../css/custom.css" rel="stylesheet">
+
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+    
+    <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+    
+
+    <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+    <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+    <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Visible Data">
+
+    
+    <meta property="og:title" content="Advent review 2018" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/blog/2018/11/27/2018-11-27-advent-review-2018//" />
+    <meta property="og:image" content="img/logo.png" />
+
+    
+    <script src="../../../../../js/backported-popover.js"></script>
+
+</head>
+
+  
+  <meta name="twitter:site" content="@martinjhnhadley">
+<meta name="twitter:creator" content="@martinjhnhadley">
+
+<meta name="twitter:description" content="Blog items:
+Use Projects and here all the time (promotional)
+ Use namer
+ Pipes are syntactic suger
+ Use &#43; NULL in ggplot2
+ DOI! Or else. DOI to BIBTEX.
+  6 Promotional leaflet, highcharter etc are htmlwidges
+Use tidyverse rather than dplyr
+ forcats makes life so much easier for reordering ggplot features
+ Use stylr and lintr
+ Process free-text gender responses with https://github.com/ropenscilabs/gendercoder
+ If you’re doing GIS and you haven’t started using the sf package, switch now!" />
+<meta name="twitter:title" content="Advent review 2018" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.visibledata.co.uk/" /> 
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Advent review 2018 logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Advent review 2018 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Advent review 2018 - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../r-timelines/">R Timelines</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Training <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../in-person-training/">In-Person Training</a></li>
+                      
+                        <li><a href="../../../../../online-training/">Online Training</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../consultancy/">Consultancy</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../about/">About</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Advent review 2018</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">November 27, 2018</p>
+
+                        <div id="post-content">
+                          
+
+
+<p>Blog items:</p>
+<ol style="list-style-type: decimal">
+<li><p>Use Projects and <code>here</code> all the time (promotional)</p></li>
+<li><p>Use namer</p></li>
+<li><p>Pipes are syntactic suger</p></li>
+<li><p>Use + NULL in <code>ggplot2</code></p></li>
+<li><p>DOI! Or else. DOI to BIBTEX.</p></li>
+</ol>
+<p>6 Promotional leaflet, highcharter etc are htmlwidges</p>
+<ol start="7" style="list-style-type: decimal">
+<li><p>Use tidyverse rather than dplyr</p></li>
+<li><p><code>forcats</code> makes life so much easier for reordering ggplot features</p></li>
+<li><p>Use <code>stylr</code> and <code>lintr</code></p></li>
+<li><p>Process free-text gender responses with <a href="https://github.com/ropenscilabs/gendercoder" class="uri">https://github.com/ropenscilabs/gendercoder</a></p></li>
+<li><p>If you’re doing GIS and you haven’t started using the <code>sf</code> package, switch now!</p></li>
+<li><p>Xaringan is the best option for slides, it massively helps improve the look and feel of the work I do</p></li>
+<li><p>Consider accessibility when writing blogposts a la <a href="https://r-resources.massey.ac.nz/rmarkdown/" class="uri">https://r-resources.massey.ac.nz/rmarkdown/</a></p></li>
+</ol>
+<hr />
+<ol start="18" style="list-style-type: decimal">
+<li><p><code>shiny</code> controls dependend on data need to be made in the server</p></li>
+<li><p>My spread -&gt; gather example</p></li>
+</ol>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0       ✔ purrr   0.3.1  
+## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.2       ✔ stringr 1.4.0  
+## ✔ readr   1.3.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(&quot;fivethirtyeight&quot;)
+
+tarantino %&gt;%
+  filter(!is.na(word)) %&gt;%
+  count(word, movie) %&gt;%
+  spread(movie, n, fill = 0) %&gt;%
+  gather(movie, count, 2:ncol(.))%&gt;%
+  arrange(movie, word) %&gt;%
+  head()</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   word     movie            count
+##   &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;
+## 1 ass      Django Unchained    28
+## 2 asses    Django Unchained     0
+## 3 asshead  Django Unchained     0
+## 4 asshole  Django Unchained     0
+## 5 assholes Django Unchained     0
+## 6 bastard  Django Unchained     1</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li><p>Use <code>my_data %&gt;% View(title = &quot;just imported&quot;)</code></p></li>
+<li><p><code>usethis</code> massively simplifies project development.</p></li>
+<li><p><code>rfigshare</code> is slightly frustrating to use, here’s the cheat.</p></li>
+<li><p>You’re showing your age if you’re still using shinyUI() and <code>shinyServer</code></p></li>
+</ol>
+<p>[20 Promotional]. Leaflet in shiny apps requires z-index manipulation (see my htmlwidgets course)</p>
+<ol start="22" style="list-style-type: decimal">
+<li><p>Bookdown for anything longer than a few paragraphs!</p></li>
+<li><p>Include your ORCID number in package DESCRIPTION files</p></li>
+<li><p>Sometimes you need a pick-me up. Try out <a href="https://github.com/rladies/praise" class="uri">https://github.com/rladies/praise</a> (MERRY CHRISTMAS)</p></li>
+</ol>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "visibledata-co-uk" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/data-scraping">data-scraping (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/dataviz">dataviz (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/gis">gis (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/meta">meta (6)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/r">r (8)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/reproducibility">reproducibility (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/shiny">shiny (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/workflow">workflow (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/dataviz"><i class="fa fa-tags"></i> dataviz</a>
+            </li>
+            
+            <li><a href="../../../../../tags/fun"><i class="fa fa-tags"></i> fun</a>
+            </li>
+            
+            <li><a href="../../../../../tags/gis"><i class="fa fa-tags"></i> gis</a>
+            </li>
+            
+            <li><a href="../../../../../tags/htmlwidgets"><i class="fa fa-tags"></i> htmlwidgets</a>
+            </li>
+            
+            <li><a href="../../../../../tags/list-columns"><i class="fa fa-tags"></i> list-columns</a>
+            </li>
+            
+            <li><a href="../../../../../tags/meta"><i class="fa fa-tags"></i> meta</a>
+            </li>
+            
+            <li><a href="../../../../../tags/parallel-programming"><i class="fa fa-tags"></i> parallel-programming</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/regular-expressions"><i class="fa fa-tags"></i> regular-expressions</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rmdnews"><i class="fa fa-tags"></i> rmdnews</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny"><i class="fa fa-tags"></i> shiny</a>
+            </li>
+            
+            <li><a href="../../../../../tags/shiny-modules"><i class="fa fa-tags"></i> shiny-modules</a>
+            </li>
+            
+            <li><a href="../../../../../tags/stringr"><i class="fa fa-tags"></i> stringr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/teaching"><i class="fa fa-tags"></i> teaching</a>
+            </li>
+            
+            <li><a href="../../../../../tags/web-scraping"><i class="fa fa-tags"></i> web-scraping</a>
+            </li>
+            
+            <li><a href="../../../../../tags/workflow"><i class="fa fa-tags"></i> workflow</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1006724,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<footer id="footer">
+    <div class="container">
+      
+      
+  <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://visibledata-co-uk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            Visible Data is a consultancy and technical training company focusing on data science, data visualisation and reproducibility based in Oxford, UK.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Blogs">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/">Blogs</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="XXX Advent Calendar (BOOKDOWN)">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/12/01/2019-12-01_draft_advent-calendar-bookdown/">XXX Advent Calendar (BOOKDOWN)</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">
+                          
+                            <img src="../../../../../img/placeholder.png" class="img-responsive" alt="Shiny modules to reduce duplication in apps">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/07/09/2019-07-09-shiny-modules-to-reduce-duplication-in-apps/">Shiny modules to reduce duplication in apps</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved.</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-129199947-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

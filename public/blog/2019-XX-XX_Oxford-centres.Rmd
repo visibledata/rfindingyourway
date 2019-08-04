@@ -1,0 +1,19 @@
+---
+title: Oxford centres?
+author: ''
+date: '2018-12-29'
+slug: oxford-centres
+categories: []
+draft: true
+tags:
+  - dataviz
+---
+
+My team at Univesity of Oxford provide research data managment and reproducible research advice to researchers across the whole of the University. A fairly common point of contention is where should we meet, and where is the centre of the University?
+
+We broadly agreed that the centre of the University should be calculated as the (weighted) centre of mass of specific buildings or campuses within the University. Two of our favourite options were:
+
+- Centre of mass of all colleges
+- Centre of mass of the University divisions
+
+It's also interesting to see how the centre of mass changes over time. Which means we're going to make some GIFs with `gganimate`.

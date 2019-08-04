@@ -1,0 +1,434 @@
+---
+title: Extracting DOI from text
+author: Martin John Hadley
+date: '2019-01-11'
+slug: extracting-doi-from-text
+categories: []
+tidyr: styler
+tags: []
+editor_options: 
+  chunk_output_type: console
+---
+
+Many more than 3 times have I been asked by academics to create a collaboration network from a messy collection of citations. So I should really create a function to do this for me.
+
+DOI (Digital Object Identifiers) are the gold standard for citations, they're guaranteed to point directly to the resource you care about. Sadly, citations often don't include them. Here's a set of 10 from the 
+
+Let's go through the most recent data file I was provided by an academic.
+
+CrossRef have a great blogpost about how to [match DOIs with regex](https://www.crossref.org/blog/dois-and-matching-regular-expressions/). Their research suggests 97% of DOI will match this regex: `10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+`
+
+## How to follow along
+
+If you want to follow along, please follow these steps first:
+
+1. Create a new RStudio project
+
+2. Create a data directory by running `dir.create("data-raw")`
+
+3. Create a new script `data-raw/messy-citations.R`, at the top of the script load all the packages we'll need:
+
+```{r blog-load-libraries, eval=FALSE}
+library("tidyverse")
+library("here")
+library("readxl")
+```
+
+4. Download the messy dataset by running
+
+```{r blog-download-data, eval = FALSE}
+# INSERT LINK
+# download.file("https://ndownloader.figshare.com/articles/7376228/versions/3",
+#               "data/christmassy-drinks-2018.zip")
+```
+
+## Tidy the citations
+
+Let's import the messy citations file using the `readxl` library. The Excel file doesn't have a naming row at the top, and so we supply a column name to the `col_names` argument:
+
+```{r blog-import-data, eval = FALSE}
+messy_citations <- read_xlsx(here("data-raw", "messy-citations_long.xlsx"), col_names = c("citations"))
+```
+
+```{r internal-get-data, eval = TRUE}
+library("tidyverse")
+library("here")
+library("readxl")
+library("rcrossref")
+library("treemap")
+messy_citations <- read_xlsx(here("static", "data", "messy-citations_long.xlsx"),
+  col_names = c("citations")
+)
+```
+
+If you open the Excel file up, you'll notice that many of the citations are spread across multiple lines. Here's the first citation split over 4 rows:
+
+```{r 2019-01-11-extracting-doi-from-text-1}
+messy_citations %>%
+  slice(1:4)
+```
+
+What are the rules for grouping citations?
+
+- There's an NA at the end of all citations that wrap over multiple rows.
+
+Let's use this information to create a unique `citation_id` based on the row number where `citations == NA`:
+
+```{r 2019-01-11-extracting-doi-from-text-2}
+grouped_messy_citations <- messy_citations %>%
+  mutate(wrapped = ifelse(is.na(citations), TRUE, FALSE)) %>%
+  mutate(
+    citation_id = 0,
+    citation_id = ifelse(wrapped == TRUE,
+      row_number(),
+      NA
+    )
+  )
+grouped_messy_citations
+```
+
+Now we can use `fill()` from `tidyr` to fill all upwards with our `citation_id` and also use `filter()` to throw away the empty `NA` row.
+
+```{r 2019-01-11-extracting-doi-from-text-3}
+grouped_messy_citations <- grouped_messy_citations %>%
+  fill(citation_id, .direction = "up") %>%
+  filter(!is.na(citations))
+grouped_messy_citations
+```
+
+Not all of the citations wrapped over multiple rows, these currently have the `citation_id` of `NA`. Let's replace those with the citations `row_number()` and convert this to a character column:
+
+```{r 2019-01-11-extracting-doi-from-text-4}
+grouped_messy_citations <- grouped_messy_citations %>%
+  mutate(
+    citation_id = ifelse(is.na(citation_id), row_number(), citation_id),
+    citation_id = as.character(citation_id)
+  )
+grouped_messy_citations
+```
+
+Now we can `group_by(citation_id)` and `paste()` together the citations to create a neat set of citations!
+
+```{r 2019-01-11-extracting-doi-from-text-5}
+clean_citations <- grouped_messy_citations %>%
+  group_by(citation_id) %>%
+  mutate(citations = citations %>% paste(collapse = " ")) %>%
+  ungroup() %>%
+  select(-wrapped, -citation_id) %>%
+  unique()
+clean_citations
+```
+
+But... these citations aren't that clean. Many of the citations start as follows:
+    
+      15.    Doe, Jo. Nature
+      
+We can fix this with `str_replace()` and a little regex:
+
+```{r 2019-01-11-extracting-doi-from-text-6}
+clean_citations <- clean_citations %>%
+  mutate(
+    citations = str_replace(citations, "^\\d{1,}.", ""),
+    citations = str_trim(citations)
+  )
+```
+
+
+Let's create a `data` folder and export our tided data!
+
+```{r blog-export-text-citations, eval = FALSE}
+dir.create("data")
+clean_citations %>%
+  write_csv(here("data", "text-citations.csv"))
+```
+
+```{r internal-export-text-citations, eval = TRUE}
+clean_citations %>%
+  write_csv(here("static", "data", "text-citations.csv"))
+```
+
+
+## Extracting DOI and PMID with regex
+
+We're going to design some functions for extracting DOI and PMID from raw citations in stages. First, we need a new script file `extract-doi-and-pmid-from-citations.R` and load the following packages at the top
+
+```{r blog-libraries-for-extracting-doi, eval = FALSE}
+library("tidyverse")
+library("here")
+text_citations <- read_csv(here("data", "text-citations.csv"))
+```
+
+```{r internal-import-tidied-text-citations, eval = TRUE}
+text_citations <- read_csv(here("static", "data", "text-citations.csv"))
+```
+
+The `tidyverse` includes the excellent `stringr` for working with regular expressions, allowing us to extract DOIs and PMIDs with `str_extract()`:
+
+
+```{r 2019-01-11-extracting-doi-from-text-7}
+tidied_citations <- text_citations %>%
+  mutate(doi = str_extract(citations, "10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")) %>%
+  mutate(
+    pmid = str_extract(citations, "(PMID:|pmid:) \\d{8}"),
+    pmid = str_extract(pmid, "\\d{8}")
+  ) %>%
+  mutate(
+    doi.extracted = ifelse(!is.na(doi), TRUE, FALSE),
+    pmid.extracted = ifelse(!is.na(pmid), TRUE, FALSE)
+  )
+```
+
+<!-- Unfortunately, `r scales::percent(tidied_citations %>% filter(is.na(doi)) %>% nrow() / nrow(tidied_citations))` of entries don't contain DOI. In 16% of cases there is a PMID, so let's convert to DOI using `id_converter()`. -->
+
+```{r 2019-01-11-extracting-doi-from-text-8}
+pmid_to_doi <- function(pmid) {
+  results <- id_converter(pmid, type = "pmid")
+
+  
+  if(is.null(results[["status"]])){
+    return(NA)
+  } else
+    results$record$doi
+  
+  # if (results$records$status == "error") {
+  #   NA
+  # } else {
+  #   results$records$doi
+  # }
+}
+```
+
+```{r}
+library(future)
+plan(multiprocess)
+pmid_converted_citations <- tidied_citations %>%
+  filter(is.na(doi)) %>%
+  filter(!is.na(pmid)) %>%
+  mutate(doi_from_pmid = map(pmid, ~future(pmid_to_doi(.x)))) %>%
+  mutate(doi_from_pmid = map(doi_from_pmid, ~values(.x))) %>%
+  mutate(doi_from_pmid = as.character(doi_from_pmid)) %>%
+  mutate(doi_from_pmid = ifelse(doi_from_pmid == "NULL",
+                                 NA,
+                                 doi_from_pmid))
+
+
+```
+
+
+```{r 2019-01-11-extracting-doi-from-text-9, eval = FALSE}
+# This takes a few minutes
+library(future)
+plan(multiprocess)
+pmid_converted_citations <- tidied_citations %>%
+  filter(is.na(doi)) %>%
+  filter(!is.na(pmid)) %>%
+  mutate(doi_from_pmid = map(pmid, ~future(pmid_to_doi(.x)))) %>%
+  mutate(doi_from_pmid = map(doi_from_pmid, ~values(.x))) %>%
+  mutate(doi_from_pmid = as.character(doi_from_pmid)) %>%
+  mutate(doi_from_pmid = ifelse(doi_from_pmid == "NULL",
+                                 NA,
+                                 doi_from_pmid))
+tidied_citations <- tidied_citations %>%
+  full_join(pmid_converted_citations)
+tidied_citations %>%
+  write_csv(here("static", "data", "tidied_citations.csv"))
+```
+
+Unfortunately, 66% of our citations still don't have DOI.
+
+```{r 2019-01-11-extracting-doi-from-text-10, echo = FALSE}
+tidied_citations <- read_csv(here("static", "data", "tidied_citations.csv"))
+```
+
+```{r 2019-01-11-extracting-doi-from-text-11, echo = FALSE}
+n_no_doi <- tidied_citations %>%
+  filter(is.na(doi)) %>%
+  filter(is.na(doi_from_pmid)) %>%
+  nrow()
+
+n_failed_pmid_conversions <- tidied_citations %>%
+  filter(is.na(doi)) %>%
+  filter(!is.na(pmid)) %>%
+  filter(is.na(doi_from_pmid)) %>%
+  nrow()
+
+postconversion_identifier_summaries <- tribble(
+  ~variable, ~value,
+  "Extracted DOI", sum(!is.na(tidied_citations$doi)),
+  "DOI from PMID", sum(!is.na(tidied_citations$doi_from_pmid)),
+  "Failed PMID conversions", n_failed_pmid_conversions,
+  "No DOI", n_no_doi
+) %>%
+  mutate(variable = fct_reorder(variable, value))
+```
+
+```{r 2019-01-11-extracting-doi-from-text-12}
+library("treemap")
+treemap(
+  postconversion_identifier_summaries,
+  index = "variable",
+  vSize = "value",
+  title = "Post PMID conversion identifiers",
+  algorithm = "squarified"
+)
+```
+
+## Manual DOI extraction
+
+In a draft version of this blog post I attempted to use the `rcrossref` package for converting the unknown citations into DOI. Unfortunately, I massively overestimated the cleanliness of the data. The old code isn't worthwhile, but the results are... because I can use these to fix up the data manually.
+
+```{r, eval = FALSE}
+library("readxl")
+draft_citation_data <- read_csv(here("static", "data", "cross_referenced_citations.csv"))
+
+manually_searched_doi <- read_xlsx(here("static", "data", "cross_referenced_citations_manual.xlsx"))
+# File was opened in Excel, corrupting symbols.
+manually_searched_doi$citations <- draft_citation_data %>%
+  filter_at(c("doi", "doi_from_pmid"), is.na) %>%
+  select(citations) %>%
+  .[[1]]
+
+```
+
+
+```{r, eval = FALSE}
+draft_citation_data %>%
+  left_join(manually_searched_doi) %>%
+  select(citations, doi, doi_from_pmid:doi_manual) %>%
+  rename(doi_extracted = doi) %>%
+  select(doi_extracted, doi_from_pmid, doi_manual) %>%
+  filter(!rowSums(is.na(.)) == ncol(.)) %>%
+  mutate(doi = paste(doi_extracted, doi_from_pmid, doi_manual),
+         doi = str_replace_all(doi, "NA", ""),
+         doi = str_trim(doi)) %>%
+  select(doi, everything()) %>%
+  mutate_at(vars(doi_extracted, doi_from_pmid, doi_manual), list(~ifelse(is.na(.), FALSE, TRUE))) %>%
+  gather(source, value, doi_extracted:doi_manual) %>%
+  filter(value == TRUE) %>%
+  select(doi, source) %>%
+  write_csv(here("static", "data", "fully_processed_dois.csv"))
+```
+
+
+
+
+
+<!-- ## Using `rcrossref` for stragglers -->
+
+<!-- Let's deal with the citations without DOI or PMID by using the `rcrossref` package. Using `cr_works()` we can make a query to the CrossRef metadata API and see what it thinks the true citation might be. The results from the API are contained in the `data` part of the object: -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-13} -->
+<!-- crossref_data <- cr_works(query = "Bao L, Hannon C, Cruz-Mignoni A, Ptchelkine D, Sun MY, Miller A, Bunjobpol W, Quevedo C E, Derveni M, Chambers J, Simmons A, Phillips S E V, Rabbitts T H. (2017). Intracellular immunization against HIV infection with and intracellular antibody that mimics HIV integrase binding to the cellular LEDGF protein.") -->
+<!-- crossref_data$data %>% -->
+<!--   head() -->
+<!-- ``` -->
+
+<!-- What happens if CrossRef doesn't have any idea what to suggest? It returns a `tibble` with zero rows. -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-14} -->
+<!-- unknown_reference <- cr_works(query = "46h33") -->
+<!-- unknown_reference$data -->
+<!-- ``` -->
+
+<!-- That's enough information for us to create a utility function, `crossref_suggested_doi()`. We'll encode failed lookups with `NA`. -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-15} -->
+<!-- crossref_suggested_doi <- function(citation) { -->
+<!--   citation <- URLencode(citation) -->
+<!--   results <-  cr_works(query = paste(title, author_publisher), limit = 3)$data %>% -->
+<!--     filter(!type == "posted-content") %>% -->
+<!--     .$data -->
+
+
+
+
+<!--   if (nrow(results) == 0) { -->
+<!--     NA -->
+<!--   } else { -->
+<!--     results %>% -->
+<!--       select(doi, score, title) %>% -->
+<!--       rename(doi_from_crossref = doi, -->
+<!--              title_from_crossref = title) -->
+<!--   } -->
+<!-- } -->
+
+
+<!-- tidied_citations$doi -->
+
+<!-- single_result <- cr_works(query = "10.1136/bmjopen-2015-010969.", limit = 1) -->
+
+
+
+<!-- ``` -->
+
+<!-- Let's test this on 5 records: -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-16} -->
+<!-- plan(multiprocess) -->
+
+<!-- inferred_doi <- tidied_citations %>% -->
+<!--   filter(is.na(doi) & is.na(doi_from_pmid)) %>% -->
+<!--   sample_n(5) %>% -->
+<!--   mutate(infered_doi = map(citations, ~future(crossref_suggested_doi(.x)))) %>% -->
+<!--   mutate(infered_doi = map(infered_doi, ~values(.x))) %>% -->
+<!--   unnest() -->
+
+<!-- inferred_doi %>% -->
+<!--   select(citations, -->
+<!--          ) -->
+
+<!-- ``` -->
+
+<!-- Now we apply to all references -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-17, eval = FALSE} -->
+<!-- crossreferenced_citations <- tidied_citations %>% -->
+<!--   filter(is.na(doi) & is.na(doi_from_pmid)) %>% -->
+<!--   rowwise() %>% -->
+<!--   mutate(doi_cr_works = crossref_suggested_doi(citations)) -->
+
+<!-- crossreferenced_citations %>% -->
+<!--   write_csv(here("static", "data", "cross-referenced-citations.csv")) -->
+<!-- ``` -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-18} -->
+<!-- doi_from_cr_works <- read_csv(here("static", "data", "doi_from_cr_works.csv")) -->
+<!-- # tidied_citations <- tidied_citations %>% -->
+<!-- #   full_join(doi_from_cr_works) -->
+<!-- # tidied_citations %>% -->
+<!-- #   write_csv(here("static", "data", "cross_referenced_citations.csv")) -->
+<!-- crossreferenced_citations <- read_csv(here("static", "data", "cross_referenced_citations.csv")) -->
+<!-- ``` -->
+
+<!-- ```{r 2019-01-11-extracting-doi-from-text-19} -->
+<!-- # n_no_doi <- crossreferenced_citations %>% -->
+<!-- #   filter(is.na(doi)) %>% -->
+<!-- #   filter(is.na(doi_from_pmid)) %>% -->
+<!-- #   filter(is.na(doi_cr_works)) %>% -->
+<!-- #   nrow() -->
+
+<!-- n_failed_pmid_conversions <- crossreferenced_citations %>% -->
+<!--   filter(is.na(doi)) %>% -->
+<!--   filter(!is.na(pmid)) %>% -->
+<!--   filter(is.na(doi_from_pmid)) %>% -->
+<!--   nrow() -->
+
+<!-- n_doi_cr_works <- crossreferenced_citations %>% -->
+<!--   filter(!is.na(doi_cr_works)) %>% -->
+<!--   nrow() -->
+
+<!-- postcrworks_identifier_summaries <- tribble( -->
+<!--   ~variable, ~value, -->
+<!--   "Extracted DOI", sum(!is.na(crossreferenced_citations$doi)), -->
+<!--   "DOI from PMID", sum(!is.na(crossreferenced_citations$doi_from_pmid)), -->
+<!--   "DOI from cr_works()", n_doi_cr_works -->
+<!-- ) %>% -->
+<!--   mutate(variable = fct_reorder(variable, value)) -->
+<!-- treemap( -->
+<!--   postcrworks_identifier_summaries, -->
+<!--   index = "variable", -->
+<!--   vSize = "value", -->
+<!--   title = "Post PMID conversion identifiers", -->
+<!--   algorithm = "squarified" -->
+<!-- ) -->
+<!-- ``` -->

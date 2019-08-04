@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>meta on Visible Data</title>
+    <link>/categories/meta/</link>
+    <description>Recent content in meta on Visible Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/meta/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Notes in class</title>
+      <link>/blog/2018/12/19/2019-xx-xx_draft_notes-in-class/</link>
+      <pubDate>Wed, 19 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12/19/2019-xx-xx_draft_notes-in-class/</guid>
+      <description>Something I feel simulataneously confident &amp;amp; unconfident is whether I should give students handouts for my training courses before the event.
+It’s difficult to get a good handle on what other folks do. I ran an extremely pitiful Twitter poll with 7 responses (43% give handsouts during the course, 29% give handouts before).
+So I’ve decided to create a survey of both students and trainers that I will try to spread as wide and broadly as possible.</description>
+    </item>
+    
+    <item>
+      <title>Organising meetings and email signatures</title>
+      <link>/blog/2018/05/29/2018-05-29-email-signatures/</link>
+      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/05/29/2018-05-29-email-signatures/</guid>
+      <description>Content Warning: This is a navel gazing branding/workflow post.  Recently, Visible Data started using a fairly profesh looking signature in our emails. Each signature includes a link to the consultant’s availability via the excellent FreeBusy service.
+   Why document an email signature? Well, there are some interesting features of a signature:
+ Share Google Calendar free/busy availability via FreeBusy [Read more…]
+ Provide tools for booking meetings across multiple time zones [Read more…]</description>
+    </item>
+    
+    <item>
+      <title>At Visible Data *we* do...</title>
+      <link>/blog/2018/03/29/2018-03-29-at-visible-data-we-do/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/03/29/2018-03-29-at-visible-data-we-do/</guid>
+      <description>There are so many awesome folks in the #rstats community that I respect and have learned from over the last 3 years, I owe a lot of my development and growth to the great community behind #rstats. It’s been particularly rewarding and uplifting to read personal stories, conflicts with imposters syndrome and struggles with mental health episodes. There are some particularly inspiring or interesting posts or ideas that I’ve found particularly useful, and will maintain a collection of humans and their stories at the bottom of this post.</description>
+    </item>
+    
+    <item>
+      <title>Crawling with tidygraph</title>
+      <link>/blog/2018/02/27/2018-02-27-crawling-with-tidygraph/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/27/2018-02-27-crawling-with-tidygraph/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data R packages: WDI     Citable Code .Rmd on GitHub    During a meeting yesterday morning I offered to scrape a website that my colleagues are looking at redesigning. I didn’t really have any idea how to do it in R, but I was confident it wouldn’t be too tricky and there should be some good packages available for doing this kind of thing.</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Blogposts</title>
+      <link>/blog/2018/02/14/2018-02-14_reproducible-blogposts/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/02/14/2018-02-14_reproducible-blogposts/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data R packages: WDI     Citable Code .Rmd on GitHub    Writing blogposts that meet all four of these requirements is hard:
+ The post is interesting and has something unique to it The post is easy to understand and both analyses and data visualisations follow sensible best practices The code is fully reproducible with all datasets available programmatically to folks replicating the code The author doesn’t give up writing because one of these can’t easily be met  In an ideal world, datasets are provided with DOI and/or else easily accessible via an API.</description>
+    </item>
+    
+    <item>
+      <title>Visible Setup</title>
+      <link>/blog/2018/01/30/2018-01-30_visible-setup/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/01/30/2018-01-30_visible-setup/</guid>
+      <description>Citable Author Martin John Hadley (orcid.org/0000-0002-3039-6849)     Citable Data No data used.     Citable Code .Rmd on GitHub    After a long time coming, I’ve finally got round to picking a workable solution for creating my data blog “Visible Data”. This is a short overview of how I picked my tools and my intentions for the website.</description>
+    </item>
+    
+  </channel>
+</rss>
