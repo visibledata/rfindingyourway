@@ -9,6 +9,8 @@
 .Rproj.user
 .DS_Store
 
+public/
+draft-blogs/
 
 # Google Analytics Code
 google-analytics.js
