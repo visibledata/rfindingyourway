@@ -24,12 +24,12 @@ paginate = 10
 #    weight = 1
 
 [[menu.main]]
-    name = "R Workflows"
-    identifier = "r-workflows"
+    name = "Articles"
+    identifier = "articles"
     weight = 1
   
 [[menu.main]]
-    parent = "r-workflows"
+    parent = "articles"
     name = "Code"
     url  = "/code"
     weight = 3
@@ -48,8 +48,8 @@ paginate = 10
     
 [[menu.main]]
 #    parent = "training"
-    name = "Online Training"
-    url  = "/online-training/"
+    name = "On-demand Learning"
+    url  = "/on-demand-learning/"
     weight = 2
 
 [[menu.main]]
