@@ -1,6 +1,8 @@
 ---
 title: "R Timelines"
 description: "R Timelines"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -19,14 +21,18 @@ library("lubridate")
 library("timevis")
 
 data_wrangle_approaches <- tribble(
-  ~approach, ~approach.descrip,
-  "Melt and cast", "<h1>Melt and cast</h1><p>Created by Hadley Wickham</p>",
-  "data.table", "<h2>data.table</h2><p>A fundamental revision of how data.frames work.<br> Well respected as a more efficient solution for mid to large datasets (>2Gb)</p>",
-  "Split, apply and combine", "Split, apply and combine",
-  "Tidy data", "Tidy data"
+  ~approach, ~approach.descrip.html, ~approach.descrip.ggplot2,
+  "Melt and cast", "<h1>Melt and cast</h1><p>Created by Hadley Wickham</p>", "Melt and cast",
+  "data.table", "<h2>data.table</h2><p>A fundamental revision of how data.frames work.<br> Well respected as a more efficient solution for mid to large datasets (>2Gb)</p>", "data.table",
+  "Split, apply and combine", "Split, apply and combine", "Split, apply\n and combine",
+  "Tidy data", "Tidy data", "Tidy data"
 ) %>%
   mutate(content = approach,
          id = row_number())
+
+
+
+
 
 
 data_wrangle_pkgs <- tibble::tribble(
@@ -39,7 +45,7 @@ data_wrangle_pkgs <- tibble::tribble(
   ) %>%
   mutate(start = dmy(start),
          end = dmy(end)) %>%
-  mutate(end = if_else(is.na(end), today(), end)) %>%
+  mutate(end = if_else(is.na(end), dmy(paste0("31-12", year(today()))), end)) %>%
   left_join(data_wrangle_approaches) %>%
   select(-content) %>%
   rename(group = id) %>%
@@ -47,13 +53,68 @@ data_wrangle_pkgs <- tibble::tribble(
   arrange(group, start) %>%
   group_by(group) %>%
   mutate(subgroup = paste0(group, ".", row_number())) %>%
-  mutate(content = package)
+  mutate(content = package) %>%
+  ungroup()
 
 timevis(data_wrangle_pkgs, groups = data_wrangle_approaches,
         options = list(stack = FALSE,
                        showCurrentTime = FALSE))
 
 ```
+
+
+
+
+```{r}
+gg_data_wrangle_epochs <- data_wrangle_pkgs %>%
+  mutate(package = fct_reorder(package, start) %>%
+           fct_rev()) %>%
+  mutate(approach.descrip.ggplot2 = fct_reorder(approach.descrip.ggplot2, group)) %>%
+  mutate(mid_date = pmap(list(start, end), ~ median(c(.x, .y)))) %>%
+  unnest() %>%
+  ggplot(aes(x = end,
+             y = package)) +
+  geom_segment(aes(x = start, xend = end, yend = package),
+               size = 10,
+               colour = "#d5ddf6") +
+  geom_text(aes(x = mid_date, y = package, label = package),
+            color = "black") +
+  theme_bw() +
+  facet_grid(
+    approach.descrip.ggplot2 ~ .,
+    scale = "free_y",
+    space = "free_y",
+    drop = TRUE,
+    switch = "y"
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    strip.text.y = element_text(angle = 180),
+    strip.text = element_text(face="bold", size=12),
+    panel.spacing.y = unit(0.2,  "lines")
+    
+  ) +
+  labs(y = "") +
+  scale_y_discrete(expand = c(0, 1, 1, 0),
+                   breaks = NULL) +
+  scale_x_date(limits = c(dmy("01-01-2005"), dmy("31-12-2019")),
+               expand = c(0, 0), date_breaks = "2 year", date_labels = "%Y") +
+  # theme(aspect.ratio = 1) +
+  # coord_fixed(ratio = 100) +
+  # theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
+  NULL
+gg_data_wrangle_epochs
+```
+
+```{r}
+ggsave(file.path(here::here(), "static/img/timelines_data-wrangling_ggplot2.png"),
+       width = 10,
+       height = 5,
+       gg_data_wrangle_epochs)
+```
+
 
 
 
