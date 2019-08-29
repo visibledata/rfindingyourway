@@ -148,27 +148,6 @@ keywords = ["Training", "on-demand", "learning"]
 
 <hr>
 
-<div class="row">
-
-<div class='col-xs-12'>
-
-<h2>Training Partners</h2>
-
-<p>We've chosen to collaborate with a wide range of training providers to create both on-demand and in-person training courses, this increases the diversity of our audiences and continuously challenges how and what we teach.</p>
-
-<center>
-<p>
-<img src="../img/clients/jbi-training_logo.jpg" alt="" width="18%" height="18%" />&nbsp; &nbsp;&nbsp;
-<img src="../img/clients/lynda_logo.png" alt="" width="12%" height="12%" />&nbsp; &nbsp;&nbsp;
-<img src="../img/clients/rss-logo.jpg" alt="" width="18%" height="18%" />&nbsp; &nbsp;&nbsp;
-<img src="../img/clients/sage-publishing-logo.jpg" alt="" width="18%" height="18%" />&nbsp;&nbsp;
-<br>
-<br>
-<img src="../img/clients/linkedin-logo.png" alt="" width="18%" height="18%"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="../img/clients/university-of-oxford.png" alt="" width="9%" height="9%"/>&nbsp;&nbsp;&nbsp;&nbsp;
-</p>
-</center>
-
 </div>
 </div>
 
