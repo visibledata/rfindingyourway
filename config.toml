@@ -22,14 +22,13 @@ paginate = 10
 #    weight = 1
 
 [[menu.main]]
-    name = "Articles"
-    identifier = "articles"
+    name = "Guides"
+    identifier = "guides"
     weight = 1
   
 [[menu.main]]
-    parent = "articles"
-    name = "Code"
-    url  = "/code"
+    parent = "guides"
+    name = "COMING SOON!"
     weight = 3
 
 
@@ -46,7 +45,7 @@ paginate = 10
     
 [[menu.main]]
 #    parent = "training"
-    name = "On-demand Learning"
+    name = "Online courses"
     url  = "/on-demand-learning/"
     weight = 2
 
@@ -62,17 +61,18 @@ paginate = 10
 #    url  = "/consultancy/"
 #    weight = 4
     
-#[[menu.main]]
-#    name = "Blog"
-#    identifier = "blog"
-#    url  = "/blog/"
-#`    weight = 5
+[[menu.main]]
+    name = "Blog"
+    identifier = "blog"
+    url  = "/blog/"
+    weight = 4
 
 [[menu.main]]
-    name = "About"
+    name = ""
+    pre = "fas fa-info-circle"
     identifier = "about"
     url  = "/about/"
-    weight = 4
+    weight = 5
 
 # Top bar social links menu
 
