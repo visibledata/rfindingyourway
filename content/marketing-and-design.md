@@ -79,7 +79,12 @@ We first discovered Buffer through Mara Averick ([@dataandme](https://twitter.co
 
 #### blogdown
 
-We use the incredible [{blogdown}](https://bookdown.org/yihui/blogdown/) R package to build our company website. Yihui Xie is the author of the package, and recommends hosting {blogdown} websites on Github.com and using Netlify.com for continuous deployment testing - which is exactly what we do here. We've done quite a bit of customisation to the [Hugo Universal Theme](https://themes.gohugo.io/hugo-universal-theme/), including:
+We use the incredible [{blogdown}](https://bookdown.org/yihui/blogdown/) R package to build our company website. [@xieyihui](https://twitter.com/xieyihui) is the author of the package, and recommends hosting <code>{blogdown}</code> websites on Github.com and using Netlify.com for continuous deployment testing - which is exactly what we do here. We've done quite a bit of customisation to the [Hugo Universal Theme](https://themes.gohugo.io/hugo-universal-theme/), including:
+
+- <strong>Hard-coded index.html</strong> <br>most Hugo templates come with a pre-designed home page defined in <code>layouts/index.html</code> which pulls in parameters from the <code>config.toml</code> file. Some <code>{blogdown}</code> users might be confused that making edits to <code>index.Rmd</code> does nothing to modify the homepage. We have therefore completely hard-coded our <code>index.html</code>, which you can <a href="https://github.com/visibledata/rfindingyourway/blob/master/layouts/index.html" target="_blank">find on Github</a>.
+
+- <strong>\<!--html_preserve-->\ and \<!--/html_preserve--></strong> <br>We use a <strong>lot</strong> of custom HTML and CSS in this website, which is much easier to work with when properly indented. However, indentation in RMarkdown is interpreted. Thankfully, [@xieyihui](https://twitter.com/xieyihui) gives us a way to [preserve HTML](https://rmarkdown.rstudio.com/authoring_migrating_from_v1.html) and prevent the <code>{knitr}</code> parser from styling indented content according RMarkdown rules.<br>It's reasonable to ask, "why use <code>{blogdown}</code> if you're writing so much custom HTML?". We're intending to use R heavily in the blog and other articles, and we know <a href="https://yihui.name/en/2013/10/markdown-or-latex/" target="_blank">not to ask too much from Markdown directly</a>.
+
 
 - 
 
