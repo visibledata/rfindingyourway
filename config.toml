@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "Visible Data"
+title = "finding youR way"
 theme = "hugo-universal-theme"
 languageCode = "en-us"
 # Site language. Available translations in the theme's `/i18n` directory.
@@ -128,7 +128,7 @@ paginate = 10
     # Enable the contact form by entering your Formspree.io email
     email = "contact@visibledata.co.uk"
 
-    about_us = "<p>Visible Data is a consultancy and technical training company focusing on data science, data visualisation and reproducibility based in Oxford, UK.</p>"
+    about_us = "<p>Finding youR way is a training consultancy, specialising in R and focused on helping learners in data science, dataviz and reproducible research.</p>"
     copyright = "Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved."
 
     # Format dates with Go's time formatting
@@ -162,8 +162,7 @@ paginate = 10
     
 [params.recent_posts]
     enable = true
-    title = "Visible Data Blog"
-    subtitle = "Aspiringly weekly blog covering interesting datasets, analyses and ideas on reproducibility, data science and data visualisation. Visible Data is a consultancy and technical training company based in Oxford, <a href='about'>read more about us here.</a>"
+    title = "Blog"
 
 [params.features]
     enable = true
