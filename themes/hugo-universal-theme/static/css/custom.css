@@ -265,27 +265,6 @@ ul.front-page-list > :last-child {
     position: relative;
 }
 
-#deprecation-background-icon {
-    width: 100%;
-    background: #fff;
-    position: relative;
-}
-
-#deprecation-background-icon:after {
-    content: "\f071";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    position: absolute;
-    font-size: 70px;
-    color: white;
-    opacity: 0.3;
-    top: 0%;
-    left: 50%;
-    z-index: 1;
-}
-
 #program-background-icon:after {
     content: "\f2f1";
     font-family: FontAwesome;
