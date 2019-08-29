@@ -148,6 +148,10 @@ keywords = ["Training", "on-demand", "learning"]
 
 <hr>
 
+<div class="card">
+<div class="cognito">
+<script src="https://services.cognitoforms.com/s/dZrJgQxXa0uqFJAh2H3uyQ"></script>
+<script>Cognito.load("forms", { id: "1" });</script>
 </div>
 </div>
 
