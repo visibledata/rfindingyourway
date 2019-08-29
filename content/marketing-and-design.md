@@ -44,6 +44,10 @@ It's a complicated business taking good looking screenshots and/or screen record
 
 </div>
 
+#### Coding GIF (macOS): [GIFBrewery](https://gfycat.com/gifbrewery)
+
+We use macOS' built-in screen recording tool - sometimes alongside keycatr - to create .mov files which we then convert to GIF using [GIFBrewery](https://gfycat.com/gifbrewery).
+
 #### Keyboard tracking: [keycastr](https://github.com/keycastr/keycastr)
 
 <div class="row">
