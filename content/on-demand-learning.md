@@ -6,7 +6,7 @@ keywords = ["Training", "on-demand", "learning"]
 
 <!--html_preserve-->
 
-
+<div class="container">
 
 <div class="row">
     
@@ -153,6 +153,8 @@ keywords = ["Training", "on-demand", "learning"]
 <script src="https://services.cognitoforms.com/s/dZrJgQxXa0uqFJAh2H3uyQ"></script>
 <script>Cognito.load("forms", { id: "1" });</script>
 </div>
+</div>
+
 </div>
 
 <!--/html_preserve-->
