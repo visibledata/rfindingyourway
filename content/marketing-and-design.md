@@ -86,7 +86,6 @@ We use the incredible [{blogdown}](https://bookdown.org/yihui/blogdown/) R packa
 - <strong>\<!--html_preserve-->\ and \<!--/html_preserve--></strong> <br>We use a <strong>lot</strong> of custom HTML and CSS in this website, which is much easier to work with when properly indented. However, indentation in RMarkdown is interpreted. Thankfully, [@xieyihui](https://twitter.com/xieyihui) gives us a way to [preserve HTML](https://rmarkdown.rstudio.com/authoring_migrating_from_v1.html) and prevent the <code>{knitr}</code> parser from styling indented content according RMarkdown rules.<br>It's reasonable to ask, "why use <code>{blogdown}</code> if you're writing so much custom HTML?". We're intending to use R heavily in the blog and other articles, and we know <a href="https://yihui.name/en/2013/10/markdown-or-latex/" target="_blank">not to ask too much from Markdown directly</a>.
 
 
-- 
 
 </div>
 <!--/html_preserve-->
