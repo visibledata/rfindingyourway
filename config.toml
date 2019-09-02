@@ -160,8 +160,7 @@ paginate = 10
     
 [params.recent_posts]
     enable = true
-    title = "Visible Data Blog"
-    subtitle = "Aspiringly weekly blog covering interesting datasets, analyses and ideas on reproducibility, data science and data visualisation. Visible Data is a consultancy and technical training company based in Oxford, <a href='about'>read more about us here.</a>"
+    title = "Blog"
 
 [params.features]
     enable = true
