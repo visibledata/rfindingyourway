@@ -123,17 +123,25 @@ keywords = ["Training", "on-demand", "learning"]
     </div>
     <hr>
     <div class="card">
-        <div class="cognito">
-            <script src="https://services.cognitoforms.com/s/dZrJgQxXa0uqFJAh2H3uyQ"></script>
-            <script>
-                Cognito.load("forms", {
-                    id: "1"
-                });
+        <div style="max-width: 600px; margin: 0 auto;">
+            <div class="cognito">
+                <script src="https://services.cognitoforms.com/s/dZrJgQxXa0uqFJAh2H3uyQ"></script>
+                <script>
+                    Cognito.load("forms", {
+                        id: "1"
+                    });
 
-            </script>
+                </script>
+                <div class="preloader">
+                <center>
+                    <img src="https://www.cognitoforms.com/Content/Images/apple-icon.png" />
+                    </center>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <!--/html_preserve-->

@@ -43,6 +43,11 @@ keywords = ["Training", "in-person", "learning"]
                     });
 
                 </script>
+                <div class="preloader">
+                <center>
+                    <img src="https://www.cognitoforms.com/Content/Images/apple-icon.png" />
+                    </center>
+                </div>
             </div>
         </div>
     </div>
