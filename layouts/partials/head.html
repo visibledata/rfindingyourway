@@ -65,14 +65,17 @@
     <link rel="alternate" href="{{ "/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 
     <!-- Facebook OpenGraph tags -->
-    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:title" content="finding youR way" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ .URL }}/" />
-    <meta property="og:image" content="{{ .Site.Params.logo }}" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/visibledata/rfindingyourway/master/static/img/finding-your-way_logo_square.png" />
 
     <!-- Adding popovers to Bootstrap 3.x -->
     <script src="{{ .Site.BaseURL }}js/backported-popover.js"></script>
 
     <!------- TWITTER CARD ---------------->
-    <meta name="twitter:image" content="./img/finding-your-way_logo_square.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/visibledata/rfindingyourway/master/static/img/finding-your-way_logo_square.png">
+    <meta name="twitter:card" content="finding youR way" />
+    <meta name="twitter:site" content="@rfindingyourway" />
+    <meta name="twitter:creator" content="@martinjhnhadley" />
 </head>

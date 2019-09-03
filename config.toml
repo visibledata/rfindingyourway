@@ -127,7 +127,7 @@ paginate = 10
     email = "contact@visibledata.co.uk"
 
     about_us = "<p>Finding youR way is a training consultancy, specialising in R and focused on helping learners in data science, dataviz and reproducible research.</p>"
-    copyright = "Copyright (c) 2016 - 2018, Visible Data Ltd; all rights reserved."
+    copyright = "Copyright (c) 2016 - 2020, Visible Data Ltd; all rights reserved."
 
     # Format dates with Go's time formatting
     date_format = "January 2, 2006"
@@ -160,8 +160,8 @@ paginate = 10
     
 [params.recent_posts]
     enable = true
-    title = "Visible Data Blog"
-    subtitle = "Aspiringly weekly blog covering interesting datasets, analyses and ideas on reproducibility, data science and data visualisation. Visible Data is a consultancy and technical training company based in Oxford, <a href='about'>read more about us here.</a>"
+    title = "finding youR way blog"
+    subtitle = "Data blog designed to introduce and explain R concepts and packages"
 
 [params.features]
     enable = true
