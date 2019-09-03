@@ -374,27 +374,29 @@ ul.front-page-list > :last-child {
   }
 }*/
 
-@media (min-width: 990px) {
-    .first-page-program-panel {
-        height: 600px;
-    }
-}
 
 @media (max-width: 700px) {
     .first-page-program-panel {
-        height: 700px;
+        height: 800px;
     }
 }
 
-@media (min-width: 990px) {
-    .first-page-deprecation-panel {
-        height: 750px;
+@media (min-width: 800px) {
+    .first-page-program-panel {
+        height: 650px;
     }
 }
 
 @media (max-width: 700px) {
     .first-page-deprecation-panel {
-        height: 1300px;
+        height: 1450px;
+    }
+}
+
+
+@media (min-width: 990px) {
+    .first-page-deprecation-panel {
+        height: 850px;
     }
 }
 
