@@ -389,7 +389,7 @@ ul.front-page-list > :last-child {
 
 @media (max-width: 700px) {
     .first-page-deprecation-panel {
-        height: 1450px;
+        height: 1250px;
     }
 }
 
