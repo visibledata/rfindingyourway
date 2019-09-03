@@ -29,6 +29,7 @@ keywords = ["Training", "on-demand", "learning"]
                 <div class="card-body v-center">
                     <center>
                         <a href="//linkedin-learning.pxf.io/c/1792297/621145/8005"><img src="//a.impactradius-go.com/display-ad/8005-621145" border="0" alt="" width="250" height="250" /></a><img height="0" width="0" src="//linkedin-learning.pxf.io/i/1792297/621145/8005" style="position:absolute;visibility:hidden;" border="0" />
+                        <p class="affiliate-caption">Affiliate link</caption>
                     </center>
                 </div>
             </div>
