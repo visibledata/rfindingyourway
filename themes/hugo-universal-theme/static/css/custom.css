@@ -491,3 +491,15 @@ li.footer-list {
     color: darkgrey;
     font-size: 10px;
 }
+
+/* ======== FIX PADDING ON RIGHT ============ */
+/* ==== https://stackoverflow.com/a/4617920/1659890 === */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
