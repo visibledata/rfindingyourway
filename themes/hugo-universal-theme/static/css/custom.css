@@ -374,27 +374,29 @@ ul.front-page-list > :last-child {
   }
 }*/
 
-@media (min-width: 990px) {
-    .first-page-program-panel {
-        height: 600px;
-    }
-}
 
 @media (max-width: 700px) {
     .first-page-program-panel {
-        height: 700px;
+        height: 800px;
     }
 }
+
+@media (min-width: 800px) {
+    .first-page-program-panel {
+        height: 650px;
+    }
+}
+
+@media (max-width: 800px) {
+    .first-page-deprecation-panel {
+        height: 1450px;
+    }
+}
+
 
 @media (min-width: 990px) {
     .first-page-deprecation-panel {
-        height: 750px;
-    }
-}
-
-@media (max-width: 700px) {
-    .first-page-deprecation-panel {
-        height: 1300px;
+        height: 650px;
     }
 }
 
@@ -483,4 +485,25 @@ ul.front-page-list > :last-child {
 
 li.footer-list {
     margin: 0 0 10px 0;
+}
+
+/* ============================================================ affiliate stuff ========================================================================================== */
+
+.affiliate-caption {
+    color: darkgrey;
+    font-size: 10px;
+}
+
+/* ======== FIX PADDING ON RIGHT ============ */
+/* ==== https://stackoverflow.com/a/4617920/1659890 === */
+
+html,
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+a.affiliate-link {
+    border-bottom: 1px dotted;
 }
