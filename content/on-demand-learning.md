@@ -139,7 +139,7 @@ keywords = ["Training", "on-demand", "learning"]
                 <div class="card-body" style="height:320px;margin-top:10px">
                     <center><img src='../img/lil-course-images/shiny-data-apps.jpg' width="100%" style=";max-width:260px" /></center>
                     <br>
-                    <h4 class="card-title">hiny Data Apps</h4>
+                    <h4 class="card-title">Shiny Data Apps</h4>
                     <p>Learn to build tools for your team and customers with Shiny.</p>
                     <p>This course is designed for beginners, focusing on adding real-world features to apps.</p>
                 </div>
