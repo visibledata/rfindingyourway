@@ -387,16 +387,16 @@ ul.front-page-list > :last-child {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .first-page-deprecation-panel {
-        height: 1250px;
+        height: 1450px;
     }
 }
 
 
 @media (min-width: 990px) {
     .first-page-deprecation-panel {
-        height: 850px;
+        height: 650px;
     }
 }
 
