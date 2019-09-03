@@ -17,12 +17,12 @@ keywords = ["Training", "on-demand", "learning"]
             <p>No matter how you purchase these courses, using LinkedIn Learning provides the following advantages:</p>
 
             <ul>
-                <li><a href="//linkedin-learning.pxf.io/c/1792297/621145/8005">Free 1-month trial with unlimited use</a></li>
+                <li><a class="affiliate-link" href="//linkedin-learning.pxf.io/c/1792297/621145/8005">Free 1-month trial with unlimited use</a></li>
                 <li>Course certificates (in your LinkedIn profile)</li>
                 <li>LinkedIn customer support for questions, refunds and complaints</li>
                 <li>LinkedIn is GDPR compliant</li>
             </ul>
-            <p>LinkedIn Premium subscriptions are $29.99/month and provide unlimited access to 3,000+ courses on tech, business, arts and more. Try out a <a href="//linkedin-learning.pxf.io/c/1792297/621145/8005">free trial</a> today.</p>
+            <p>LinkedIn Premium subscriptions are $29.99/month and provide unlimited access to 3,000+ courses on tech, business, arts and more. Try out a <a class="affiliate-link" href="//linkedin-learning.pxf.io/c/1792297/621145/8005">free trial</a> today.</p>
         </div>
         <div class="col-md-4 hidden-xs hidden-sm">
             <div class="first-page-title" style="height:300px!important;">
