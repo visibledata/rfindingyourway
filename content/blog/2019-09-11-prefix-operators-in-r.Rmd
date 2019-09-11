@@ -1,0 +1,86 @@
+---
+title: Prefix operators in R
+author: ''
+date: '2019-09-11'
+slug: prefix-operators-in-r
+categories:
+  - code
+tags:
+  - syntax
+editor_options: 
+  chunk_output_type: console
+banner: "img/blog/2019-09-11-prefix-operators-in-r_files/mutate-prefixed-infix.png.png"
+description: "Turns out there's a neat trick to use R's infix operators with prefix notation! Let's demonstrate how..."
+---
+
+![](/blog/2019-09-11-prefix-operators-in-r_files/Screenshot 2019-09-11 at 13.09.57.png)
+
+```{r setup, include=FALSE}
+library("emo")
+library("askpass")
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+<span style="color:purple">Fair warning: This post is about an interesting feature of the R language, it likely won't help in your data analysis, wrangling or dataviz... but that doesn't stop it from being at least quite interesting.</span>
+
+<hr>
+
+Earlier today we were spelunking through the `add_tally()` function from `{dplyr}` and came across this wonderful line of code:
+
+```{r, eval=FALSE,echo=TRUE}
+mutate(x, `:=`(!!name, !!n))
+```
+
+That's an example of using **prefix notation** for something that we would normally write with **infix notation**. Let's compare the two:
+
+<div class="row">
+<div class="col-xs-6">
+**infix notation**
+```{r, eval=FALSE,echo=TRUE}
+mutate(x, !!name := !!n)
+```
+</div>
+
+<div class="col-xs-6">
+**prefix notation**
+```{r, eval=FALSE,echo=TRUE}
+mutate(x, `:=`(!!name, !!n))
+```
+</div>
+</div>
+
+Hadley Wickham makes clear in his [Advanced R book](http://adv-r.had.co.nz/Functions.html#infix-functions) that most functions in R are written in prefix notation, e.g. `paste("hello", "world")` and `rep("hello world", 4)`. There are only a small number of built in functions that have a infix operator, and most of them are [arithmetic operators](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html). 
+
+Now we know how to re-write an infix operator in prefix notation, we can do something fairly special; we can swap the operator programmatically. Let's create a function where we can change the arithmetic operator applied to the first two [weird numbers](https://en.wikipedia.org/wiki/Weird_number):
+
+```{r, echo=TRUE}
+swappable_operator <- function(prefix){prefix(70, 836)}
+```
+
+Now we can give any of the infix operators as the argument for our function:
+
+```{r, echo=TRUE, eval=FALSE}
+swappable_operator(`+`)
+## [1] 906
+swappable_operator(`-`)
+## [1] -766
+swappable_operator(`*`)
+## [1] 58520
+```
+
+That's quite fun, but there's not that much benefit to writing R code like this. However, in some other programming languages the ability to use prefix notation is incredibly useful. From 2012 - 2015 I was a Mathematica consultant for Wolfram Research and would use the following construction at least every other day:
+
+```{wolframscript, echo=TRUE}
+(*This is Wolfram Language code, NOT R*)
+Accumulate@{1,2,4,16}
+```
+
+If anyone does have a good application for this prefix operator, please do let me know by replying to my tweet:
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know that <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> has prefix notation via the backtick?<br><br>We only just discovered this today when spelunking through the code for add_tally() in {dplyr} 🧐 <a href="https://t.co/doRXUnlu24">pic.twitter.com/doRXUnlu24</a></p>&mdash; finding youR way (@rfindingyourway) <a href="https://twitter.com/rfindingyourway/status/1171758309398986757?ref_src=twsrc%5Etfw">September 11, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
