@@ -9,11 +9,9 @@ tags:
   - syntax
 editor_options: 
   chunk_output_type: console
-banner: "img/blog/2019-09-11-prefix-operators-in-r_files/mutate-prefixed-infix.png.png"
+banner: "img/blog-images/header-images/mutate-prefixed-infix.png"
 description: "Turns out there's a neat trick to use R's infix operators with prefix notation! Let's demonstrate how..."
 ---
-
-![](/blog/2019-09-11-prefix-operators-in-r_files/Screenshot 2019-09-11 at 13.09.57.png)
 
 ```{r setup, include=FALSE}
 library("emo")
