@@ -1,0 +1,104 @@
+---
+title: 'tidyr 1.0: gather() and spread() are dead'
+author: Martin John Hadley
+date: '2019-09-18'
+slug: tidyr-1-0-and-rstats-instructors
+categories:
+  - packages
+  - trainers
+tags:
+  - tidyr
+banner: "img/blog-images/header-images/tidyr-1_update-training-poll.png"
+---
+
+
+
+`{tidyr}` version 1.0 has just been released on CRAN in September 2019, 5 years after it's conception in Hadley Wickham's seminal [Tidy Data paper](http://doi.org/10.18637/jss.v059.i10). While `{tidyr}` might not get as much love as `{dplyr}` and Hadley's other packages, it's the cornerstone of the *tidyverse* and this new version of the package radically changes things.
+
+All users of the *tidyverse* should hear these two proclamations:
+<hr>
+
+<div class="row">
+
+<div class="col-xs-6">
+
+<div class="card">
+
+**`gather()` is dead.**
+
+**Long live `pivot_longer()`.**
+</div>
+
+</div>
+
+
+<div class="col-xs-6">
+
+<div class="card">
+**`spread()` is dead.**
+
+**Long live `pivot_wider()`.**
+</div>
+</div>
+
+</div>
+<hr>
+
+There's a new [`{tidyr}` vignette](https://tidyr.tidyverse.org/articles/pivot.html) about these "pivoting" functions which explains very simply why these old functions have been retired and replacements created:
+
+> there is something fundamentally wrong with the design of spread() and gather(). Many people don’t find the names intuitive and find it hard to remember which direction corresponds to spreading and which to gathering. [...] meaning that many people (including [Hadley Wickham]) have to consult the documentation every time.
+
+I'm extremely happy about these changes, the new functions are tremendously flexible and nicely named. 
+
+But, I also have the following concerns:
+
+- **It will take several years before these new functions permeate StackOverflow, blogs and the wider useR community.**<br>
+Self-taught users (like myself) are more likely to copy and paste from StackOverflow than from the docs. These users will likely completely miss out on the new functions and feel frustrated in the future at having learned out-dated practices.
+
+- **`gather()` and `spread()` aren't actually dead, they've just been retired.**<br>
+I started learning R in May 2015 and had a thoroughly bastardised workflow involving `{plyr}`, `{dplyr}` and `subset()` because (seemingly) most folks didn't realise that `{dplyr}` was a replacement for `{plyr}`. I'm confident that we'll see Frankensteinian combinations of the old and new functions.
+
+- **What do we do with our existing training materials?**<br>
+Should we update all our old training courses or trust users to find the documentation/vignette eventually?
+
+To help decide how to approach updating our own courses, I put together the following Twitter poll (which received 196 votes!):
+
+<center>
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">If you’re an <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> instructor, when do you intend to update your courses as follows?<br><br>gather() -&gt; pivot_long()<br>spread() -&gt; pivot_wide()</p>&mdash; Martin John Hadley (they/them) (@martinjhnhadley) <a href="https://twitter.com/martinjhnhadley/status/1172773969528799237?ref_src=twsrc%5Etfw">September 14, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+
+I was quite shocked that just under 50% of respondents were planning to update their training courses immediately, and discouraged that my initial choice - waiting until January 2020 - was the least popular response. However, if the community does move quickly to update their content then the concerns I raised above will have much less of an impact than I feared.
+
+### Course update strategy
+
+In response to this survey data and conversations with other trainers, here are my plans for updating training materials:
+
+- **Wait until January 2020 before making significant changes.**<br>
+While I think the new functions are designed well, there's precedence for functionality to change significantly after community use. When `{tidyeval}` first landed I held off on making dedicated training materials because I hadn't completely got my head around quasiquotation. Thankfully, the new `{{ }}` operator was introduced earlier this year and finally it all makes sense to me. Hadley Wickham recognises that `{tidyeval}` was pushed too early, I want to avoid teaching my students functionality before it has stabilised.
+
+
+<center>
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">The greatest tidyverse mistakes:<br>💥 no pipe in ggplot2<br>💥 overwriting filter and lag<br>💥 using the . in arg names<br>💥 tidyeval pushed too early<br>💥 tidyverse as a name made some people think it&#39;s meant to be used in isolation - nah, use it with whatever in <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> is useful for you!</p>&mdash; Hannah Frick (@hfcfrick) <a href="https://twitter.com/hfcfrick/status/1163519190067793928?ref_src=twsrc%5Etfw">August 19, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+
+
+
+- **Explicitly show students the docs pages whenever `gather()` and `spread()` are used**.<br>
+I will not be updating lecture slides about the old functions, but I will show students the docs pages when demonstrating how to use the function. I'll also link to other trainer's content that has been updated to the new materials.
+
+- **Foster discussion with students about deprecation and new features**.<br>
+I will put aside time to discuss with students how to manage deprecated functions, and encourage questions. I'll be collecting responses from these sessions will guide the development of a dedicated course on deprecation and avoiding hype-driven R scripting.
+
+- **Updating existing online courses.**<br> 
+I would like to update my videos on `gather()` & `spread()` in my <a class="affiliate-link" href="https://linkedin-learning.pxf.io/Dmxbn" target="_blank">Tidyverse Overview</a> course on LinkedIn Learning (LiL), but this will likely take several months as I need to negotiate a contract and other stuff with LiL.
+
+- **New online courses.**<br>
+I'm planning on putting together a short series of videos comparing the new and old functions, but I don't have a home for these yet. They may or may not end up on LiL, like my existing online courses.
+
+### spread()'s dead, baby, spread()`s dead
+
+I can't finish this post without [\@hlynnur](https://twitter.com/hlynur)'s excellent tweet:
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;spread()&#39;s dead, baby. spread()&#39;s dead.&quot; <a href="https://t.co/BDX4dueMrv">pic.twitter.com/BDX4dueMrv</a></p>&mdash; Hlynur Hallgrímsson (@hlynur) <a href="https://twitter.com/hlynur/status/1174316420672491527?ref_src=twsrc%5Etfw">September 18, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
