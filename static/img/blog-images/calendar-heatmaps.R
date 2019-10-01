@@ -86,8 +86,8 @@ gg_tweets_in_month <- modified_ggcal(tweets_in_period$created_at,
   scale_color_manual(values = 'lightgrey', labels = "", name = "Tweetless days")
 
 ggsave("static/img/blog-images/header-images/things-we-learned_september-2019.png",
-       width = 276,
-       height = 207, 
+       width = 144,
+       height = 72, 
        units = "mm")
 
 
