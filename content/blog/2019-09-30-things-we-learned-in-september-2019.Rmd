@@ -1,0 +1,97 @@
+---
+title: Things we learned in September 2019
+author: ''
+date: '2019-10-01'
+slug: things-we-learned-in-september-2019
+categories:
+  - recaps
+tags: []
+banner: "img/blog-images/header-images/things-we-learned_september-2019.png"
+---
+
+```{r setup, include=FALSE}
+library("emo")
+library("askpass")
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+September 2019 has been a great month for us. We officially launched our website and started to move our work away from individual twitter accounts (e.g. [\@martinjhnhadley](https://twitter.com/martinjhnhadley)) and have started building our *brand*[^1] with [\@rfindingyourway](https://twitter.com/rfindingyourway).
+
+Let's recap some of the things we've learned this month and seen in the #rstats community.
+
+- [Bring all `library("foobar")` calls to the top with `{packup}`](#packup)
+- [Use prefix notation for infix operators with ``](#prefix-infix)
+- [Interactively build `{ggplot2}` charts with `{equisse}`](#equisse)
+- [spreads()'s dead in `{tidyr} v1.0`](#spreads-dead)
+- [Mara Averick brings good game to explaining `hoist()` with GIF](#hoist-animation)
+
+### Tidy up loading pkgs with {packup} {#packup}
+
+One of our daily tweets reminded folks to load packages at the top of scripts, and we implied also at the top of RMarkdown documents. We were delighted to discover [\@MilesMcBain](https://twitter.com/MilesMcBain)'s [`{packup}` package](https://github.com/MilesMcBain/packup) which contains an RStudio add-in to automate moving `library("pkg")` to the top of RMarkdown documents!
+
+<div class="row">
+
+<div class="col-sm-6">
+<blockquote class="twitter-tweet" data-theme="light"><p lang="en" dir="ltr">Always load packages at the top of your <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> scripts.<br><br>It&#39;s extremely important that your scripts don&#39;t have a &quot;special order&quot; in which code is run, a user should be able to open your script and get it to work with these two steps:<br><br>- ⌘+A / Ctrl+A<br>- ⌘+Enter / Ctrl+Enter</p>&mdash; finding youR way (@rfindingyourway) <a href="https://twitter.com/rfindingyourway/status/1171032506092666880?ref_src=twsrc%5Etfw">September 9, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<div class="col-sm-6">
+<img src="https://raw.githubusercontent.com/milesmcbain/packup/master/inst/media/packup_demo.gif" width="100%"/>
+</div>
+
+</div>
+
+### Prefix notation with `` {#prefix-infix}
+
+We discovered that the `dplyr::add_tally()` function includes a really nice example of prefixed infix operators... so nice in fact that we tweeted about it and wrote a [blogpost about it](https://www.findingyourway.io/blog/2019/09/11/2019-09-11-prefix-operators-in-r/).
+
+### ggplot2 GUI with {equisse} {#equisse}
+
+<div class="row">
+<div class="col-sm-8">
+On our training courses we're often asked about a GUI for building `{ggplot2}` charts. Before September our answer was always "we don't know about one".
+
+Now we recommend the excellent `{esquisse}` package, see [dreamrs.github.io/esquisse/](https://dreamrs.github.io/esquisse/) for more details.
+
+Using the GUI comes with a disclaimer. Hadley Wickham has a great slide deck on why [data science can't be done in a GUI](https://speakerdeck.com/hadley/you-cant-do-data-science-in-a-gui), which is why we'd always learning the fundamentals of `{ggplot2}` so you can iterate away from the boilerplate dataviz that `{equisse}` allows you to create.
+</div>
+
+<div class="col-sm-4">
+<img src="https://dreamrs.github.io/esquisse/reference/figures/logo_esquisse.png" width="100%"/>
+</div>
+</div>
+
+### spread()'s dead, baby, spread()'s dead {#spreads-dead}
+
+`gather()` and `spread()` have been retired as the workhorses of `{tidyr}` with the release of v1.0 in favour of the more expressive and versatile `pivot_longer()` and `pivot_wider()`, respectively.
+
+We ended up with writing a [short dedicated blogpost](https://www.findingyourway.io/blog/2019/09/18/2019-09-18-tidyr-1-0-gather-and-spread-are-dead/) on this topic, which includes a summary of our Twitter poll on the subject with 196 responses.
+
+### hoist() animations from @dataanadme {#hoist-animation}
+
+<div class="row">
+
+<div class="col-md-6">
+The release of `{tidyr}` v1.0 brings many new features to the tidyverse for working with nested tibbles - which is affectionately called **rectangling**. These rectangling functions are fairly complex, and often the simplest way to explain them is with a GIF.
+
+We particularly enjoyed the `hoist()` animated GIF from [Mara Averick](https://twitter.com/dataandme), and hope to see more function demos in the near future!
+
+</div>
+
+
+<div class="col-md-6">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">🤖 `tidyr::hoist()` robot-arm edition…<br>data %&gt;% hoist(info,<br> name = &quot;name&quot;,<br> firstborn = list(&quot;children&quot;, 1L)<br>)<br>* the latter portion aptly named &quot;the rumplestiltskin&quot; by <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw">@hadleywickham</a><br>docs: <a href="https://t.co/Es91thelAX">https://t.co/Es91thelAX</a> gist: <a href="https://t.co/Ho5IRPoNQy">https://t.co/Ho5IRPoNQy</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/vrG8simf9z">pic.twitter.com/vrG8simf9z</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1178716655943327745?ref_src=twsrc%5Etfw">September 30, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+</div>
+
+
+
+
+
+
+[^1]: It might feel gross talking about a training consultancty as a brand, but it is. We deliver both online courses and in-person training, that's how we earn our bread and butter. Folks trust those that others trust, which is why we are committed to sharing our knowledge and promoting the work of others in the community - for the benefit of all useRs.

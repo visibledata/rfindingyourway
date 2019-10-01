@@ -1,0 +1,86 @@
+---
+title: Things we learned in September 2019
+author: ''
+date: '2019-10-01'
+slug: things-we-learned-in-september-2019
+categories:
+  - recaps
+tags: []
+banner: "img/blog-images/header-images/things-we-learned_september-2019.png"
+---
+
+
+
+<p>September 2019 has been a great month for us. We officially launched our website and started to move our work away from individual twitter accounts (e.g. <a href="https://twitter.com/martinjhnhadley">@martinjhnhadley</a>) and have started building our <em>brand</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> with <a href="https://twitter.com/rfindingyourway">@rfindingyourway</a>.</p>
+<p>Let’s recap some of the things we’ve learned this month and seen in the #rstats community.</p>
+<ul>
+<li><a href="#packup">Bring all <code>library(&quot;foobar&quot;)</code> calls to the top with <code>{packup}</code></a></li>
+<li><a href="#prefix-infix">Use prefix notation for infix operators with ``</a></li>
+<li><a href="#equisse">Interactively build <code>{ggplot2}</code> charts with <code>{equisse}</code></a></li>
+<li><a href="#spreads-dead">spreads()’s dead in <code>{tidyr} v1.0</code></a></li>
+<li><a href="#hoist-animation">Mara Averick brings good game to explaining <code>hoist()</code> with GIF</a></li>
+</ul>
+<div id="packup" class="section level3">
+<h3>Tidy up loading pkgs with {packup}</h3>
+<p>One of our daily tweets reminded folks to load packages at the top of scripts, and we implied also at the top of RMarkdown documents. We were delighted to discover <a href="https://twitter.com/MilesMcBain">@MilesMcBain</a>’s <a href="https://github.com/MilesMcBain/packup"><code>{packup}</code> package</a> which contains an RStudio add-in to automate moving <code>library(&quot;pkg&quot;)</code> to the top of RMarkdown documents!</p>
+<div class="row">
+<div class="col-sm-6">
+<blockquote class="twitter-tweet" data-theme="light">
+<p lang="en" dir="ltr">
+Always load packages at the top of your <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> scripts.<br><br>It's extremely important that your scripts don't have a “special order” in which code is run, a user should be able to open your script and get it to work with these two steps:<br><br>- ⌘+A / Ctrl+A<br>- ⌘+Enter / Ctrl+Enter
+</p>
+— finding youR way (<span class="citation">@rfindingyourway</span>) <a href="https://twitter.com/rfindingyourway/status/1171032506092666880?ref_src=twsrc%5Etfw">September 9, 2019</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div class="col-sm-6">
+<p><img src="https://raw.githubusercontent.com/milesmcbain/packup/master/inst/media/packup_demo.gif" width="100%"/></p>
+</div>
+</div>
+</div>
+<div id="prefix-infix" class="section level3">
+<h3>Prefix notation with ``</h3>
+<p>We discovered that the <code>dplyr::add_tally()</code> function includes a really nice example of prefixed infix operators… so nice in fact that we tweeted about it and wrote a <a href="https://www.findingyourway.io/blog/2019/09/11/2019-09-11-prefix-operators-in-r/">blogpost about it</a>.</p>
+</div>
+<div id="equisse" class="section level3">
+<h3>ggplot2 GUI with {equisse}</h3>
+<div class="row">
+<div class="col-sm-8">
+<p>On our training courses we’re often asked about a GUI for building <code>{ggplot2}</code> charts. Before September our answer was always “we don’t know about one”.</p>
+<p>Now we recommend the excellent <code>{esquisse}</code> package, see <a href="https://dreamrs.github.io/esquisse/">dreamrs.github.io/esquisse/</a> for more details.</p>
+<p>Using the GUI comes with a disclaimer. Hadley Wickham has a great slide deck on why <a href="https://speakerdeck.com/hadley/you-cant-do-data-science-in-a-gui">data science can’t be done in a GUI</a>, which is why we’d always learning the fundamentals of <code>{ggplot2}</code> so you can iterate away from the boilerplate dataviz that <code>{equisse}</code> allows you to create.</p>
+</div>
+<div class="col-sm-4">
+<p><img src="https://dreamrs.github.io/esquisse/reference/figures/logo_esquisse.png" width="100%"/></p>
+</div>
+</div>
+</div>
+<div id="spreads-dead" class="section level3">
+<h3>spread()’s dead, baby, spread()’s dead</h3>
+<p><code>gather()</code> and <code>spread()</code> have been retired as the workhorses of <code>{tidyr}</code> with the release of v1.0 in favour of the more expressive and versatile <code>pivot_longer()</code> and <code>pivot_wider()</code>, respectively.</p>
+<p>We ended up with writing a <a href="https://www.findingyourway.io/blog/2019/09/18/2019-09-18-tidyr-1-0-gather-and-spread-are-dead/">short dedicated blogpost</a> on this topic, which includes a summary of our Twitter poll on the subject with 196 responses.</p>
+</div>
+<div id="hoist-animation" class="section level3">
+<h3>hoist() animations from <span class="citation">@dataanadme</span></h3>
+<div class="row">
+<div class="col-md-6">
+<p>The release of <code>{tidyr}</code> v1.0 brings many new features to the tidyverse for working with nested tibbles - which is affectionately called <strong>rectangling</strong>. These rectangling functions are fairly complex, and often the simplest way to explain them is with a GIF.</p>
+<p>We particularly enjoyed the <code>hoist()</code> animated GIF from <a href="https://twitter.com/dataandme">Mara Averick</a>, and hope to see more function demos in the near future!</p>
+</div>
+<div class="col-md-6">
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+🤖 <code>tidyr::hoist()</code> robot-arm edition…<br>data %&gt;% hoist(info,<br> name = “name”,<br> firstborn = list(“children”, 1L)<br>)<br>* the latter portion aptly named “the rumplestiltskin” by <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw"><span class="citation">@hadleywickham</span></a><br>docs: <a href="https://t.co/Es91thelAX">https://t.co/Es91thelAX</a> gist: <a href="https://t.co/Ho5IRPoNQy">https://t.co/Ho5IRPoNQy</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/vrG8simf9z">pic.twitter.com/vrG8simf9z</a>
+</p>
+— Mara Averick (<span class="citation">@dataandme</span>) <a href="https://twitter.com/dataandme/status/1178716655943327745?ref_src=twsrc%5Etfw">September 30, 2019</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>It might feel gross talking about a training consultancty as a brand, but it is. We deliver both online courses and in-person training, that’s how we earn our bread and butter. Folks trust those that others trust, which is why we are committed to sharing our knowledge and promoting the work of others in the community - for the benefit of all useRs.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
