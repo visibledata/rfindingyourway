@@ -22,3 +22,7 @@ MeetingNotes.Rmd
 
 # Usage is private
 Usage/
+
+# {secret}
+static/data/secret-keys.R
+static/data/secret-vault.vault
