@@ -1,0 +1,49 @@
+---
+title: Merging or migrating blogdown sites
+author: Charlie Joey Hadley
+date: '2020-05-05'
+slug: merging-or-migrating-blogdown-sites
+categories:
+  - meta
+tags:
+  - blogdown
+banner: "img/blog-images/header-images/2020-05-05_blogdown-redirects.png"
+description: "A short post on redirecting blogposts from an old `{blogdown}` blog to a new blog."
+---
+
+Until this week (4th May 2020) I was maintaining two separate `{blogdown}` sites, but no more. I've now redirected every blogpost from my old **visibledata.co.uk/blog** to this **findingyourway.io/blog**.
+
+<a href="https://www.visibledata.co.uk/blog/2018/12/05/2018-12-05-using-ggmap-after-july-2018/" target="_blank>FOOBAR</a>
+
+
+If you'd like to do something similar this short post will show you how, provided your sites meet all of these conditions:
+
+- Both `{blogdown}` sites are deployed with netlify.com, as [recommended in the Blogdown book](https://bookdown.org/yihui/blogdown/deployment.html).
+
+- The `.Rmd` blogposts from your original site (`my-phd-blog.co.uk`) can be dropped directly into your new site's (`my-professional-blog.co.uk`) folder and they **just work**[^1].
+
+Step 1: Add a file called `_redirects` into the old `my-phd-blog/static` directory, and add the following:
+
+```{BASH}
+/blog/*    https://www.my-professional-blog.co.uk/:splat 301!
+```
+
+Let's breakdown this redirect:
+
+- `*` represents anything placed after `blog` in the following URL `my-phd-blog.co.uk/blog/`
+
+- `:splat` grabs the contents of `*` and appends it to the new URL
+
+- `301` is the type of redirect we're using; 301 is a permanent redirect and will ensure that search engines redirect traffic succesfully.
+
+- The `!` guarantees that redirects occur even if a reader types the explicit path to an old post, eg `my-phd-blog.co.uk/blog/2020/01/01/ny-resolutions-2020.html`. See [Netlify's page on shadowing](https://docs.netlify.com/routing/redirects/rewrites-proxies/#shadowing) for more information.
+
+Step 2: Enjoy your redirected blogposts!
+
+The image below shows a Google Search result for my 2018 blogpost about changes to `{ggmap}`, because we chose a 301 redirect clicking on this link would take you to my new blog.
+
+<a href="https://www.visibledata.co.uk/blog/2018/12/05/2018-12-05-using-ggmap-after-july-2018/" target="_blank"><img alt="Screenshot of a Google Search result for a blogpost from my old blog" src="/blog/2020-05-05-merging-or-migrating-blogdown-sites_files/2020-05-05_redirected-google-result.png" width=450px/></a>
+
+For more complicated redirects I recommend reading [Yihui Xie's personal experience](https://bookdown.org/yihui/blogdown/personal-experience.html) of successfully redirecting URLs all the way back from 2005 to today.
+
+[^1]: Remember to move any images or other assets from `my-phd-blog/static` into `my-professional-blog/static`. RStudio 1.3 includes the ability to find and replace across files in a directory, this might help you minimise the manual steps in migrating your files.
