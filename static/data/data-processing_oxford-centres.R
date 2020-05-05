@@ -10,9 +10,9 @@ library("ggmap")
 
 ## https://www.mishabalyasin.com/2017/11/05/overview-secret-spelling/
 my_vault <- here("static", "data", "secret_vault.vault")
-martinjhnhadley_private_key <- file.path("~/.ssh", "blog_vault")
+charliejhadley_private_key <- file.path("~/.ssh", "blog_vault")
 
-get_secret("secret_two", key = martinjhnhadley_private_key, vault = my_vault)
+get_secret("secret_two", key = charliejhadley_private_key, vault = my_vault)
 
 ## ==== OxPoints ===== 
 
@@ -139,8 +139,8 @@ college_shapes %>%
 ## ===== 
 
 my_vault <- here("static", "data", "secret-vault.vault")
-martinjhnhadley_private_key <- file.path("~/.ssh", "blog_vault")
-ggmaps_rstats_key <- get_secret("ggmaps_rstats_key", key = martinjhnhadley_private_key, vault = my_vault)
+charliejhadley_private_key <- file.path("~/.ssh", "blog_vault")
+ggmaps_rstats_key <- get_secret("ggmaps_rstats_key", key = charliejhadley_private_key, vault = my_vault)
 register_google(ggmaps_rstats_key)
 
 

@@ -1,0 +1,50 @@
+---
+title: 'juxtaposer: Development diary'
+author: ''
+date: '2019-11-08'
+slug: juxtaposer-development-diary
+draft: yes
+categories:
+  - package development
+  - htmlwidgets
+  - dataviz
+tags:
+  - package development
+  - juxtaposer
+editor_options: 
+  chunk_output_type: console
+---
+
+This blogpost contains a running diary of the development of the 
+
+## Step 1: usethis
+
+Followed all the steps from `usethis`.
+
+## Step 2: Initial htmlwidgets setup
+
+The [htmlwidgets.org](http://htmlwidgets.org) site contains instructions for setting up a htmlwidget package, but there are some missing steps. The tutorial takes us through setting up a htmlwidget for using the sigma.JS package, which involved creating the following file tree:
+
+```{r, eval=FALSE}
+inst/
+|-- htmlwidgets/
+|   |-- sigma.js
+|   |-- sigma.yaml
+|   |-- lib/
+|   |   |-- sigma-1.0.3/
+|   |   |   |-- sigma.min.js
+|   |   |   |-- plugins/
+|   |   |   |   |-- sigma.parsers.gexf.min.js
+```
+
+It's explained that we need `sigma.parsers.gexf.min.js` as the htmlwidget package will read in GEXF files, and it's easy to find that in the sigma.js repo - https://github.com/jacomyal/sigma.js. But, how about the `sigma.min.js` file? That's not actually in the repository, we need to go and find that from elsewhere.
+
+For the `{juxtaposer}` package we're going to add the following files from the [repo](https://github.com/NUKnightLab/juxtapose/tree/master/juxtapose):
+
+- juxtapose/js/juxtapose.js
+- juxtapose/css/juxtapose.css
+
+
+
+http://www.htmlwidgets.org/develop_intro.html
+

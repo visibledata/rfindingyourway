@@ -55,24 +55,24 @@ paginate = 10
     url  = "/in-person-training/"
     weight = 3
     
-#[[menu.main]]
-#    name = "Consultancy"
-#    identifier = "consultancy"
-#    url  = "/consultancy/"
-#    weight = 4
+[[menu.main]]
+    name = "Consultancy"
+    identifier = "consultancy"
+    url  = "/consultancy/"
+    weight = 4
     
 [[menu.main]]
     name = "Blog"
     identifier = "blog"
     url  = "/blog/"
-    weight = 4
+    weight = 5
 
 [[menu.main]]
     name = ""
     pre = "fas fa-info-circle"
     identifier = "about"
     url  = "/about/"
-    weight = 5
+    weight = 6
 
 # Top bar social links menu
 
@@ -103,7 +103,7 @@ paginate = 10
 [params]
     customCSS = "/css/cards.css"  
     viewMorePostLink = "/blog/"
-    author = "Martin John Hadley"
+    author = "Charlie Joey Hadley"
     defaultKeywords = ["devows", "hugo", "go"]
     defaultDescription = "Site template made by devcows using hugo"
     summary_length = 200

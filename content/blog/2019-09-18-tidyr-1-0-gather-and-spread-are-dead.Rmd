@@ -1,6 +1,6 @@
 ---
 title: 'tidyr 1.0: gather() and spread() are dead'
-author: Martin John Hadley
+author: Charlie Joey Hadley
 date: '2019-09-18'
 slug: tidyr-1-0-and-rstats-instructors
 categories:
@@ -64,7 +64,7 @@ Should we update all our old training courses or trust users to find the documen
 To help decide how to approach updating our own courses, I put together the following Twitter poll (which received 196 votes!):
 
 <center>
-<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">If you’re an <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> instructor, when do you intend to update your courses as follows?<br><br>gather() -&gt; pivot_long()<br>spread() -&gt; pivot_wide()</p>&mdash; Martin John Hadley (they/them) (@martinjhnhadley) <a href="https://twitter.com/martinjhnhadley/status/1172773969528799237?ref_src=twsrc%5Etfw">September 14, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">If you’re an <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> instructor, when do you intend to update your courses as follows?<br><br>gather() -&gt; pivot_long()<br>spread() -&gt; pivot_wide()</p>&mdashCharlie Joeyhn Hadley (they/them) charliejhadleyey) <a href="https://twitter.cocharliejhadleyey/status/1172773969528799237?ref_src=twsrc%5Etfw">September 14, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
 I was quite shocked that just under 50% of respondents were planning to update their training courses immediately, and discouraged that my initial choice - waiting until January 2020 - was the least popular response. However, if the community does move quickly to update their content then the concerns I raised above will have much less of an impact than I feared.

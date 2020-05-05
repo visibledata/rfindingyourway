@@ -1,0 +1,102 @@
+---
+title: JuxtaposeJS gotchas
+author: ''
+date: '2019-10-11'
+slug: juxtaposejs-gotchas
+draft: yes
+categories:
+  - package development
+  - htmlwidgets
+  - dataviz
+tags:
+  - package development
+  - juxtaposer
+editor_options: 
+  chunk_output_type: console
+---
+
+This post is part of my [Building juxtaposer] series, I'm using this to collate **gotchas** in the JuxtaposeJS package that will affect how the `{htmlwidget}` package is constructed.
+
+## Image size is defined for the containing \<div>
+
+Frustratingly, the size of the Juxtapose web element can only be set in the parent \<div>. It cannot be set as an attribute of each image within the JavaScript code.
+
+Here's the raw HTML and JS demonstrating how to restrict the size of the web element:
+
+```{HTML}
+<div id="logo-comparison" style="width:350px; height:350px;">
+</div>
+
+<script>
+    slider = new juxtapose.JXSlider('#logo-comparison',
+        [{
+                src: "img/r-logo_old.png",
+            },
+            {
+                src: "img/r-logo_new.png"
+            }
+        ], {
+            animate: true,
+            startingPosition: "50%"
+        });
+
+</script>
+```
+
+In the initial design for the package, the element size was set as follows:
+
+```{r, eval = FALSE}
+juxtaposer(data,
+           juxtapose_size = list(width = "100%",
+                                 height = "100%"),
+           starting_position = "50%",
+           show_labels = TRUE)
+```
+
+## Image sizes should be the same
+
+The Juxtapose JS library is designed to work with images of exactly the same size, here's an example using differently sized images:
+
+- Container width: 400px
+- Left image size: 1344×960
+- Right image size: 922×2560
+
+We might assume that the less wide right image would be center justified, but nope. The `{juxtaposer}` package *could* add the ability to tweak the alignment of the images, but it makes sense to keep the R package as close to the original JavaScript package as possible for feature parity. 
+
+<!--html_preserve-->
+<div>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+<script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+<center>
+<div id="image-sizes-must-be-the-same" style="width:400px">
+</div>
+</center>
+
+<script>
+    slider = new juxtapose.JXSlider('#image-sizes-must-be-the-same',
+        [{
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/colour-scales_deuteranopia.png",
+                label: 'Wide image'
+            },
+            {
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/ancient-statue_without-colours.jpg",
+                label: 'Much narrower image'
+            }
+        ], {
+            animate: true,
+            showLabels: true,
+            showCredits: false,
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+</div>
+
+<!--/html_preserve-->
+
+
+
+
+

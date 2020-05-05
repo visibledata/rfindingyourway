@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-September 2019 has been a great month for us. We officially launched our website and started to move our work away from individual twitter accounts (e.g. [\@martinjhnhadley](https://twitter.com/martinjhnhadley)) and have started building our *brand*[^1] with [\@rfindingyourway](https://twitter.com/rfindingyourway).
+September 2019 has been a great month for us. We officially launched our website and started to move our work away from individual twitter accounts (e.g. [\@charliejhadley](https://twitter.com/charliejhadley)) and have started building our *brand*[^1] with [\@rfindingyourway](https://twitter.com/rfindingyourway).
 
 Let's recap some of the things we've learned this month and seen in the #rstats community.
 

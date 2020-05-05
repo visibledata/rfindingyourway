@@ -1,0 +1,286 @@
+---
+title: 'juxtaposer: use cases and feature requirements'
+author: ''
+date: '2019-10-11'
+slug: juxtaposer-use-cases
+draft: yes
+categories:
+  - package development
+  - htmlwidgets
+  - dataviz
+tags:
+  - package development
+  - juxtaposer
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library("tidyverse")
+library("kableExtra")
+```
+
+I've been thinking about building the `{juxtapose}` package for awhile, and have put together enough **use cases** and **feature requirements** that I'm confident the package should be a thing. In this post I'm going to breakdown these use cases and features in two ways:
+
+- The usual "wouldn't this be useful for an R user" way
+- The [business analyst way](#enter-the-business-analysts)... read this last, or not at all.
+
+### Use cases
+
+#### Comparing photographs
+
+  - Often journalists use JanitorJS to compare time periods by allowing readers to slide between two different photographs, here's a great example comparing [war torn Berlin in 1945 and modern day (2015)](https://interaktiv.morgenpost.de/berlin-1945-2015/).
+  
+  - Did you know that originally Ancient Roman statues were painted brightly by their creators? I highly recommend you read the excellent New Yorker article on ["the myth of whiteness in classical scripcture"](https://www.newyorker.com/magazine/2018/10/29/the-myth-of-whiteness-in-classical-sculpture)... sadly they didn't use JuxtaposeJS in their article, but look how impressive it could've been:  
+
+<!--html_preserve-->
+<div>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+<script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+<center>
+<div id="recoloured-statues" style="width:200px">
+</div>
+</center>
+
+<script>
+    slider = new juxtapose.JXSlider('#recoloured-statues',
+        [{
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/ancient-statue_without-colours.jpg",
+                label: 'Present day'
+            },
+            {
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/ancient-statue_reconstructed-colours.jpg",
+                label: 'Reconstructed colours'
+            }
+        ], {
+            animate: true,
+            showLabels: true,
+            showCredits: false,
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+</div>
+
+<!--/html_preserve-->
+
+#### Comparing dataviz
+
+<!--html_preserve-->
+
+<div class="row">
+
+<div class="col-md-8">
+
+<div class="well">
+
+Choosing a good colour scale is difficult. Not only must the scale work well conceptually, it also needs to be readable by those with colour blindness.
+<br>
+This vertically-orientated JuxtaposeJS widget compares <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html" target="_blank">the most widely used colour scales</a> for a viewer with trichromacy [no colour blindness] and another viewer with Green-blind deuteranopia.
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<center>
+<div id="colour-blindness" style="width:100%;max-width:300px">
+</div>
+</center>
+
+</div>
+
+</div>
+
+<script>
+    slider = new juxtapose.JXSlider('#colour-blindness',
+        [{
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/colour-scales_trichromacy.png",
+                label: 'Trichromacy'
+            },
+            {
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/colour-scales_deuteranopia.png",
+                label: 'Deuteranopia'
+            }
+        ], {
+            animate: true,
+            showLabels: true,
+            showCredits: false,
+            mode: "vertical",
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="well">
+
+To claim that there are many ways to build a chart in R is an understatement. 
+<br>
+It's often useful to directly compare two different techniques side-by-side... and what better way than with JuxtaposeJS?
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<center>
+<div id="charting-packages" style="width:100%;max-width:400px">
+</div>
+</center>
+
+</div>
+
+</div>
+
+<script>
+    slider = new juxtapose.JXSlider('#charting-packages',
+        [{
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/scatter-plot_base-r.png",
+                label: 'Base R plot()'
+            },
+            {
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/scatter-plot_ggplot2.png",
+                label: '{ggplot2} chart'
+            }
+        ], {
+            animate: true,
+            showLabels: true,
+            showCredits: false,
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+
+<!--/html_preserve-->
+
+#### Comparing code (in training slides)
+
+<!--html_preserve-->
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="well">
+
+Often when writing code tutorials it's convenient to compare one approach to another.
+
+I'm a great fan of Hadley Wickham's <a href="https://twitter.com/AmeliaMN/status/748193609401327616" target="_blank">little bunny foo foo example</a> for demonstrating the advantages to using pipes.
+<br>
+<br>
+This <i>would</i> work in a JuxtaposeJS element, but only if we changed the colour of the slider.
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<center>
+<div id="code-comparison" style="width:100%;max-width:400px">
+</div>
+</center>
+
+</div>
+
+</div>
+
+<script>
+    slider = new juxtapose.JXSlider('#code-comparison',
+        [{
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/foo-foo_traditional-notation.png",
+            },
+            {
+                src: "/blog/2019-10-11-juxtaposer-use-cases_files/foo-foo_pipes.png",
+            }
+        ], {
+            animate: true,
+            showCredits: false,
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+
+<!--/html_preserve-->
+
+### ... enter the Business Analysts {#enter-the-business-analysts}
+
+Several years ago I worked as a buisness analyst (BA), and really enjoyed the job. BAs are the folks who are responsible for **requirements gathering**, **maturing requirement**, and bridging the gap between **client expectations vs developer resources for new features**.
+
+It seems to me that the best R packages are built with a BA mindset:
+
+- Great packages are built with a specific idea in mind, example: `{ggplot2}` was designed to provide a consistent grammar of graphics to R users.
+
+- Amazing devs take feedback and usage data to mature the package, example: `{ggplot2}`'s internals have been optimised continuously to improve rendering speed.
+
+- Awesome Devs decide how much they can extend their packages, example: `{ggplot2}` now has support for `sf` objects and a matured API for extensions, for instance `{ggrepel}`
+
+So, let's consider how we might approach this package as a BA... to do that, we need to pretend to have the following colleagues, all vying for the attention of our dev time:
+
+- the client/customer (the R user community)
+- the project manager (the time commitments of your other projects)
+- the developer (the time you can commit to this project)
+
+### Requirements gathering
+
+We need to have a common language for talking to all of our colleagues, particularly when it comeas to deciding which are the features which **must** be in the CRAN release of our package.
+
+In BA speak, the core requirements are contained within **user stories**, for example:
+
+1. A user views a `juxtaposer` htmlwidget in an RMarkdown document
+
+1. A user views a `juxtaposer` htmlwidget in a Shiny app
+
+1. A user uploads their own image(s) to a Shiny app which is then viewed in a `juxtapose` htmlwidget.
+
+Before I write out all of the requirements, let me introduce a useful BA tool for feature prioritisation: [MoSCow](https://en.wikipedia.org/wiki/MoSCoW_method). For this package, we're going to label each requirement as a **must**, **should**, **could** or **won't** by following this guide:
+
+```{r, echo=FALSE}
+moscow <- tribble(
+  ~`moscow`, ~`Description`,
+  "Must have", "The feature must be in the devel release of the package",
+  "Should have", "The feeature must be in the first CRAN release of the package",
+  "Could have", "Scaffolding for featue should be considered before the first CRAN release, to reduce the likelihood of significant API changes in future releases",
+  "Won't have", "The feature will be added to the issues log as an \"enhancement\""
+)
+
+moscow %>%
+  kable(col.names = c("MoSCoW", "Description")) %>%
+  kable_styling()
+
+```
+
+Now, finally here are the requirements as I see them:
+
+```{r, echo=FALSE}
+juxtaposer_requirements <- tribble(
+  ~user_story, ~moscow, ~dev_notes,
+  "User views a `{juxtaposer}` widget in an RMarkdown document", "Must", "This comes for free thanks to the `{htmlwidget}` package, it'll just work.",
+  "User views a `{juxtaposer}` widget in a Shiny app", "Must", "This comes for free thanks to the `{htmlwidget}` package, it'll just work.",
+  "Dev can set custom colours for the slider elements in a `{juxtaposer}` widget", "Must", "<p>The best approach for this would be to follow the design of `kableExtra::kable_Styling()`.</p><p>This is because styles are set in CSS instead of in JavaScript, see <a href='https://github.com/charliejhadley/juxtaposer/issues/2' target='_blank'>Issue #2</a> for more details.</p>",
+  "A user clicks a control in a Shiny app which results in the images in the `{juxtaposer}` widget changing.", "Should", "<p>Most htmlwidgets allow widgets to be updated via a proxy, which also feels like the best option here.</p><p>As well as updating the images, the dev should also be able to change the slider colours in case they contrast with the new images. See <a href='https://github.com/charliejhadley/juxtaposer/issues/3' target='_blank'>Issue #3</a> for details.</p>",
+  "A user clicks a control in a Shiny app which results in the position of the `{juxtaposer}` slider changing", "Could",
+  "Provided `juxtaposer_proxy()` has already been implememnted, we need to extend the package with `juxtaposer_update_slider()`. See <a href='https://github.com/charliejhadley/juxtaposer/issues/4' target='_blank'>Issue 4</a> for details.",
+  "User uploads two new images to a `{juxtaposer}` widget via the `juxtaposerInput() control`", "Won't", "There's an initial sketch of the functionality in <a href='https://github.com/charliejhadley/juxtaposer/issues/5' target=''>Issue 5</a>."
+)
+
+juxtaposer_requirements %>%
+  kable(col.names = c("User story", "MoSCoW", "Dev Notes"),
+        escape = FALSE) %>%
+  kable_styling()
+```
+

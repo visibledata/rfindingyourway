@@ -30,7 +30,7 @@ description: "Turns out there's a neat trick to use R's infix operators with pre
 <pre class="r"><code>mutate(x, `:=`(!!name, !!n))</code></pre>
 </div>
 </div>
-<p>Hadley Wickham makes clear in his <a href="http://adv-r.had.co.nz/Functions.html#infix-functions">Advanced R book</a> that most functions in R are written in prefix notation, e.g. <code>paste(&quot;hello&quot;, &quot;world&quot;)</code> and <code>rep(&quot;hello world&quot;, 4)</code>. There are only a small number of built in functions that have a infix operator, and most of them are <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html">arithmetic operators</a>.</p>
+<p>Hadley Wickham makes clear in his <a href="http://adv-r.had.co.nz/Functions.html#infix-functions">Advanced R book</a> that most functions in R are written in prefix notation, e.g. <code>paste("hello", "world")</code> and <code>rep("hello world", 4)</code>. There are only a small number of built in functions that have a infix operator, and most of them are <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html">arithmetic operators</a>.</p>
 <p>Now we know how to re-write an infix operator in prefix notation, we can do something fairly special; we can swap the operator programmatically. Let’s create a function where we can change the arithmetic operator applied to the first two <a href="https://en.wikipedia.org/wiki/Weird_number">weird numbers</a>:</p>
 <pre class="r"><code>swappable_operator &lt;- function(prefix){prefix(70, 836)}</code></pre>
 <p>Now we can give any of the infix operators as the argument for our function:</p>

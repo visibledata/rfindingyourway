@@ -36,7 +36,7 @@ keywords = ["Training", "on-demand", "learning"]
         </div>
     </div>
     <h4>Courses created by us</h4>
-    <p>The following courses were created by our own instructor, Martin John Hadley.</p>
+    <p>The following courses were created by our own instructor, Charlie Joey Hadley.</p>
     <br>
     <div class="row">
         <div class="col-md-6 hidden-xs">

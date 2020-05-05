@@ -1,0 +1,84 @@
+---
+title: 'Package (development) announcement: juxtaposer'
+author: ''
+date: '2019-10-11'
+slug: package-development-announcement-juxtaposer
+draft: yes
+categories:
+  - package development
+  - htmlwidgets
+  - dataviz
+tags:
+  - package development
+  - juxtaposer
+editor_options: 
+  chunk_output_type: console
+---
+
+As far as I can tell, there's not yet an R package for building this kind of thing:
+<br>
+<br>
+<script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+
+<!--html_preserve-->
+
+<script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+<link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+<center>
+<div id="initial-juxta" style="width:350px; height:350px;">
+</div>
+</center>
+
+<script>
+    slider = new juxtapose.JXSlider('#initial-juxta',
+        [{
+                src: "/blog/2019-10-11-package-development-announcement-juxtaposer_files/r-logo_old.png",
+                label: 'R logo (2000 - 2016)'
+            },
+            {
+                src: "/blog/2019-10-11-package-development-announcement-juxtaposer_files/r-logo_new.png",
+                label: 'R logo (2016 - today)'
+            }
+        ], {
+            animate: true,
+            showLabels: true,
+            showCredits: true,
+            startingPosition: "50%",
+            makeResponsive: true
+        });
+
+</script>
+
+<!--/html_preserve-->
+<br>
+That's why I'm going to build `{juxtaposer}`; a `{htmlwidget}` package for embedding these image comparison tools into both RMarkdown documents and `{shiny}` apps. 
+
+Here's my initial design for how the package will be used, before any code or user testing (so it likely change significantly!):
+
+```{r hopeful-juxtaposer-format, eval=FALSE, echo=TRUE}
+# function template
+juxtaposer(data,
+           juxtapose_size = list(width = "100%",
+                                 height = "100%"),
+           starting_position = "50%",
+           show_labels = TRUE)
+
+# data format
+juxtaposer_imgs <- tribble(
+  ~image_handedness, ~image_url, ~image_label,
+  "left", "img/r-logo_old.png", "R logo (2000 - 2016)",
+  "right", "img/r-logo_new.png", "R logo (2016 - today)"
+)
+```
+
+I'm also going to blog the heck out of building this package. This is my third attempt to build a proper package, and all previous attempts have gone skewy due to a lack of documentation.
+
+## Why call it juxtaposer?
+
+This is a `{htmlwidget}` package, which means it wraps a JavaScript package into R code that we can use without writing any JS ourselves. I've spent a few hours experimenting with different options, and JuxtaposeJS is the best looking and most feature-full option. On the [JuxtaposeJS website](https://juxtapose.knightlab.com/#preview-embed) there's even a WYSIWYG tool for creating interactive image comparison tools. 
+
+While the WYSIWYG tool is fairly useful, but it won't allow us to modify the web element on the fly; for instance, changing changing the images in the tool, programmatically changing the slider position or styling the web element.
+
+So, I wanted it to be obvious to users of the package that it depends on JuxtaposeJS. It's also fairly obligatory to insert an `r` into your package name if you can, and the lovely `{avaialble}` package confirmed that `{juxtaposer}` is [currently] unused.
+
