@@ -13,9 +13,6 @@ description: "A short post on redirecting blogposts from an old `{blogdown}` blo
 
 Until this week (4th May 2020) I was maintaining two separate `{blogdown}` sites, but no more. I've now redirected every blogpost from my old **visibledata.co.uk/blog** to this **findingyourway.io/blog**.
 
-<a href="https://www.visibledata.co.uk/blog/2018/12/05/2018-12-05-using-ggmap-after-july-2018/" target="_blank>FOOBAR</a>
-
-
 If you'd like to do something similar this short post will show you how, provided your sites meet all of these conditions:
 
 - Both `{blogdown}` sites are deployed with netlify.com, as [recommended in the Blogdown book](https://bookdown.org/yihui/blogdown/deployment.html).
