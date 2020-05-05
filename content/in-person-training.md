@@ -1,6 +1,6 @@
 +++
 title = "In-person training"
-description = "in-person training"
+description = "We deliver in-person training internationally via our partners JB International and NobleProg. Get in touch to learn more."
 keywords = ["Training", "in-person", "learning"]
 +++
 
