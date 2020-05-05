@@ -1,6 +1,6 @@
 +++
 title = "On-demand Learning"
-description = "On-demand Learning"
+description = "We're building a growing catalogue of on-demand courses on LinkedIn Learning and other platforms."
 keywords = ["Training", "on-demand", "learning"]
 +++
 

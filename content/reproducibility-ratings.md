@@ -1,6 +1,6 @@
 +++
 title = "Reproducibility Ratings for Blogposts"
-description = "An overview of the reproducibility ratings given at the top of each blogpost"
+description = "An overview of the reproducibility ratings given at the top of some blogpost"
 +++
 
 The top and bottom of all blogposts on this site shows a rating for the reproducibility of the content with the following considerations:
