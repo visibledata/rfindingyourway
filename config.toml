@@ -105,8 +105,8 @@ paginate = 10
     viewMorePostLink = "/blog/"
     author = "Charlie Joey Hadley"
     defaultKeywords = ["devows", "hugo", "go"]
-    defaultDescription = "Find your way with R"
-    description = "Find your way with R"
+    defaultDescription = "Find your own way with R"
+    description = "Find your own way with R"
     summary_length = 200
 
     # Style options: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
