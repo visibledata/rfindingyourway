@@ -134,6 +134,7 @@ paginate = 10
 
     logo = "img/logo.png"
 
+    twitterAuthor = "@charliejhadley"
 [Permalinks]
     blog = "/blog/:year/:month/:day/:filename/"
     
