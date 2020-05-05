@@ -12,7 +12,7 @@ keywords = ["Training", "on-demand", "learning"]
             <img src="../img/linked-learning-with-lynda_logo.png" width="320px"></img>
             <br>
             <br>
-            <p>We've partnered with LinkedIn Learning to create R training courses you can purchase individually or access via a LinkedIn Premium subscription.</p>
+            <p>We've partnered with LinkedIn Learning to create R training courses that you can purchase individually or access via a LinkedIn Premium subscription.</p>
 
             <p>No matter how you purchase these courses, using LinkedIn Learning provides the following advantages:</p>
 
