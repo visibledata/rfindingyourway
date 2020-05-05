@@ -9,6 +9,7 @@ categories:
 tags:
   - tidyr
 banner: "img/blog-images/header-images/tidyr-1_update-training-poll.png"
+twitterImg: "img/blog-images/header-images/tidyr-1_update-training-poll.png"
 ---
 
 

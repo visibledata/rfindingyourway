@@ -12,6 +12,7 @@ tags:
   - GIS
   - R
 banner: "blog/2019-02-18-oxford-centres_files/gg_century_centres.png"
+twitterImg: "blog/2019-02-18-oxford-centres_files/gg_century_centres.png"
 description: >
   University of Oxford has over 800 years of history to it, but if you want to organise a meeting at the centre of campus... where do you meet?
 editor_options: 

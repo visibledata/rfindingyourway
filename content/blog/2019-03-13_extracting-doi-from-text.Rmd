@@ -11,6 +11,7 @@ tags:
   - regular expressions
   - stringr
 banner: "img/blog-images/header-images/2019-03-13_extracting-doi-from-text.png"
+twitterImg: "img/blog-images/header-images/2019-03-13_extracting-doi-from-text.png"
 description: "This one weird regex matches 97% of DOI..."
 editor_options: 
   chunk_output_type: console
