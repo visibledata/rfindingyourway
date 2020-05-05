@@ -1,9 +1,44 @@
+<!--- MANUAL ATTEMPT 
+<meta name="twitter:card" content="summarty" />
 <meta name="twitter:site" content="@charliejhadley">
 <meta name="twitter:creator" content="@charliejhadley">
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ .Title }}" />
+
 {{ if .IsPage }}
-<meta name="twitter:description" content="{{ .Summary }}" />
-<meta name="twitter:title" content="{{ .Title }}" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.visibledata.co.uk/{{ .Params.banner }}" /> {{ else }}
-<meta name="twitter:title" content="{{ .Site.Title }}" />
-<meta name="twitter:description" content="{{ .Description }}" /> {{ end }}
+<meta property="og:description" content="{{ .Summary }}" />
+<meta property="og:image" content="https://raw.githubusercontent.com/visibledata/rfindingyourway/master/static/img/finding-your-way_logo_square.png" />
+
+{{ end }}
+--->
+
+<!--https://xvrdm.github.io/2017/10/23/socialize-your-blogdown/ -->
+
+{{ if eq .URL "/" }}
+<title>{{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Site.Title }}">
+<meta property="og:type" content="website">
+<meta property="description" content="{{ .Site.Params.description }}">
+<meta property="og:description" content="{{ .Site.Params.description }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.findingyourway.io/img/finding-your-way_logo_square.png">
+{{ else }}
+<title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+<meta property="og:type" content="article">
+
+{{ if .Params.twitterImg }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.findingyourway.io/{{ .Params.twitterImg }}">
+{{ else }}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.findingyourway.io/img/finding-your-way_logo_square.png">
+{{ end }}
+
+{{ $defaultDescription := printf "Article posted by %s, on %s" .Params.author (.Date.Format "Monday, January 2nd, 2006") }}
+<meta property="description" content="{{ .Description | default $defaultDescription }}">
+<meta property="og:description" content="{{ .Description | default $defaultDescription }}">
+{{ end }}
+
+<meta name="twitter:creator" content="{{ .Params.twitterAuthor }}">
+<meta name="twitter:site" content="@charliejhadley">
