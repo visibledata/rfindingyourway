@@ -13,6 +13,7 @@ description: "Great circles are the shortest journeys between two points on a ma
 editor_options: 
   chunk_output_type: console
 banner: "img/blog-images/header-images/2018-02-28_great-circles-with-sf.png"
+twitterImg: "img/blog-images/header-images/2018-02-28_great-circles-with-sf.png"
 ---
 
 ```{r setup, include=FALSE}
