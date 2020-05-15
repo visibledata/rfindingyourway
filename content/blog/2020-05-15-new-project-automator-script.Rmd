@@ -1,0 +1,207 @@
+---
+title: New RStudio projects directly from Spotlight
+author: Charlie Joey Hadley
+date: '2020-05-15'
+slug: new-project-automator-script
+categories:
+  - meta
+tags:
+  - RStudio
+banner: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+twitterImg: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+description: "Do you want a way to quickly create and launch new RStudio projects  directly from Spotlight... all saved in a sensible location? Automator has your back." 
+---
+
+<div class="row">
+
+<div class="col-sm-6">
+
+I've finally created an Automator application (<a href="/data/New-RStudio-Project.app" download>download here</a>) to create new RStudio Projects, and it works fairly nicely:
+
+When I run the script I'm prompted for a project name (`tidytuesday-rock-salt`) which then creates the following new directory:
+
+```{BASH}
+/Users/charliejhadley/r-projects-scrapbook
+├── 15-05-2020_tidytuesday-rock-salt
+│   └── tidytuesday-rock-salt.Rproj
+```
+
+... and voila, RStudio opens the project up ready to start work.
+
+</div>
+
+<div class="col-sm-6">
+
+![](/blog/2020-05-15-new-project-automator-script_files/new-rstudio-project-automator.gif){width=400px}
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+<div class="col-sm-6">
+
+If the concept of RStudio Projects is new to you, please <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?autoplay=true&u=2125562" target="_blank">watch my video</a> explaining their benefits.
+
+If your scripts contain `setwd()`, please follow @JennyBryan's advice and remove it!
+
+</div>
+
+<div class="col-sm-6">
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">If the first line of your R script is<br><br>setwd(&quot;C:\Users\jenny\path\that\only\I\have&quot;)<br><br>I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.<br><br>Classic rant by <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">@JennyBryan</a> <a href="https://t.co/5cwCytqC0N">https://t.co/5cwCytqC0N</a></p>&mdash; Trevor is staying at home (@TrevorABranch) <a href="https://twitter.com/TrevorABranch/status/1178767331037601793?ref_src=twsrc%5Etfw">September 30, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+</div>
+
+<hr>
+
+<div class="row">
+
+<div class="col-sm-6">
+
+Hadley Wickham shared his workflow for **opening** projects with Alfred back in 2018, but this only works for existing projects.
+
+The excellent `{usethis}` package includes `create_project()` which achieves much the same thing as my script, but it requires RStudio to already be open. This can be a bit messy if you re-open RStudio in a state where lots of objects need to be loaded.
+
+</div>
+
+<div class="col-sm-6">
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;ve documented my workflow for opening <a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw">@RStudio</a> projects (using on <a href="https://twitter.com/alfredapp?ref_src=twsrc%5Etfw">@alfredapp</a>) in this short video: <a href="https://t.co/XvmRyGSsol">https://t.co/XvmRyGSsol</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/968624630276804608?ref_src=twsrc%5Etfw">February 27, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+
+</div>
+
+<hr>
+
+## Recreating this on your machine
+
+This solution only works for macOS users. You can <a href="/data/New-RStudio-Project.app" download>download a copy of my application</a> onto your machine, it will *just work* provided you follow these instructions:
+
+- Create a folder in your user directory called `r-projects-scrapbook`
+
+- Create a subdirectory called `_template` and use a text editor to create a file named `rstudio-project-template.Rproj` that contains the following:
+
+```{r, eval=FALSE}
+Version: 1.0
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+```
+
+This is the secret sauce behind RStudio Projects. The .Rproj file is a plain text file containing instructions on how RStudio should behave when it opens the project, my example makes RStudio behave according your preferences.
+
+### Details of Automator workflow
+
+Firstly, this workflow does not check if a duplicate project exists. The script does prepend project names with the date, in attempt to support folks who regularly create projects called `foobar` but it is not robust in any way.
+
+If you want to recreate the workflow on your machine, follow these instructions:
+
+Choose a location on your machine for your projects (`your-projects-home`), on my machine I chose `charliejhadley/r-projects-scrapbook`[^1]. Remember you must follow the instruction above to nest the `_template/rstudio-project-template.Rproj` file into this directory.
+
+Open Automator > Choose **Application**
+
+Add these actions:
+
+1. **Ask for Text**
+
+- Ensure that "require an answer" is selected, unnamed projects are bad
+
+ 2. **Set Value of Variable**
+ 
+- This is the `project_name` we will use for creating the new folder and .Rproj file
+
+ 3. **New Folder**
+
+The `Name:` field needs to formatted as follows:
+
+- Add the **variable** `Today's Date`
+
+  + Right-click the variable and select **Edit...**
+  + Set Format: **Custom format...**
+  + Drag the blocks into the field in the following order:
+    - Day of Month (shown as **5**)
+    - Month (shown as **January**)
+    - Year (shown as **1999**)
+  + Type a `-` between each of the blocks
+  + Right-click the **5** entry and select **05**
+  + Right-click the **January** and select **01**
+  + Check that the date format is identical do **05-01-1999**
+  + Click **done**
+  
+- Type a `_` after the `Today's Date` variable
+
+- Drag the `project_name` variable after the `_`
+
+Set the `Where` field to your chosen location for projects
+
+ 4. **Set Value of Variable**
+ 
+- This `full_path` variable will be used to add the `.Rproj` file later
+
+ 5. **Find Finder Items**
+ 
+In this application we're creating an empty project, in others we might want to select multiple files from our `_template` directory. 
+ 
+This action will absorb the folder that we've just created, and the search results. For this reason we add the conditional.
+
+- Set the search path to `your-projects-home/_template`
+
+- Set the following condition:
+
+  + **All** of the following are true
+    - **Name is** `rstudio-project-template.Rproj`
+    
+ 6. **Filter Finder Items**
+
+Frustratingly, the previous action contains both the search results and the `full_path` directory. Add the same condition as before to discard the `full_path` directory:
+
+- Set the following condition:
+
+  + **All** of the following are true
+    - **Name is** `rstudio-project-template.Rproj`
+    
+ 7. **Copy Finder Items**
+ 
+- Set the `Variable:` field as the `full_path` variable
+
+ 8. **Rename Finder Items**
+ 
+- Set the initial field as **Name Single Item**
+
+- Set `Name:` **Basename only** to `project_name`
+
+ 9. **Open Finder Items**
+ 
+- Set `Open with:` to **RStudio.app**
+
+
+[^1]: It's advisable to choose a location not in your iCloud as this add a further prompt every time you run the application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
