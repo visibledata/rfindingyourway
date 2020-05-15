@@ -51,7 +51,7 @@ paginate = 10
 
 [[menu.main]]
 #    parent = "training"
-    name = "In-Person Training"
+    name = "Training"
     url  = "/in-person-training/"
     weight = 3
     
@@ -67,12 +67,12 @@ paginate = 10
     url  = "/blog/"
     weight = 5
 
-[[menu.main]]
-    name = ""
-    pre = "fas fa-info-circle"
-    identifier = "about"
-    url  = "/about/"
-    weight = 6
+#[[menu.main]]
+#    name = ""
+#    pre = "fas fa-info-circle"
+#    identifier = "about"
+#    url  = "/about/"
+#    weight = 6
 
 # Top bar social links menu
 
