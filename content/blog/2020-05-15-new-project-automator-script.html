@@ -1,0 +1,186 @@
+---
+title: New RStudio projects directly from Spotlight
+author: Charlie Joey Hadley
+date: '2020-05-15'
+slug: new-project-automator-script
+categories:
+  - meta
+tags:
+  - RStudio
+banner: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+twitterImg: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+description: "Do you want a way to quickly create and launch new RStudio projects  directly from Spotlight... all saved in a sensible location? Automator has your back." 
+---
+
+
+
+<div class="row">
+<div class="col-sm-6">
+<p>I’ve finally created an Automator application (<a href="/data/New-RStudio-Project.app" download>download here</a>) to create new RStudio Projects, and it works fairly nicely:</p>
+<p>When I run the script I’m prompted for a project name (<code>tidytuesday-rock-salt</code>) which then creates the following new directory:</p>
+<pre class="bash"><code>/Users/charliejhadley/r-projects-scrapbook
+├── 15-05-2020_tidytuesday-rock-salt
+│   └── tidytuesday-rock-salt.Rproj</code></pre>
+<p>… and voila, RStudio opens the project up ready to start work.</p>
+</div>
+<div class="col-sm-6">
+<p><img src="/blog/2020-05-15-new-project-automator-script_files/new-rstudio-project-automator.gif" width="400" /></p>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-6">
+<p>If the concept of RStudio Projects is new to you, please <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?autoplay=true&u=2125562" target="_blank">watch my video</a> explaining their benefits.</p>
+<p>If your scripts contain <code>setwd()</code>, please follow <span class="citation">@JennyBryan</span>’s advice and remove it!</p>
+</div>
+<div class="col-sm-6">
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+If the first line of your R script is<br><br>setwd(“C:”)<br><br>I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.<br><br>Classic rant by <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw"><span class="citation">@JennyBryan</span></a> <a href="https://t.co/5cwCytqC0N">https://t.co/5cwCytqC0N</a>
+</p>
+— Trevor is staying at home (<span class="citation">@TrevorABranch</span>) <a href="https://twitter.com/TrevorABranch/status/1178767331037601793?ref_src=twsrc%5Etfw">September 30, 2019</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-6">
+<p>Hadley Wickham shared his workflow for <strong>opening</strong> projects with Alfred back in 2018, but this only works for existing projects.</p>
+<p>The excellent <code>{usethis}</code> package includes <code>create_project()</code> which achieves much the same thing as my script, but it requires RStudio to already be open. This can be a bit messy if you re-open RStudio in a state where lots of objects need to be loaded.</p>
+</div>
+<div class="col-sm-6">
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+I've documented my workflow for opening <a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw"><span class="citation">@RStudio</span></a> projects (using on <a href="https://twitter.com/alfredapp?ref_src=twsrc%5Etfw"><span class="citation">@alfredapp</span></a>) in this short video: <a href="https://t.co/XvmRyGSsol">https://t.co/XvmRyGSsol</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a>
+</p>
+— Hadley Wickham (<span class="citation">@hadleywickham</span>) <a href="https://twitter.com/hadleywickham/status/968624630276804608?ref_src=twsrc%5Etfw">February 27, 2018</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</div>
+<hr>
+<div id="recreating-this-on-your-machine" class="section level2">
+<h2>Recreating this on your machine</h2>
+<p>This solution only works for macOS users. You can <a href="/data/New-RStudio-Project.app" download>download a copy of my application</a> onto your machine, it will <em>just work</em> provided you follow these instructions:</p>
+<ul>
+<li><p>Create a folder in your user directory called <code>r-projects-scrapbook</code></p></li>
+<li><p>Create a subdirectory called <code>_template</code> and use a text editor to create a file named <code>rstudio-project-template.Rproj</code> that contains the following:</p></li>
+</ul>
+<pre class="r"><code>Version: 1.0
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX</code></pre>
+<p>This is the secret sauce behind RStudio Projects. The .Rproj file is a plain text file containing instructions on how RStudio should behave when it opens the project, my example makes RStudio behave according your preferences.</p>
+<div id="details-of-automator-workflow" class="section level3">
+<h3>Details of Automator workflow</h3>
+<p>Firstly, this workflow does not check if a duplicate project exists. The script does prepend project names with the date, in attempt to support folks who regularly create projects called <code>foobar</code> but it is not robust in any way.</p>
+<p>If you want to recreate the workflow on your machine, follow these instructions:</p>
+<p>Choose a location on your machine for your projects (<code>your-projects-home</code>), on my machine I chose <code>charliejhadley/r-projects-scrapbook</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Remember you must follow the instruction above to nest the <code>_template/rstudio-project-template.Rproj</code> file into this directory.</p>
+<p>Open Automator &gt; Choose <strong>Application</strong></p>
+<p>Add these actions:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Ask for Text</strong></li>
+</ol>
+<ul>
+<li>Ensure that “require an answer” is selected, unnamed projects are bad</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Set Value of Variable</strong></li>
+</ol>
+<ul>
+<li>This is the <code>project_name</code> we will use for creating the new folder and .Rproj file</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>New Folder</strong></li>
+</ol>
+<p>The <code>Name:</code> field needs to formatted as follows:</p>
+<ul>
+<li><p>Add the <strong>variable</strong> <code>Today's Date</code></p>
+<ul>
+<li>Right-click the variable and select <strong>Edit…</strong></li>
+<li>Set Format: <strong>Custom format…</strong></li>
+<li>Drag the blocks into the field in the following order:
+<ul>
+<li>Day of Month (shown as <strong>5</strong>)</li>
+<li>Month (shown as <strong>January</strong>)</li>
+<li>Year (shown as <strong>1999</strong>)</li>
+</ul></li>
+<li>Type a <code>-</code> between each of the blocks</li>
+<li>Right-click the <strong>5</strong> entry and select <strong>05</strong></li>
+<li>Right-click the <strong>January</strong> and select <strong>01</strong></li>
+<li>Check that the date format is identical do <strong>05-01-1999</strong></li>
+<li>Click <strong>done</strong></li>
+</ul></li>
+<li><p>Type a <code>_</code> after the <code>Today's Date</code> variable</p></li>
+<li><p>Drag the <code>project_name</code> variable after the <code>_</code></p></li>
+</ul>
+<p>Set the <code>Where</code> field to your chosen location for projects</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Set Value of Variable</strong></li>
+</ol>
+<ul>
+<li>This <code>full_path</code> variable will be used to add the <code>.Rproj</code> file later</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Find Finder Items</strong></li>
+</ol>
+<p>In this application we’re creating an empty project, in others we might want to select multiple files from our <code>_template</code> directory.</p>
+<p>This action will absorb the folder that we’ve just created, and the search results. For this reason we add the conditional.</p>
+<ul>
+<li><p>Set the search path to <code>your-projects-home/_template</code></p></li>
+<li><p>Set the following condition:</p>
+<ul>
+<li><strong>All</strong> of the following are true
+<ul>
+<li><strong>Name is</strong> <code>rstudio-project-template.Rproj</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Filter Finder Items</strong></li>
+</ol>
+<p>Frustratingly, the previous action contains both the search results and the <code>full_path</code> directory. Add the same condition as before to discard the <code>full_path</code> directory:</p>
+<ul>
+<li><p>Set the following condition:</p>
+<ul>
+<li><strong>All</strong> of the following are true
+<ul>
+<li><strong>Name is</strong> <code>rstudio-project-template.Rproj</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Copy Finder Items</strong></li>
+</ol>
+<ul>
+<li>Set the <code>Variable:</code> field as the <code>full_path</code> variable</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li><strong>Rename Finder Items</strong></li>
+</ol>
+<ul>
+<li><p>Set the initial field as <strong>Name Single Item</strong></p></li>
+<li><p>Set <code>Name:</code> <strong>Basename only</strong> to <code>project_name</code></p></li>
+</ul>
+<ol start="9" style="list-style-type: decimal">
+<li><strong>Open Finder Items</strong></li>
+</ol>
+<ul>
+<li>Set <code>Open with:</code> to <strong>RStudio.app</strong></li>
+</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>It’s advisable to choose a location not in your iCloud as this add a further prompt every time you run the application.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

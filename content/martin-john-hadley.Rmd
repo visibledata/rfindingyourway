@@ -70,7 +70,7 @@ library("fontawesome")
 library("glue")
 
 code_contributions <- read_xlsx(here("static", "data", "visible-data-code-contributions.xlsx")) %>%
-  filter(contributer_github_username == "charliejhadley")
+  filter(contributer_github_username == "martinjhnhadley")
 
 contribution_icons <- tribble(
   ~contribution_category, ~icon,
