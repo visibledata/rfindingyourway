@@ -1,5 +1,6 @@
     <!DOCTYPE html>
     <html lang="{{ .Site.LanguageCode }}">
+        <head>
 
     {{ partial "head.html" . }}
 
@@ -15,7 +16,7 @@
 
     <link href="/css/timevis.css" rel="stylesheet">
 
-
+</head>
     <body>
 
         <script>
@@ -42,11 +43,11 @@
 
                 <div class="row">
 
-                    <div class="col-md-1">
+                    <div class="col-xl-1 col-lg-1 col-md-1">
 
                     </div>
 
-                    <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
 
                         <div class="first-page-title">
 
@@ -65,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
 
                         <div class="row top-buffer">
 
@@ -176,7 +177,7 @@
 
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-xl-1 col-lg-1 col-md-1">
 
                     </div>
 
@@ -199,9 +200,19 @@
                             </div>
                             <h3>On-demand Learning</h3>
                             <p>We partner with LinkedIn Learning to create on-demand training course to get you from zero to 💯 with R. You can buy our courses a-la-carte or get access to all 3000+ courses with a subscription.</p>
+                            <span>Our on-demand courses are hosted by <b>LinkedIn Learning</b> and can be purchased a-la-carte or get access to 3000+ courses with a LinkedIn Premium subscription.</span>
                         </div>
                     </div>
 
+                    <div class="col-md-4">
+                        <div class="box-simple">
+                            <div class="icon">
+                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                            </div>
+                            <h3>Consultancy</h3>
+                            <p>Open Data and Reproducibility are ever growing concerns in academia and industry. We have years of expertise in advising on best practices and workflows.</p>
+                        </div>
+                    </div>
 
 
                     <div class="col-md-4">
@@ -211,18 +222,6 @@
                             </div>
                             <h3>In-person Training</h3>
                             <p>We run monthly in-person courses across the UK and Europe; dedicated to dataviz, data science and dashboards with R and Shiny. Get in touch to organise a custom course for your team.</p>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <div class="box-simple">
-                            <div class="icon">
-                                <i class="fa fa-newspaper" aria-hidden="true"></i>
-                            </div>
-                            <h3>In-depth Articles</h3>
-                            <p>Open Data and Reproducibility are ever growing concerns in academia and industry. We have years of expertise in advising on best practices and workflows.</p>
                         </div>
                     </div>
 
