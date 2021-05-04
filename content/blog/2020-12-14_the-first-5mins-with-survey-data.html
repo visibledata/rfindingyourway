@@ -1,0 +1,138 @@
+---
+title: The first 5mins with survey data
+author: Charlie Joey Hadley
+date: '2020-12-14'
+slug: [the-first-5mins-with-survey-data]
+categories: [data-wrangling]
+tags: [data-wrangling]
+banner: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+twitterImg: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+description: "How do you spend your first 5 minutes with survey data?." 
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>I’m often asked by students how to process survey data, so I thought I’d standardise the first 5minutes (or so) that I spend with survey datasets. I’ll use Kaggle’s 2020 Machine Learning &amp; Data Science survey dataset, as that’s what my most recent student asked about.</p>
+<ul>
+<li>This dataset can only be downloaded if you become a free Kaggle member, so setup an RStudio project and download the file into your project.</li>
+</ul>
+<p>The steps I follow are:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="#readr">Read the data in with readr</a></p></li>
+<li><p><a href="#look-for-ids">Look for where the question ids and text are kept</a></p></li>
+<li><p><a href="#clean-up">Clean up those question ids</a></p></li>
+<li><p><a href="#reparse-columns">Give {readr} another change to parse the column types</a></p></li>
+</ol>
+<div id="readr" class="section level4">
+<h4>Step 1: Read the data in with readr</h4>
+<p>Load up the {tidyverse} and {janitor} for wrangling the dataset into something tidy.</p>
+<pre class="r"><code>library(&quot;tidyverse&quot;)
+library(&quot;janitor&quot;)</code></pre>
+<p>Read in the data using <code>read_csv()</code> and print thw resulting tibble() to the console… this dataset has 355 rows so I’ve cheated in the blogpost by only showing the first 5 rows</p>
+<pre class="r"><code>raw_kaggle_survey &lt;- read_csv(&quot;data-raw/kaggle_survey_2020_responses.csv&quot;)
+raw_kaggle_survey %&gt;% 
+  select(1:5)</code></pre>
+<pre><code>## # A tibble: 20,037 x 5
+##    `Time from Start to … Q1         Q2          Q3           Q4                 
+##    &lt;chr&gt;                 &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;              
+##  1 Duration (in seconds) What is y… What is yo… In which co… What is the highes…
+##  2 1838                  35-39      Man         Colombia     Doctoral degree    
+##  3 289287                30-34      Man         United Stat… Master’s degree    
+##  4 860                   35-39      Man         Argentina    Bachelor’s degree  
+##  5 507                   30-34      Man         United Stat… Master’s degree    
+##  6 78                    30-34      Man         Japan        Master’s degree    
+##  7 401                   30-34      Man         India        Bachelor’s degree  
+##  8 748                   22-24      Man         Brazil       Bachelor’s degree  
+##  9 171196                25-29      Woman       China        Master’s degree    
+## 10 762                   35-39      Man         Germany      Doctoral degree    
+## # … with 20,027 more rows</code></pre>
+</div>
+<div id="look-for-ids" class="section level4">
+<h4>Step 2: Look for where the question ids and text are kept</h4>
+<p>Around 90% of the time the following things are true:</p>
+<ul>
+<li><p>The first few columns contain info about the survey respondent, eg how long they took to answer the survey and if they completed the survey.</p></li>
+<li><p>The column names are question ids and the first row contains the actual question text.</p></li>
+</ul>
+<p>Let’s create ourselves a <code>question_index</code> that contains the <code>question_id</code> and the <code>question_text</code>:</p>
+<pre class="r"><code>question_index &lt;- raw_kaggle_survey %&gt;% 
+  slice(1) %&gt;% 
+  select(2:ncol(.)) %&gt;% 
+  pivot_longer(cols = everything()) %&gt;% 
+  rename(question_id = name,
+         question_text = value)</code></pre>
+<p>Now we can throw out the survey respondent information and the question text by combining <code>slice()</code> and <code>select()</code>, note that you’ll need to throw away different amounts of rows/columns for each survey dataset:</p>
+<pre class="r"><code>kaggle_survey_2020 &lt;- raw_kaggle_survey %&gt;% 
+  select(2:ncol(.)) %&gt;% 
+  slice(2:nrow(.))</code></pre>
+</div>
+<div id="clean-up" class="section level4">
+<h4>Step 3: Clean up those question ids</h4>
+<p>I ensured to load up the <code>{janitor}</code> package at the beginning because I want to ensure the <code>question_ids</code> are standardised. I’ve extracted some example columns where there’s idiosyncratic capitalisation which will likely cause code errors:</p>
+<pre class="r"><code>kaggle_survey_2020 %&gt;% 
+  select(6:10)</code></pre>
+<pre><code>## # A tibble: 20,036 x 5
+##    Q6          Q7_Part_1 Q7_Part_2 Q7_Part_3 Q7_Part_4
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 5-10 years  Python    R         SQL       C        
+##  2 5-10 years  Python    R         SQL       &lt;NA&gt;     
+##  3 10-20 years &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  4 5-10 years  Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+##  5 3-5 years   Python    &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  6 &lt; 1 years   Python    R         &lt;NA&gt;      &lt;NA&gt;     
+##  7 3-5 years   Python    R         &lt;NA&gt;      C        
+##  8 &lt; 1 years   &lt;NA&gt;      R         &lt;NA&gt;      &lt;NA&gt;     
+##  9 5-10 years  Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+## 10 &lt; 1 years   Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+## # … with 20,026 more rows</code></pre>
+<p>All we need to clean the survey data is to use <code>clean_names()</code></p>
+<pre class="r"><code>kaggle_survey_2020 &lt;- kaggle_survey_2020 %&gt;% 
+  clean_names()
+kaggle_survey_2020 %&gt;% 
+  select(6:10)</code></pre>
+<pre><code>## # A tibble: 20,036 x 5
+##    q6          q7_part_1 q7_part_2 q7_part_3 q7_part_4
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 5-10 years  Python    R         SQL       C        
+##  2 5-10 years  Python    R         SQL       &lt;NA&gt;     
+##  3 10-20 years &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  4 5-10 years  Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+##  5 3-5 years   Python    &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  6 &lt; 1 years   Python    R         &lt;NA&gt;      &lt;NA&gt;     
+##  7 3-5 years   Python    R         &lt;NA&gt;      C        
+##  8 &lt; 1 years   &lt;NA&gt;      R         &lt;NA&gt;      &lt;NA&gt;     
+##  9 5-10 years  Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+## 10 &lt; 1 years   Python    &lt;NA&gt;      SQL       &lt;NA&gt;     
+## # … with 20,026 more rows</code></pre>
+<p><strong>But</strong> there’s a nitpicky step of my workflow I need to remember. The <code>question_index</code> dataset needs to be manually updated with <code>make_clean_names()</code>.</p>
+<pre class="r"><code>question_index &lt;- question_index %&gt;% 
+  mutate(question_id = make_clean_names(question_id))</code></pre>
+<p>I’ve taken to using this workflow after working with a variety of survey datasets where there was additional manual wrangling that needed to be done within these 3 steps.</p>
+</div>
+<div id="reparse-columns" class="section level4">
+<h4>Step 4: Give {readr} another change to parse the column types</h4>
+<p>The <code>{readr}</code> does a really good job of guessing column types, except in raw surevey datasets. That’s because the first row usually contains question text which throws off the <em>parser</em>. Forunately, we can give it another go as follows:</p>
+<pre class="r"><code>kaggle_survey_2020 &lt;- kaggle_survey_2020 %&gt;% 
+  type_convert()</code></pre>
+<p>… unfortunately, this is one dataset where all question responses truly are characters (or strings). For instance, the respondent age is stored as an age range instead of a specific number.</p>
+</div>
+<div id="exploratory-data-analysis" class="section level3">
+<h3>Exploratory Data Analysis</h3>
+<p>It’s now time to start to explore the survey data, and that’s often going to involve cross-tabulating question responses. I’m going to tag on the recipe that I use for processing age range columns:</p>
+<pre class="r"><code>kaggle_survey_2020 %&gt;% 
+  select(q1) %&gt;% 
+  count(q1) %&gt;% 
+  rename(age_range = q1) %&gt;% 
+  separate(col = age_range,
+           into = c(&quot;lower_age&quot;, &quot;upper_age&quot;),
+           remove = FALSE) %&gt;% 
+  mutate(age_range = fct_reorder(age_range, lower_age)) %&gt;% 
+  ggplot(aes(y = n,
+             x = age_range)) +
+  geom_col() +
+  theme_bw() +
+  scale_y_continuous(expand = expansion(add = 0))</code></pre>
+<p><img src="/blog/2020-12-14_the-first-5mins-with-survey-data_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>

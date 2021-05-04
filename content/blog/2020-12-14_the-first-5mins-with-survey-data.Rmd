@@ -1,0 +1,154 @@
+---
+title: The first 5mins with survey data
+author: Charlie Joey Hadley
+date: '2020-12-14'
+slug: [the-first-5mins-with-survey-data]
+categories: [data-wrangling]
+tags: [data-wrangling]
+banner: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+twitterImg: "img/blog-images/header-images/2020-05-15-new-project-automator-script.png"
+description: "How do you spend your first 5 minutes with survey data?." 
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library("tidyverse")
+library("here")
+library("janitor")
+```
+
+
+I'm often asked by students how to process survey data, so I thought I'd standardise the first 5minutes (or so) that I spend with survey datasets. I'll use Kaggle's 2020 Machine Learning & Data Science survey dataset, as that's what my most recent student asked about.
+
+- This dataset can only be downloaded if you become a free Kaggle member, so setup an RStudio project and download the file into your project.
+
+The steps I follow are:
+
+1. [Read the data in with readr](#readr)
+
+1. [Look for where the question ids and text are kept](#look-for-ids)
+
+1. [Clean up those question ids](#clean-up)
+
+1. [Give {readr} another change to parse the column types](#reparse-columns)
+
+#### Step 1: Read the data in with readr {#readr}
+
+Load up the {tidyverse} and {janitor} for wrangling the dataset into something tidy.
+
+```{r, eval=FALSE}
+library("tidyverse")
+library("janitor")
+```
+
+Read in the data using `read_csv()` and print thw resulting tibble() to the console... this dataset has 355 rows so I've cheated in the blogpost by only showing the first 5 rows
+
+```{r, eval=FALSE}
+raw_kaggle_survey <- read_csv("data-raw/kaggle_survey_2020_responses.csv")
+raw_kaggle_survey %>% 
+  select(1:5)
+```
+
+```{r internal-import, echo=FALSE}
+raw_kaggle_survey <- read_csv(here("static", "data", "kaggle_survey_2020_responses.csv"))
+raw_kaggle_survey %>% 
+  select(1:5)
+```
+
+#### Step 2: Look for where the question ids and text are kept {#look-for-ids}
+
+Around 90% of the time the following things are true:
+
+- The first few columns contain info about the survey respondent, eg how long they took to answer the survey and if they completed the survey.
+
+- The column names are question ids and the first row contains the actual question text.
+
+Let's create ourselves a `question_index` that contains the `question_id` and the `question_text`:
+
+```{r}
+question_index <- raw_kaggle_survey %>% 
+  slice(1) %>% 
+  select(2:ncol(.)) %>% 
+  pivot_longer(cols = everything()) %>% 
+  rename(question_id = name,
+         question_text = value)
+```
+
+Now we can throw out the survey respondent information and the question text by combining `slice()` and `select()`, note that you'll need to throw away different amounts of rows/columns for each survey dataset:
+
+```{r}
+kaggle_survey_2020 <- raw_kaggle_survey %>% 
+  select(2:ncol(.)) %>% 
+  slice(2:nrow(.))
+```
+
+#### Step 3: Clean up those question ids {#clean-up}
+
+I ensured to load up the `{janitor}` package at the beginning because I want to ensure the `question_ids` are standardised. I've extracted some example columns where there's idiosyncratic capitalisation which will likely cause code errors:
+
+```{r}
+kaggle_survey_2020 %>% 
+  select(6:10)
+```
+
+All we need to clean the survey data is to use `clean_names()`
+
+```{r}
+kaggle_survey_2020 <- kaggle_survey_2020 %>% 
+  clean_names()
+kaggle_survey_2020 %>% 
+  select(6:10)
+```
+
+**But** there's a nitpicky step of my workflow I need to remember. The `question_index` dataset needs to be manually updated with `make_clean_names()`.
+
+```{r}
+question_index <- question_index %>% 
+  mutate(question_id = make_clean_names(question_id))
+```
+
+I've taken to using this workflow after working with a variety of survey datasets where there was additional manual wrangling that needed to be done within these 3 steps.
+
+#### Step 4: Give {readr} another change to parse the column types {#reparse-columns}
+
+The `{readr}` does a really good job of guessing column types, except in raw surevey datasets. That's because the first row usually contains question text which throws off the *parser*. Forunately, we can give it another go as follows:
+
+```{r}
+kaggle_survey_2020 <- kaggle_survey_2020 %>% 
+  type_convert()
+```
+
+... unfortunately, this is one dataset where all question responses truly are characters (or strings). For instance, the respondent age is stored as an age range instead of a specific number.
+
+### Exploratory Data Analysis
+
+It's now time to start to explore the survey data, and that's often going to involve cross-tabulating question responses. I'm going to tag on the recipe that I use for processing age range columns:
+
+```{r}
+kaggle_survey_2020 %>% 
+  select(q1) %>% 
+  count(q1) %>% 
+  rename(age_range = q1) %>% 
+  separate(col = age_range,
+           into = c("lower_age", "upper_age"),
+           remove = FALSE) %>% 
+  mutate(age_range = fct_reorder(age_range, lower_age)) %>% 
+  ggplot(aes(y = n,
+             x = age_range)) +
+  geom_col() +
+  theme_bw() +
+  scale_y_continuous(expand = expansion(add = 0))
+```
+
+
+
+
+
+
+
